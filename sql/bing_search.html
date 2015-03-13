@@ -1,0 +1,89 @@
+<!doctype html> 
+   <head>
+	
+		<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Anton" />
+    </head>
+    <body>
+		<header class="dark">
+			<div class="container_16">
+				<h1><a href="/">jQuery Bing maps <span id="version"></span></a> geocoding example</h1>
+			</div>
+		</header>
+		<div class="container_16">
+			<article class="grid_16">
+				<div class="search item rounded">
+					<label for="search_query">Search</label><input id="search_query" class="big-input-search rounded" placeholder="Enter an address or a city, eg. New York, USA" type="text" />
+				</div>
+				<div>
+					<div id="map_canvas"  style="float:left;"></div>
+					<div id="search_result" style="float:left;"></div>
+					
+				</div>
+				<div class="clear"></div>
+			</article>
+		</div>
+		<!--<script type="text/javascript" src="modernizr.min.js"></script>-->
+		<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="bing_search.js"></script>
+		<script type="text/javascript" src="jquery.ui.bmap.js"></script>
+
+		<script type="text/javascript" src="jquery.ui.bmap.services.js"></script>
+
+        <script type="text/javascript">    
+			$(function() { 
+				demo.add(function() {
+					$('#map_canvas').gmap(jQuery.extend({'callback': function() {
+						var self = this;
+						$('#search_query').keypress( function(event) {
+							if ( $(this).val() != '' && event.which == 13 ) {
+								//var width = parseInt(self.get('width', self.el.css('width')));
+								self.clear('markers');
+								//self.search({ 'address': $(this).val() }, function(result, status) { 
+									
+//$.post('http://hms.zing/retailer_products/search_result',{search_val:$(this).val()},function(result){       
+                    	$.ajax({	                       
+	                        type: "POST",
+	                        data: {search_val:$(this).val()},
+	                        url: "http://hms.zing/retailer_products/search_result",
+	                        dataType: 'json',
+	                        success: function(result) {
+	                        	
+									if (result) {
+										//self.el.animate({ 'width': width-300 }, { 'duration': 250 });
+										//$('#search_result').animate({ 'width': 300 }, { 'duration': 250 });
+										$('#search_result').html('');
+										$.each(result, function(i, item) {
+
+										var infotitle = item.firstname+" "+item.lastname;
+
+										var addressdet = item.firstname+" "+item.lastname+"<br />"+item.address1+","+item.address2+","+item.city+" "+item.state+"<br />"+item.zipcode+","+item.country+" "+item.phone;
+
+											self.addMarker({ 'id': 'm_'+i, 'location': new Microsoft.Maps.Location(item.latitude,item.longitude), 'bounds': true }).click(function() {
+												self.openInfoWindow({ 'title': addressdet }, this);
+											});
+											$('#search_result').append('<div id="m_{0}" class="{1}"><p><strong>{2}</strong> </p></div>'.format(i,((i%2)?'odd':'even'),infotitle));
+											$('#m_'+i).click(function() {
+
+												self.get('map').setView({'center': self.get('markers')[$(this).attr('id')].getLocation()});
+												
+												//openInfoWindow({ 'title': item.address.formattedAddress }, this);
+											});
+											
+										});
+									} else {
+										self.el.animate({ 'width': '100%' }, { 'duration': 250 });
+										$('#search_result').animate({ 'width': 0 }, { 'duration': 250 });
+									}
+								}	
+								
+								});
+							}
+						});
+					}}, demo.mapOptions));
+				}).load();
+			});
+        </script>
+    
+	</body>
+</html>
