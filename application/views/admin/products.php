@@ -10,7 +10,7 @@
 <h1 class="pull-left">Users</h1>
 <div class="pull-right top-page-ui">
 <button class="md-trigger btn btn-primary mrg-b-lg" data-modal="modal-1">
-<i class="fa fa-plus-circle fa-lg"></i> Add user
+<i class="fa fa-plus-circle fa-lg"></i> Add Product
 </button>
 </div>
 </div>

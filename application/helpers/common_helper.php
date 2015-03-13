@@ -106,9 +106,9 @@ function str2USDT($str)
 }
 
     // no logic for server time to local time.
-function str2DBDT($str)
+function str2DBDT($str=null)
 {
-    $intTime = strtotime($str);
+    $intTime = (!empty($str))?strtotime($str):time();
     if ($intTime === false)
          return NULL;
     return date("Y-m-d H:i:s", $intTime);

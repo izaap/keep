@@ -6860,7 +6860,8 @@ svg { width: 100%!important }
     background-color: #1ABC9C; }
  }
 
-
+  .vstar{color:#F4786E;font-weight:bold;}
+  .field_error{color:#F4786E;}
 
  
 
