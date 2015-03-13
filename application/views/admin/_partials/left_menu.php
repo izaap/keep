@@ -49,6 +49,31 @@
             </li>
         </ul>-->
     </li>
+    <li>
+        <a href="<?php echo site_url("admin/message/add_message"); ?>" >
+            <i class="fa fa-envelope"></i><span>Messages</span>
+        </a>
+        
+        <a href="<?php echo site_url("admin/message/add_message"); ?>" >
+            <i class=""></i><span>Add Mesaage</span>
+        </a>
+        
+        <a href="<?php echo site_url("admin/message/message_management"); ?>" >
+            <i class=""></i><span>Message Management</span>
+        </a>
+        
+        
+        
+        
+      <?php /* <ul class="submenu">
+            <li>
+                <a href="<?php echo site_url('admin/message/add_message');?>">Add</a>
+            </li>
+            <li>
+                <a href="<?php echo site_url('admin/message');?>">Manage</a>
+            </li>
+        </ul>  */ ?>
+    </li>
     </ul>
  </div>
  </div>

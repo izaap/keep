@@ -263,7 +263,9 @@ View all messages
 <li class="dropdown profile-dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 <img src="img/samples/scarlet-159.png" alt=""/>
-<span class="hidden-xs"><b><?php echo ucfirst($user_data['first_name']." ".$user_data['last_name']);  ?></b></span> <b class="caret"></b>
+<?php /*<span class="hidden-xs"><b><?php echo ucfirst($user_data['first_name']." ".$user_data['last_name']);  ?></b></span> */ ?>
+
+ <b class="caret"></b>
 </a>
 <ul class="dropdown-menu">
 <li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
