@@ -19,51 +19,79 @@ class Role extends App_Controller {
         }
         
     }
-    public function add($edit_id = '')
+    
+    
+    public function add_role()
     {
-        $edit_id    =   (isset($edit_id) && ($edit_id != ''))?$edit_id:"";
-        
-        $this->form_validation->set_rules($this->form_validations());
+		 $this->form_validation->set_rules($this->_validation_rules_message());
         
         if($this->form_validation->run()) {
-            $this->ins_data['name']              = $this->input->post('name');
-            $this->ins_data['updated_date']      = date("Y-m-d H:i:s");
             
-            if($edit_id) {
-                $this->ins_data['updated_id']    = get_current_user_id();
-                $this->role_model->update($edit_id, $this->ins_data);
-                $this->service_message->set_flash_message("record_update_success");
-            }
-            else  
-            {   
-                $this->ins_data['created_id']    = get_current_user_id();
-                $this->role_model->add($this->ins_data);
-                $this->service_message->set_flash_message("record_add_success"); 
-            }
-            redirect("role");
+            $this->ins_data['role']         =   $this->input->post('role');
+            
+			//print_r($this->ins_data);exit;
+			
+			$this->load->model('admin/role_model');
+            $this->role_model->add_role($this->ins_data);
+            $this->service_message->set_flash_message("record_insert_success");
+            
+			redirect("admin/role/manage_role");
         }
-        
-        if($edit_id != '') {
-            $edit_data  =   $this->role_model->get_roles($edit_id);
-            if(!isset($edit_data[0])) {
-                $this->service_message->set_flash_message('record_not_found_error');
-                redirect('admin/role');
-            }
-            $this->data['form_data']  = $edit_data;
+		
+		
+		
+		
+		$this->data['css']       = get_css('user_add');
+        $this->data['js']        = get_js('user_add'); 
+		$this->layout->view("admin/role/add");
+		
+	}
+
+	
+	public function _validation_rules_message()
+	{
+		return $this->message_add_validation_rules = array(array('field' => 'role', 'label' => 'role', 'rules' => 'trim|required|xss_clean|max_length[255]'));
+		
+	}
+	
+    
+    
+    public function manage_role()
+    {
+		$this->load->model('admin/role_model');
+        $this->result = $this->role_model->get_all_role();
+		
+		$this->data['css']       = get_css('user_add');
+        $this->data['js']        = get_js('user_add'); 
+		$this->layout->view("admin/role/manage_role",$this->result);
+	}
+	
+	
+	public function edit_role($id = "")
+	{
+		
+		$this->form_validation->set_rules($this->_validation_rules_message());
+		if($this->form_validation->run()) { 
+            
+            $this->ins_data['role']         =   $this->input->post('role');
+            $this->ins_data['id']              =   $this->input->post('id');
+			
+			$this->load->model('admin/role_model');
+            $this->role_model->edit_role($this->ins_data);
+            $this->service_message->set_flash_message("record_insert_success");
+            
+			redirect("admin/role/manage_role");
         }
-       else if($this->input->post()) {
-            $this->data['form_data']            = $_POST;
-            $this->data['form_data']['id']      = (isset($edit_id) && ($edit_id != ''))?$edit_id:"";
-       } 
-       else
-       {
-            $this->data['form_data']            =   array('id' => '', 'name' => '');
-       }
-       $this->layout->view("admin/role",$this->data);
-    }
-   public function form_validations()
-   {
-      return $this->role_validation_rules =  array(array('field' => 'name', 'label' => 'Role', 'rules' => 'trim|required|alpha|xss_clean'));
-   } 
+		
+		$this->load->model('admin/role_model');
+        $this->result = $this->role_model->get_role_details($id);
+		
+		$this->data['css']       = get_css('user_add');
+        $this->data['js']        = get_js('user_add'); 
+		$this->layout->view("admin/role/edit_role",$this->result);
+	}
+    
+    
+   
 }
 ?>

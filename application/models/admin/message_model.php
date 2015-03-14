@@ -37,9 +37,7 @@ class Message_Model extends CI_Model {
    
     public function edit_message($data = "")
    {
-	   //echo "in";exit;
-	   //print $message_id;exit;
-		$data_val = array(
+	   	$data_val = array(
                'name' => $data['name'],
                'message' => $data['message'],
                'type' => $data['type']
@@ -47,9 +45,7 @@ class Message_Model extends CI_Model {
 
 		$this->db->where('id', $data['id']);
 		$this->db->update('messages', $data_val); 
-	
-	   
-	  // return $this->db->insert('messages', array('name' => $data["name"],'message' => $data["message"],'type' => $data["type"]));
+
 	   
    }
    

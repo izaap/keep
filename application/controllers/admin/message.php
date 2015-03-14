@@ -47,7 +47,6 @@ class Message extends App_controller {
 	}
 	
 	
-	
 	public function _validation_rules_message()
 	{
 		return $this->message_add_validation_rules = array(array('field' => 'name', 'label' => 'name', 'rules' => 'trim|required|alpha|xss_clean|max_length[255]'),
@@ -58,9 +57,9 @@ class Message extends App_controller {
 	}
 	
 	
-	
 	public function message_management()
 	{
+		//$this->load->library('pagination');
 		
 		$this->load->model('admin/message_model');
         $this->result = $this->message_model->get_all_message();

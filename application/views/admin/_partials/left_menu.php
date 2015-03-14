@@ -20,22 +20,29 @@
             <li><a href="#">Recent Activities</a></li>
         </ul>
     </li>
-    <li>
-        <a href="<?php echo site_url('admin/role'); ?>"><span>Roles</span></a>
+    
+    
+     <li class="active">
+   
+			<a href="<?php echo site_url('admin/role/add_role'); ?>">
+			 <i class="fa fa-dashboard"></i><span>Role</span><span class="label label-primary label-circle pull-right"></span>
+			</a>
+		
+		<ul class="submenu">
+			<li>
+				<a href="<?php echo site_url('admin/role/add_role');?>">
+					<i class=""></i><span>Add Role</span>
+				</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url('admin/role/manage_role');?>">
+					<i class=""></i><span>Manage Role</span>
+				</a>
+			</li>
+		</ul>
     </li>
-    <li>
-        <a href="<?php echo site_url('admin/user');?>">
-            <i class="fa fa-table"></i><span>Users</span>
-        </a>
-        <!--<ul class="submenu">
-            <li>
-                <a href="#">Add</a>
-            </li>
-            <li>
-                <a href="#">List</a>
-            </li>
-        </ul>-->
-    </li>
+    
+    
     <li>
         <a href="<?php echo site_url("admin/products"); ?>" >
             <i class="fa fa-envelope"></i><span>Products</span>
@@ -49,19 +56,25 @@
             </li>
         </ul>-->
     </li>
-    <li>
-        <a href="<?php echo site_url("admin/message/add_message"); ?>" >
-            <i class="fa fa-envelope"></i><span>Messages</span>
-        </a>
-        
-        <a href="<?php echo site_url("admin/message/add_message"); ?>" >
-            <i class=""></i><span>Add Mesaage</span>
-        </a>
-        
-        <a href="<?php echo site_url("admin/message/message_management"); ?>" >
-            <i class=""></i><span>Message Management</span>
-        </a>
-        
+    
+    
+    <li class="active">
+			<a href="<?php echo site_url("admin/message/add_message"); ?>" >
+				<i class="fa fa-envelope"></i><span>Messages</span>
+			</a>
+	  <ul class="submenu"> 
+			<li> 
+				<a href="<?php echo site_url("admin/message/add_message"); ?>" >
+					<i class=""></i><span>Add Mesaage</span>
+				</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url("admin/message/message_management"); ?>" >
+					<i class=""></i><span>Message Management</span>
+				</a>
+			</li>
+		</ul>
+     </li>
         
         
         

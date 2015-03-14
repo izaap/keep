@@ -7,24 +7,67 @@ class Role_Model extends CI_Model {
         
         parent::__construct();
     }
-    public function add($data)
-    {
-         return $this->db->insert($this->table_name,$data);
-    }
-    public function update($id, $data)
-    {
-        return $this->db->update($this->table_name, $data, array("id" => $id));
-    }
-    public function delete($id)
-    {
-        return $this->db->delete($this->table_name, array("id" => $id));
-    }
-    public function get_roles()
-    {
-        $this->db->select("id,name");
-        $this->db->from($this->table_name);
-        $result = $this->db->get();
-        return $result->result_array(); 
-    }
+    
+    
+    
+   public function add_role($data = "" )
+   {
+	   //print_r($data);exit;
+	     return $this->db->insert('jwb_roles', array('name' => $data["role"]));
+   }
+   
+   
+   public function get_all_role()
+   {
+	   $this->db->select('*');
+        $this->db->from('jwb_roles');
+        return $this->db->get()->result_array();
+   }
+   
+   
+   public function edit_role($data = "")
+   {
+	   $data_val = array(
+               'name' => $data['role']
+                     );
+
+		$this->db->where('id', $data['id']);
+		$this->db->update('jwb_roles', $data_val); 
+   }
+   
+   
+   public function get_role_details($id = "")
+   {
+	  $this->db->select('*');
+      $this->db->from('jwb_roles');
+      $this->db->where('id', $id);
+      $query = $this->db->get()->result_array();
+      return $query;
+   }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 }
 ?>

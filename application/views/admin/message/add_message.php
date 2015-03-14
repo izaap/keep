@@ -31,24 +31,44 @@
                 <label for="message">Message</label>
                 <textarea class="form-control" name="message" id="message" rows="5"><?php /* echo set_value('about', $form_data['about']); */?></textarea>
             </div>
-            
-            <?php /*<div class="form-group">
-                <label>Type</label>
-                <select class="form-control" name="role" id="role">
-                    <option value="" <?php echo set_select('role', '', TRUE); ?>>Select Role</option>
-                <?php if(isset($roles)) {foreach($roles as $rkey => $rvalue){
-                       $selectecd = (isset($form_data['role']) && ($form_data['role'] == $rvalue['id']))?'selected="selected"':"";
-                    ?>
-                    <option value="<?php echo $rvalue['id']; ?>" <?php echo set_select('role', $form_data['role']); ?> <?php echo $selectecd; ?>><?php echo $rvalue['name']; ?></option>
-                    <?php }} ?>
-                </select>
-            </div> */ ?>
-            
+                      
             <div class="form-group">
                 <label for="type">Type</label>
                 <input type="radio" class="form-control" name="type" id="type" value="1" />Site
                 <input type="radio" class="form-control" name="type" id="type" value="2" />User
             </div>
+            
+            
+            
+             <div>
+        <input type="text" id="demo-input-local" name="users" value=""/>
+        
+        <script type="text/javascript">
+        $(document).ready(function() {
+		
+				$("input").keyup(function(){
+        
+        var s = $("#demo-input-local").val();
+alert(s);
+    });
+            $("#demo-input-local").tokenInput([
+                {id: 7, name: "Ruby"},
+                {id: 11, name: "Python"},
+                {id: 13, name: "JavaScript"},
+                {id: 17, name: "ActionScript"},
+                {id: 19, name: "Scheme"},
+                {id: 23, name: "Lisp"},
+                {id: 29, name: "C#"},
+                {id: 31, name: "Fortran"},
+                {id: 37, name: "Visual Basic"},
+                {id: 41, name: "C"},
+                {id: 43, name: "C++"},
+                {id: 47, name: "Java"}
+            ]);
+        });
+        </script>
+    </div>
+            
             
            
             <div class="col-md-1">

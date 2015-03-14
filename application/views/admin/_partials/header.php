@@ -7,6 +7,9 @@
 <title>KEEP - Admin Home</title>
 <?php if(isset($css)): foreach($css as $ckey => $cvalue):?>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/admin/css/<?php echo $cvalue; ?>"/>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
 <?php endforeach; endif; ?>
 
 <link type="image/x-icon" href="favicon.png" rel="shortcut icon"/>
@@ -16,6 +19,11 @@
 		<script src="js/html5shiv.js"></script>
 		<script src="js/respond.min.js"></script>
 	<![endif]-->	
+	
+	<?php if(isset($js)): foreach($js as $jkey => $jvalue):?>
+<script src="<?php echo base_url();?>assets/admin/js/<?php echo $jvalue; ?>"></script>  
+<?php endforeach; endif; ?>
+<script type="text/javascript" src="src/jquery.tokeninput.js"></script>
 </head>
 <body>
 <div id="theme-wrapper">

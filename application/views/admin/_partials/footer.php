@@ -96,9 +96,7 @@ Right-to-Left
 </div>
 
 
-<?php if(isset($js)): foreach($js as $jkey => $jvalue):?>
-<script src="<?php echo base_url();?>assets/admin/js/<?php echo $jvalue; ?>"></script>  
-<?php endforeach; endif; ?>
+
  
    
 </body>
