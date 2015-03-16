@@ -101,50 +101,26 @@
 </div>
 
 <div class="row">
-<div class="col-lg-8">
-<div class="main-box">
-<header class="main-box-header clearfix">
-<h2>Server Statistics</h2>
-	<div class="toolbar">
-		<div class="pull-left">
-			<div class="btn-group">
-				<a href="#" class="btn btn-default btn-xs">Daily</a>
-				<a href="#" class="btn btn-default btn-xs active">Monthly</a>
-				<a href="#" class="btn btn-default btn-xs">Yearly</a>
-			</div>
-		</div>
-		<div class="pull-right">
-			<div class="btn-group">
-			  <a aria-expanded="false" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-				Export <i class="fa fa-angle-down"></i>
-			  </a>
-			  <ul class="dropdown-menu pull-right" role="menu">
-				<li><a href="#">Export as PDF</a></li>
-				<li><a href="#">Export as CSV</a></li>
-				<li><a href="#">Export as PNG</a></li>
-				<li class="divider"></li>
-				<li><a href="#">Separated link</a></li>
-			  </ul>
-			</div>
-			<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-cog"></i></a>
+<div class="col-lg-6">
+	<div class="main-box">
+		<header class="main-box-header clearfix">
+			<h2>Products Buycount</h2>
+		</header>
+		<div class="main-box-body clearfix">
+			<div id="buycount_chart"> </div>
 		</div>
 	</div>
-</header>
-<div class="main-box-body clearfix">
-<div id="hero-area"></div>
-</div>
-</div>
 </div>
 
-<div class="col-lg-4">
-<div class="main-box feed">
-<header class="main-box-header clearfix">
-<h2 class="pull-left">Server status</h2>
-</header>
-<div class="main-box-body clearfix">
-<div id="graph-flot-realtime" style="height: 400px; padding: 0px; position: relative;"></div>
-</div>
-</div>
+<div class="col-lg-6">
+	<div class="main-box">
+		<header class="main-box-header clearfix">
+			<h2>Products Followed</h2>
+		</header>
+		<div class="main-box-body clearfix">
+			<div id="Followed_chart"> </div>
+		</div>
+	</div>
 </div>
 </div>
 
@@ -929,3 +905,47 @@ Argentina
 </div>
 </div>
 </div>
+<script type="text/javascript">
+
+
+    google.load('visualization', '1', {packages: ['corechart','controls']});
+    google.setOnLoadCallback(drawChart);
+
+function drawChart(){
+	$.ajax({
+		url:"<?php echo site_url('admin/dashboard/product_chart') ?>",
+		type : "POST",
+		data:{},
+		dataType:"json",
+		success : function(data) {
+			
+			if(data.status == 'success')
+			{
+
+				var rep_data = new google.visualization.arrayToDataTable(data.buycount);
+
+				var options = {
+				  title: 'Buycount',
+				  fontSize:12,
+				  width:490,
+				  height:200,
+				  legend: 'none',
+				  vAxis: {title: 'Product'}
+				};
+
+				var chart = new google.visualization.ColumnChart(document.getElementById('buycount_chart'));
+				chart.draw(rep_data, options);
+
+			}
+			else
+			{
+				$('#buycount_chart').html("<div class='no_records'>"+data.message+"</div>");
+			}
+			
+		},
+		error : function(data) {
+			$('#buycount_chart').html("<div class='no_records'>Failed to load graphs</div>");
+		}
+	});
+}	
+</script>
