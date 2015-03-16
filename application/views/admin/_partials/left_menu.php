@@ -1,8 +1,4 @@
-<?php if($message = $this->service_message->render()) :?>
-		<?php echo $message;?>
-<?php endif; ?>
-<div id="page-wrapper" class="container">
-<div class="row">
+
 <!-- Start  Left Menu Section -->
 <div id="nav-col">
 <section id="col-left" class="col-left-nano">
@@ -77,15 +73,7 @@
      </li>
         
         
-        
-      <?php /* <ul class="submenu">
-            <li>
-                <a href="<?php echo site_url('admin/message/add_message');?>">Add</a>
-            </li>
-            <li>
-                <a href="<?php echo site_url('admin/message');?>">Manage</a>
-            </li>
-        </ul>  */ ?>
+      
     </li>
     </ul>
  </div>

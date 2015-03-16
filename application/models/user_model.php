@@ -1,5 +1,6 @@
 <?php
-class User_Model extends CI_Model {
+safe_include("models/app_model.php");
+class User_Model extends App_model {
     private $table_name = 'jwb_users';
     
     function __construct()

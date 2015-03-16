@@ -20,9 +20,10 @@ class Login_Model extends CI_Model
          
        $pass = md5($password);
       
-      if(!empty($user)&& $user['password'] == $pass){
+      if(!empty($user)&& $user['password'] == $pass)
+      {
       
-        $this->session->set_userdata('admin_user_data', $user);
+        $this->session->set_userdata('user_data', $user);
         
         return true;
       }

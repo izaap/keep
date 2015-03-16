@@ -2,29 +2,23 @@
 
 class App_Controller extends CI_Controller
 {
-    protected $_logged_in_only         =    false;
+    public $logged_in                  = FALSE;
     public $error_message              =    '';
     public $data                       =    array();
-    public $role                       =    '';
-    public $load_css                   =    array();
-    public $load_js                    =    array();
-    public $ins_data                   =    array();
+    public $role                       =    0;
+    public $init_scripts               = array();
     
-    protected $_login_validation_rules =    array (
-                                                    array('field' => 'email', 'label' => 'Email', 'rules' => 'trim|required|xss_clean'),
-                                                    array('field' => 'password', 'label' => 'Password', 'rules' => 'trim|required|xss_clean|min_length[4]|max_length[20]|alpha_dash')
-                                                  );
-   protected $useradd_validation_rules =    array();  
-   protected $role_validation_rules    =    array();
    
     
     public function __construct()
     {
         parent::__construct(); 
-       
-        $this->data = array();
+    
         $this->role = get_user_role();
         
+        $this->init();
+
+        //if($this->uri->segment(1,'')
         $this->load->library("form_validation");
         
         $this->load->model("user_model");
@@ -32,6 +26,42 @@ class App_Controller extends CI_Controller
         
     }
     
+    public function init()
+    {
+        $seg1 = $this->uri->segment(1,'');
+
+
+        switch ($seg1) 
+        {
+            case 'admin':
+                if( !is_logged_in() )
+                {
+                    $seg2 = $this->uri->segment(2,'');
+                    if($seg1 === 'admin' && $seg2 !== 'login')
+                    {
+                        redirect('admin/login');
+                    }
+                }
+                elseif(is_logged_in() && get_user_role())
+                {
+                    if(get_user_role() != '1')
+                    {
+                        redirect('home');
+                    }
+                }
+
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+        
+        
+    }
+
+
     public function index()
     {
        

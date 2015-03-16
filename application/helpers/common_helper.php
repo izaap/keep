@@ -6,14 +6,14 @@ function is_logged_in()
     
     $user_data = get_user_data();
     
-    if(!empty($user_data) && isset($user_data['id']) && !empty($user_data['id'])){
-        return true;
-    }
-    else
-    {
-        return false;    
-    } 
+    if( is_array($user_data) && $user_data )
+        return TRUE;
+
+    return FALSE;
+
 }
+
+
 function get_current_user_id()
 {
     $CI = & get_instance();
@@ -28,13 +28,14 @@ function get_user_data()
 {
     $CI = get_instance();
     
-    if($CI->session->userdata('admin_user_data')){
         
-        return $CI->session->userdata('admin_user_data');
+    if($CI->session->userdata('user_data'))
+    {
+        return $CI->session->userdata('user_data');
     }
     else
     {
-        return false;
+        return FALSE;
     }
 }
 
@@ -42,22 +43,19 @@ function get_user_role( $user_id = 0 )
 {
     $CI= & get_instance();
     
-    if(!$user_id) {
+    if(!$user_id) 
+    {
         $user_data = get_user_data();
-        $user_id   = isset($user_data['id'])?$user_data['id']:0;
+        return $user_data['role'];
     }   
     
-    if(!$user_id) {
-        return false;
-    }
-    
-    $CI->db->select("role");
-    $result = $CI->db->get_where("jwb_users", array("id" => $user_id));
-    if(!$result->num_rows()) {
-        return false;
-    }
-    
-    return (int)$result->row()->role;
+    $CI->load->model('user_model');
+    $row = $CI->user_model->get_where(array('id' => $user_id))->row_array;
+
+    if( !$row )
+        return FALSE;
+
+    return $row['role'];
 }
 
 function displayData($data = null, $type = 'string', $row = array(), $wrap_tag_open = '', $wrap_tag_close = '')

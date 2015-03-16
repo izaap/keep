@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-safe_include("controllers/app_controller.php");
-class User extends App_controller {
+safe_include("controllers/admin/admin_controller.php");
+class User extends Admin_controller {
     
     function __construct() 
     {
@@ -11,17 +11,8 @@ class User extends App_controller {
 
 	public function index()
 	{
-	   if(is_logged_in() && $this->role == 1) {
-	       $this->data['user_data'] = $this->session->userdata('admin_user_data');
-           $this->data['css']       = get_css('admin_user');
-           $this->data['js']        = get_js('admin_user');
-	       $this->layout->view("admin/user/list",$this->data);
-      
-      }
-      else
-      {
-        redirect('login');
-      }
+	   $this->data['user_data'] = $this->session->userdata('user_data');
+            $this->layout->view("admin/user/list");
 
 	}
     public function add($edit_id = "")
