@@ -12,7 +12,7 @@ class Message_Model extends CI_Model {
    public function add_message($data = "")
    {
 	   //echo "in";exit;
-	   return $this->db->insert('messages', array('name' => $data["name"],'message' => $data["message"],'type' => $data["type"]));
+	   return $this->db->insert('messages', array('name' => $data["name"],'message' => $data["message"],'type' => $data["type"],'users' => $data["users"]));
 	   
    }
    
@@ -27,7 +27,7 @@ class Message_Model extends CI_Model {
    
    public function get_message_details($id = "")
    {
-	   $this->db->select('*');
+	  $this->db->select('*');
       $this->db->from('messages');
       $this->db->where('id', $id);
       $query = $this->db->get()->result_array();
@@ -40,7 +40,8 @@ class Message_Model extends CI_Model {
 	   	$data_val = array(
                'name' => $data['name'],
                'message' => $data['message'],
-               'type' => $data['type']
+               'type' => $data['type'],
+               'users' => $data['users']
             );
 
 		$this->db->where('id', $data['id']);
@@ -57,8 +58,27 @@ class Message_Model extends CI_Model {
 	   
    }
    
+   public function auto_complete_result($result = "")
+   {
+	  $this->db->select('*');
+      $this->db->from('jwb_users');
+      $this->db->like('user_name', $result);
+      $query = $this->db->get()->result_array();
+      return $query;
+   }
    
    
+   public function get_single_message_details($ex = "")
+   { 
+	   //print_r($ex);exit;
+
+	  $this->db->select('*');
+      $this->db->from('jwb_users');
+      $this->db->where_in('id',$ex);
+      $query = $this->db->get()->result_array();
+      return $query;
+      
+   }
    
    
    

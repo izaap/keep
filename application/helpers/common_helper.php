@@ -419,22 +419,22 @@ function get_js($page)
     
     switch ($page) {
         case 'login':
-            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","scripts.js","jquery.tokeninput.js","jquery.min.js");
+            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","scripts.js","jquery.tokeninput.js");
             break;
         case 'admin_dashboard':
-            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","jquery.scrollTo.min.js","jquery.slimscroll.min.js","moment.min.js","jquery-jvectormap-1.2.2.min.js","jquery-jvectormap-world-merc-en.js","gdp-data.js","flot/jquery.flot.min.js","flot/jquery.flot.resize.min.js","flot/jquery.flot.time.min.js","flot/jquery.flot.threshold.js","flot/jquery.flot.axislabels.js","jquery.sparkline.min.js","skycons.js","raphael-min.js","morris.js","scripts.js","pace.min.js","jquery.tokeninput.js","jquery.min.js");
+            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","jquery.scrollTo.min.js","jquery.slimscroll.min.js","moment.min.js","jquery-jvectormap-1.2.2.min.js","jquery-jvectormap-world-merc-en.js","gdp-data.js","flot/jquery.flot.min.js","flot/jquery.flot.resize.min.js","flot/jquery.flot.time.min.js","flot/jquery.flot.threshold.js","flot/jquery.flot.axislabels.js","jquery.sparkline.min.js","skycons.js","raphael-min.js","morris.js","scripts.js","pace.min.js","jquery.tokeninput.js");
             break;
         case 'admin_user':
-            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","modernizr.custom.js","classie.js","modalEffects.js","scripts.js","pace.min.js","jquery.tokeninput.js","jquery.min.js");
+            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","modernizr.custom.js","classie.js","modalEffects.js","scripts.js","pace.min.js","jquery.tokeninput.js");
             break;
         case 'products':
-            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","modernizr.custom.js","classie.js","modalEffects.js","scripts.js","pace.min.js","jquery.tokeninput.js","jquery.min.js");
+            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","modernizr.custom.js","classie.js","modalEffects.js","scripts.js","pace.min.js","jquery.tokeninput.js");
             break;
         case 'product_add':
             $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","fileinput.js","fileinput.min.js","jquery.nanoscroller.min.js","demo.js","modernizr.custom.js","classie.js","modalEffects.js","scripts.js","pace.min.js");
             break;    
         case 'user_add':
-            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","jquery.maskedinput.min.js","bootstrap-datepicker.js","moment.min.js","daterangepicker.js","bootstrap-timepicker.min.js","select2.min.js","hogan.js","typeahead.min.js","jquery.pwstrength.js","scripts.js","pace.min.js","user-add.js","jquery.tokeninput.js","jquery.min.js");
+            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","jquery.maskedinput.min.js","bootstrap-datepicker.js","moment.min.js","daterangepicker.js","bootstrap-timepicker.min.js","select2.min.js","hogan.js","typeahead.min.js","jquery.pwstrength.js","scripts.js","pace.min.js","user-add.js","jquery.tokeninput.js");
             break;
         default:
             break;

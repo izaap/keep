@@ -34,40 +34,59 @@
                       
             <div class="form-group">
                 <label for="type">Type</label>
-                <input type="radio" class="form-control" name="type" id="type" value="1" />Site
-                <input type="radio" class="form-control" name="type" id="type" value="2" />User
+                <input type="radio" class="form-control" name="type" id="type1" value="1" />Site
+                <input type="radio" class="form-control" name="type" id="type2" value="2" />User
             </div>
             
             
             
-             <div>
-        <input type="text" id="demo-input-local" name="users" value=""/>
-        
+             <div class="test">
+				 <label for="type">Select User</label>
+				 <input type="text" id="search_user" name="users" value=""/>
+			</div>
         <script type="text/javascript">
+			
         $(document).ready(function() {
+			
+			$(".test").hide();
+			$("#type2").click(function () {
+				$(".test").show();
+			$("#type1").click(function () {
+				$(".test").hide();
+			});
+		});
 		
-				$("input").keyup(function(){
+			$("#search_user").keyup(function(){
         
-        var s = $("#demo-input-local").val();
-alert(s);
-    });
-            $("#demo-input-local").tokenInput([
-                {id: 7, name: "Ruby"},
-                {id: 11, name: "Python"},
-                {id: 13, name: "JavaScript"},
-                {id: 17, name: "ActionScript"},
-                {id: 19, name: "Scheme"},
-                {id: 23, name: "Lisp"},
-                {id: 29, name: "C#"},
-                {id: 31, name: "Fortran"},
-                {id: 37, name: "Visual Basic"},
-                {id: 41, name: "C"},
-                {id: 43, name: "C++"},
-                {id: 47, name: "Java"}
-            ]);
+			var s = $("#search_user").val();
+        //alert(s);
+		
+		
+			var url = "<?php echo site_url(); ?>admin/message/auto_complete";
+			
+		
+			$.ajax(
+			{
+				type:'POST',
+				url:url,
+				data: {search_key:$("#search_user").val()},
+				cache:false,
+				async:true,
+				global:false,
+				dataType:"json",
+				success:function(check)
+				{ //alert(check);
+				  $("#search_user").tokenInput(check);
+				}
+			});
+
+		});
+           
         });
+        
+   
         </script>
-    </div>
+    
             
             
            
