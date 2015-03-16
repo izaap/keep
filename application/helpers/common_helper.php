@@ -401,6 +401,9 @@ function get_css($page)
         case 'products':
             $CI->load_css = array("bootstrap/bootstrap.min.css","libs/font-awesome.css","libs/nanoscroller.css","compiled/theme_styles.css","libs/nifty-component.css","libs/token-input.css","libs/token-input-facebook.css");
             break;
+        case 'product_add':
+            $CI->load_css = array("bootstrap/bootstrap.min.css","libs/font-awesome.css","libs/nanoscroller.css","compiled/theme_styles.css","libs/nifty-component.css","fileinput.css","fileinput.min.css");
+            break;    
        case 'user_add':
             $CI->load_css = array("bootstrap/bootstrap.min.css","libs/font-awesome.css","libs/nanoscroller.css","compiled/theme_styles.css","libs/datepicker.css","libs/daterangepicker.css","libs/bootstrap-timepicker.css","libs/select2.css","libs/token-input.css","libs/token-input-facebook.css");
             break;
@@ -429,6 +432,9 @@ function get_js($page)
         case 'products':
             $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","modernizr.custom.js","classie.js","modalEffects.js","scripts.js","pace.min.js","jquery.tokeninput.js","jquery.min.js");
             break;
+        case 'product_add':
+            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","fileinput.js","fileinput.min.js","jquery.nanoscroller.min.js","demo.js","modernizr.custom.js","classie.js","modalEffects.js","scripts.js","pace.min.js");
+            break;    
         case 'user_add':
             $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","jquery.maskedinput.min.js","bootstrap-datepicker.js","moment.min.js","daterangepicker.js","bootstrap-timepicker.min.js","select2.min.js","hogan.js","typeahead.min.js","jquery.pwstrength.js","scripts.js","pace.min.js","user-add.js","jquery.tokeninput.js","jquery.min.js");
             break;

@@ -9,29 +9,33 @@ class Products extends App_Controller {
     function __construct() {
         parent::__construct();
 
-        $this->data['css']       = get_css('products');
-        $this->data['js']        = get_js('products');
-
         $this->load->model('product_model');
     }
     
     public function index()
     {
-        
+        $this->data['css']       = get_css('products');
+        $this->data['js']        = get_js('products');
+
         $this->layout->view("admin/product/list", $this->data);
        
     }
 
     function add($id=0){
 
+        $this->data['css']       = get_css('product_add');
+        $this->data['js']        = get_js('product_add');
+
         $this->form_validation->set_rules($this->_validation_rules());
 
-        $this->data['form_data'] = array("id"=>"","product_name"=>"","description"=>"","image"=>"","upcoming_product" => "", "buylink" => "","price" => "");
+        $this->data['form_data'] = array("id"=>"","product_name"=>"","description"=>"","product_image"=>"","upcoming_product" => "", "buylink" => "","price" => "");
         
         $edit_data = $this->product_model->get_where(array('id'=>$id))->row_array();
 
         if($edit_data)
             $this->data['form_data'] = $edit_data;
+
+        $this->data['img_url']   = site_url('assets/uploads/products/'.$this->data['form_data']['product_image']);
 
         if($this->form_validation->run()) {
 
@@ -71,13 +75,15 @@ class Products extends App_Controller {
 
     $rules = array(array('field' => 'product_name', 'label' => 'Product Name', 'rules' => 'trim|required|xss_clean'),
                    array('field' => 'description', 'label' => 'Description', 'rules' => 'trim|required|xss_clean'),
+                   array('field' => 'product_image', 'label' => 'Product image', 'rules' => 'trim|required|xss_clean'),
                    array('field' => 'upcoming_product', 'label' => 'Upcoming product', 'rules' => 'trim|xss_clean'),
                    array('field' => 'buylink', 'label' => 'Buylink', 'rules' => 'trim|required|xss_clean'),
-                   array('field' => 'price', 'label' => 'Price', 'rules' => 'trim|required|xss_clean|numeric|max_length[5]')
+                   array('field' => 'price', 'label' => 'Price', 'rules' => 'trim|required|xss_clean|numeric|max_length[7]')
                   );
 
     return  $rules;
    } 
+
 }
 
 ?>

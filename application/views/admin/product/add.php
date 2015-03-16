@@ -19,7 +19,7 @@
                         <header class="main-box-header clearfix"><h2></h2></header>
                         <div class="main-box-body clearfix">
                         <?php $id=(!empty($form_data['id']))?$form_data['id']:'';?>
-                            <form role="form" name="user" id="user" action="<?=site_url('admin/products/add/'.$id);?>" method="POST">
+                            <form role="form" name="user" id="user" action="<?=site_url('admin/products/add/'.$id);?>" method="POST" enctype="multipart/form-data">
                                                                   
                                 <div class="form-group">
                                     <label for="product_name">Product Name <span class="vstar">*</span></label>
@@ -32,10 +32,14 @@
                                     <textarea class="form-control" name="description" id="description" rows="10"><?=set_value('description', $form_data['description']);?></textarea>
                                     <?php echo form_error('description', '<div class="field_error">', '</div>'); ?>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="product_image">Product Image <span class="vstar">*</span></label>
-                                    <input type="file"  name="product_image" id="product_image" />
+                                    <label for="upload_image">Product Image <span class="vstar">*</span></label>
+                                    <input id="upload_image" name="upload_image" type="file" class="file" >
+                                    <input type="hidden" name="product_image" id="product_image" value="<?=set_value('product_image', $form_data['product_image']);?>">
+                                    <?php echo form_error('product_image', '<div class="field_error">', '</div>'); ?>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label for="upcoming_product">Upcoming Product </label>
                                     <input type="checkbox" class="form-control" name="upcoming_product" id="upcoming_product" value="1" <?=($form_data['upcoming_product']==1)?'checked':'';?> />
@@ -63,3 +67,38 @@
                 </div>
             </div>
 </div>
+
+<?php $prev_img = (!empty($form_data['product_image']))?"<img src='$img_url' class='file-preview-image' alt='Product Image' title='Product Image'>":""; ?>
+
+<script>
+
+    $("#upload_image").fileinput({
+        uploadUrl: "<?php echo site_url('admin/uploads/do_upload');?>", // you must set a valid URL here else you will get an error
+        allowedFileExtensions : ['jpg','jpeg','png','gif'],
+        maxFileSize: 1000,
+        showCaption: false,
+        dropZoneEnabled : false,
+        showRemove : false,
+        <?php if ($prev_img): ?>
+        initialPreview: [ "<?php echo $prev_img; ?>" ],
+        <?php endif;?>
+        uploadExtraData:{'upload_folder':'products','types':'gif|jpg|png|jpeg'},        
+        slugCallback: function(filename) {
+            //alert(filename);
+            return filename.replace('(', '_').replace(']', '_');
+        }
+        
+    });
+
+$(document).ready(function() {
+
+    $('#upload_image').on('fileuploaded', function(event, data, previewId, index) {
+
+        var form = data.form, files = data.files, extra = data.extra,
+        response = data.response, reader = data.reader;
+
+        $("#product_image").val(response.fileuploaded);       
+    });
+});
+
+</script>

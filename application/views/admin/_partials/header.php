@@ -12,6 +12,10 @@
 
 <?php endforeach; endif; ?>
 
+<?php if(isset($js)): foreach($js as $jkey => $jvalue):?>
+<script src="<?php echo base_url();?>assets/admin/js/<?php echo $jvalue; ?>"></script>  
+<?php endforeach; endif; ?>
+
 <link type="image/x-icon" href="favicon.png" rel="shortcut icon"/>
  
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
