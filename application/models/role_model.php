@@ -8,7 +8,12 @@ class Role_Model extends CI_Model {
         parent::__construct();
     }
     
-    
+   function get_roles()
+   {
+      $this->db->select('*');
+      $this->db->from('jwb_roles');
+      return $this->db->get()->result_array();
+   } 
     
    public function add_role($data = "" )
    {

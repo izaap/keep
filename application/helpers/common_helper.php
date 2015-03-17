@@ -58,6 +58,22 @@ function get_user_role( $user_id = 0 )
     return $row['role'];
 }
 
+function get_roles()
+{
+    $CI = & get_instance();
+    $CI->load->model('role_model');
+    $records = $CI->role_model->get_roles();
+
+    $roles = array();
+    foreach ($records as $id => $val) 
+    {
+        $roles[$id] = $val;
+    }
+
+    return $roles;
+}
+
+
 function displayData($data = null, $type = 'string', $row = array(), $wrap_tag_open = '', $wrap_tag_close = '')
 {
      $CI = & get_instance();
@@ -382,67 +398,7 @@ function xml_obj_to_array($xml_obj) {
         return $arr;                     
 }
 
-function get_css($page)
-{
-    $CI = & get_instance();
-    
-    switch ($page) {
-        case 'login':
-            $CI->load_css = array("bootstrap/bootstrap.min.css","libs/font-awesome.css","libs/nanoscroller.css","compiled/theme_styles.css","libs/token-input.css","libs/token-input-facebook.css");
-            break;
-        case 'admin_dashboard':
-            $CI->load_css = array("bootstrap/bootstrap.min.css","libs/font-awesome.css","libs/nanoscroller.css","compiled/theme_styles.css","libs/daterangepicker.css","libs/jquery-jvectormap-1.2.2.css","libs/weather-icons.css","libs/morris.css","libs/token-input.css","libs/token-input-facebook.css");
-            break;
-        case 'admin_user':
-            $CI->load_css = array("bootstrap/bootstrap.min.css","libs/font-awesome.css","libs/nanoscroller.css","compiled/theme_styles.css","libs/nifty-component.css","libs/token-input.css","libs/token-input-facebook.css");
-            break;
-        case 'products':
-            $CI->load_css = array("bootstrap/bootstrap.min.css","libs/font-awesome.css","libs/nanoscroller.css","compiled/theme_styles.css","libs/nifty-component.css","libs/token-input.css","libs/token-input-facebook.css");
-            break;
-        case 'product_add':
-            $CI->load_css = array("bootstrap/bootstrap.min.css","libs/font-awesome.css","libs/nanoscroller.css","compiled/theme_styles.css","libs/nifty-component.css","fileinput.css","fileinput.min.css");
-            break;    
-       case 'user_add':
-            $CI->load_css = array("bootstrap/bootstrap.min.css","libs/font-awesome.css","libs/nanoscroller.css","compiled/theme_styles.css","libs/datepicker.css","libs/daterangepicker.css","libs/bootstrap-timepicker.css","libs/select2.css","libs/token-input.css","libs/token-input-facebook.css");
-            break;
-        default:
-            break;
-        
-    }
-    
-    return $CI->load_css;
-}
 
-function get_js($page)
-{
-    $CI = & get_instance();
-    
-    switch ($page) {
-        case 'login':
-            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","scripts.js","jquery.tokeninput.js","jquery.min.js");
-            break;
-        case 'admin_dashboard':
-            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","jquery.scrollTo.min.js","jquery.slimscroll.min.js","moment.min.js","jquery-jvectormap-1.2.2.min.js","jquery-jvectormap-world-merc-en.js","gdp-data.js","flot/jquery.flot.min.js","flot/jquery.flot.resize.min.js","flot/jquery.flot.time.min.js","flot/jquery.flot.threshold.js","flot/jquery.flot.axislabels.js","jquery.sparkline.min.js","skycons.js","raphael-min.js","morris.js","scripts.js","pace.min.js","jquery.tokeninput.js","jquery.min.js");
-            break;
-        case 'admin_user':
-            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","modernizr.custom.js","classie.js","modalEffects.js","scripts.js","pace.min.js","jquery.tokeninput.js","jquery.min.js");
-            break;
-        case 'products':
-            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","modernizr.custom.js","classie.js","modalEffects.js","scripts.js","pace.min.js","jquery.tokeninput.js","jquery.min.js");
-            break;
-        case 'product_add':
-            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","fileinput.js","fileinput.min.js","jquery.nanoscroller.min.js","demo.js","modernizr.custom.js","classie.js","modalEffects.js","scripts.js","pace.min.js");
-            break;    
-        case 'user_add':
-            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","jquery.maskedinput.min.js","bootstrap-datepicker.js","moment.min.js","daterangepicker.js","bootstrap-timepicker.min.js","select2.min.js","hogan.js","typeahead.min.js","jquery.pwstrength.js","scripts.js","pace.min.js","user-add.js","jquery.tokeninput.js","jquery.min.js");
-            break;
-        default:
-            break;
-        
-    }
-    
-    return $CI->load_js;
-}  
 
 function site_traffic()
 {

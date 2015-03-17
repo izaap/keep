@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 13, 2015 at 02:35 PM
+-- Generation Time: Mar 17, 2015 at 04:20 PM
 -- Server version: 5.5.40-0ubuntu1
 -- PHP Version: 5.5.12-2ubuntu4.1
 
@@ -48,6 +48,72 @@ CREATE TABLE IF NOT EXISTS `jwb_ci_sessions` (
   `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
   `user_data` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jwb_collections`
+--
+
+CREATE TABLE IF NOT EXISTS `jwb_collections` (
+`id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` int(11) NOT NULL,
+  `created_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jwb_favourites`
+--
+
+CREATE TABLE IF NOT EXISTS `jwb_favourites` (
+`id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jwb_follows`
+--
+
+CREATE TABLE IF NOT EXISTS `jwb_follows` (
+`id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `collection_id` int(11) NOT NULL,
+  `created_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jwb_likes`
+--
+
+CREATE TABLE IF NOT EXISTS `jwb_likes` (
+`id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jwb_messages`
+--
+
+CREATE TABLE IF NOT EXISTS `jwb_messages` (
+`id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `type` enum('site','users') NOT NULL,
+  `users` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -125,17 +191,45 @@ CREATE TABLE IF NOT EXISTS `jwb_users` (
   `dob` date NOT NULL,
   `created_id` int(11) NOT NULL,
   `updated_id` int(11) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_date` datetime NOT NULL,
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_time` datetime NOT NULL,
   `location` varchar(50) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `jwb_users`
 --
 
-INSERT INTO `jwb_users` (`id`, `first_name`, `last_name`, `about`, `profile_name`, `user_name`, `password`, `email`, `role`, `phone`, `email_notification`, `hide_profile`, `gender`, `is_blocked`, `dob`, `created_id`, `updated_id`, `created_date`, `updated_date`, `location`) VALUES
-(8, 'admin', '', '', 'admin', 'admin', '0192023a7bbd73250516f069df18b500', '', 1, '', 0, 0, NULL, 0, '0000-00-00', 0, 0, '2015-03-13 09:03:07', '0000-00-00 00:00:00', '');
+INSERT INTO `jwb_users` (`id`, `first_name`, `last_name`, `about`, `profile_name`, `user_name`, `password`, `email`, `role`, `phone`, `email_notification`, `hide_profile`, `gender`, `is_blocked`, `dob`, `created_id`, `updated_id`, `created_time`, `updated_time`, `location`) VALUES
+(8, 'admin', '', '', 'admin', 'admin', '0192023a7bbd73250516f069df18b500', '', 1, '', 0, 0, NULL, 0, '0000-00-00', 0, 0, '2015-03-13 09:03:07', '0000-00-00 00:00:00', ''),
+(9, 'rr', 'k', '', 'rk', 'rk', 'rk123', '', 1, '', 0, 0, 'female', 0, '0000-00-00', 0, 0, '2015-03-14 14:21:19', '0000-00-00 00:00:00', ''),
+(10, 'jk', 'k', '', 'jk', 'jk', 'jk123', '', 1, '', 0, 0, NULL, 0, '0000-00-00', 0, 0, '2015-03-14 14:21:41', '0000-00-00 00:00:00', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jwb_user_follow`
+--
+
+CREATE TABLE IF NOT EXISTS `jwb_user_follow` (
+`id` int(11) NOT NULL,
+  `followed_user_id` int(11) NOT NULL,
+  `follower_user_id` int(11) NOT NULL,
+  `created_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jwb_views`
+--
+
+CREATE TABLE IF NOT EXISTS `jwb_views` (
+`id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Indexes for dumped tables
@@ -152,6 +246,36 @@ ALTER TABLE `jwb_action_logs`
 --
 ALTER TABLE `jwb_ci_sessions`
  ADD PRIMARY KEY (`session_id`), ADD KEY `last_activity_idx` (`last_activity`);
+
+--
+-- Indexes for table `jwb_collections`
+--
+ALTER TABLE `jwb_collections`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jwb_favourites`
+--
+ALTER TABLE `jwb_favourites`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jwb_follows`
+--
+ALTER TABLE `jwb_follows`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jwb_likes`
+--
+ALTER TABLE `jwb_likes`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jwb_messages`
+--
+ALTER TABLE `jwb_messages`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `jwb_roles`
@@ -178,6 +302,18 @@ ALTER TABLE `jwb_users`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `jwb_user_follow`
+--
+ALTER TABLE `jwb_user_follow`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jwb_views`
+--
+ALTER TABLE `jwb_views`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -185,6 +321,31 @@ ALTER TABLE `jwb_users`
 -- AUTO_INCREMENT for table `jwb_action_logs`
 --
 ALTER TABLE `jwb_action_logs`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jwb_collections`
+--
+ALTER TABLE `jwb_collections`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jwb_favourites`
+--
+ALTER TABLE `jwb_favourites`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jwb_follows`
+--
+ALTER TABLE `jwb_follows`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jwb_likes`
+--
+ALTER TABLE `jwb_likes`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jwb_messages`
+--
+ALTER TABLE `jwb_messages`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `jwb_roles`
@@ -205,43 +366,17 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `jwb_users`
 --
 ALTER TABLE `jwb_users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
-
-
--- --------------------------------------------------------
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
--- Table structure for table `messages`
+-- AUTO_INCREMENT for table `jwb_user_follow`
 --
-
-CREATE TABLE IF NOT EXISTS `messages` (
-`id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `message` text NOT NULL,
-  `type` enum('site','users') NOT NULL,
-  `users` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `messages`
---
-ALTER TABLE `messages`
- ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `messages`
---
-ALTER TABLE `messages`
+ALTER TABLE `jwb_user_follow`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+--
+-- AUTO_INCREMENT for table `jwb_views`
+--
+ALTER TABLE `jwb_views`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

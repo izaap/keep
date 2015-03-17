@@ -23,7 +23,7 @@ class App_Controller extends CI_Controller
         $this->load->library("form_validation");
         
         $this->load->model("user_model");
-        $this->load->model("admin/role_model");
+        $this->load->model("role_model");
         
     }
     
