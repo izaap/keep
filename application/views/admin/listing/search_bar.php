@@ -26,8 +26,9 @@
       <div class="col-xs-12 input-group">     
         <input type="text" id="exmaplePrependButton" name="search_text" class="form-control" placeholder="Type to filter..">
         <span class="input-group-btn">
-          <button type="button" class="btn btn-primary" id="simple_search_button" >Go!</button>
+          <button type="button" class="btn btn-primary" id="simple_search_button" >Go!</button> &nbsp;&nbsp;
         </span>
+        <button type="button" class="btn-link" onclick="$.fn.clear_simple_search();" data-original-title="clear simple search" data-toggle="tooltip" data-placement="top" >Clear Filter</button>
       </div>
     </div>
     </div>

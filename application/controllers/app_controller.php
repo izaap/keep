@@ -7,6 +7,7 @@ class App_Controller extends CI_Controller
     public $data                       =    array();
     public $role                       =    0;
     public $init_scripts               = array();
+    public $criteria                   = array(); 
     
    
     

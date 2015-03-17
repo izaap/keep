@@ -44,22 +44,22 @@ class Dashboard_Model extends App_Model {
     		return FALSE;
 
     	$query ="SELECT * FROM
-				(SELECT count(id) as count,'today' as type FROM jwb_users WHERE created_date >='{$where['today']['start']}' AND  created_date <='{$where['today']['end']}') AS today
+				(SELECT count(id) as count,'today' as type FROM jwb_users WHERE created_time >='{$where['today']['start']}' AND  created_time <='{$where['today']['end']}') AS today
 
 				UNION 
 
 				SELECT * FROM
-				(SELECT count(id) as count,'lastweek' as type FROM jwb_users WHERE created_date >='{$where['lastweek']['start']}' AND  created_date <='{$where['lastweek']['end']}') AS lastweek
+				(SELECT count(id) as count,'lastweek' as type FROM jwb_users WHERE created_time >='{$where['lastweek']['start']}' AND  created_time <='{$where['lastweek']['end']}') AS lastweek
 
 				UNION
 
 				SELECT * FROM
-				(SELECT count(id) as count,'lastmonth' as type FROM jwb_users WHERE created_date >='{$where['lastmonth']['start']}' AND  created_date <='{$where['lastmonth']['end']}') AS lastmonth
+				(SELECT count(id) as count,'lastmonth' as type FROM jwb_users WHERE created_time >='{$where['lastmonth']['start']}' AND  created_time <='{$where['lastmonth']['end']}') AS lastmonth
 
 				UNION
 
 				SELECT * FROM
-				(SELECT count(id) as count,'lastyear' as type FROM jwb_users WHERE created_date >='{$where['lastyear']['start']}' AND  created_date <='{$where['lastyear']['end']}') AS lastyear
+				(SELECT count(id) as count,'lastyear' as type FROM jwb_users WHERE created_time >='{$where['lastyear']['start']}' AND  created_time <='{$where['lastyear']['end']}') AS lastyear
 
 				";
 

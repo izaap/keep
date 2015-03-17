@@ -53,3 +53,22 @@ $config['admin_user_index'] = array(
 	"default_order"	=> "id",
 	"default_direction" => "DESC"
 );
+
+$config['admin_products_index'] = array(
+	"view"		=> 	'admin/listing/listing',
+	"init_scripts" => 'admin/listing/init_scripts',
+	"advance_search_view" => 'admin/products/filter',
+	"base_url"	=> 	'admin/products/index',
+	"per_page"	=>	"20",
+	"fields"	=> array(
+							'product_name'=>array('name'=>'Product Name', 'data_type' => 'string', 'sortable' => TRUE, 'default_view'=>1),
+							'price'=>array('name'=>'Price', 'data_type' => 'money', 'sortable' => TRUE, 'default_view'=>1),
+							'created_time'=>array('name'=>'Created Date', 'data_type' => 'datetime', 'sortable' => TRUE, 'default_view'=>1),
+							'favorites'=>array('name'=>'Favorites', 'data_type' => 'string', 'sortable' => TRUE, 'default_view'=>1),
+							'likes'=>array('name'=>'Likes', 'data_type' => 'string', 'sortable' => TRUE, 'default_view'=>1),
+							'followed'=>array('name'=>'Followed', 'data_type' => 'string', 'sortable' => TRUE, 'default_view'=>1),
+							'buycount'=>array('name'=>'Buycount', 'data_type' => 'string', 'sortable' => TRUE, 'default_view'=>1)
+						),	
+	"default_order"	=> "id",
+	"default_direction" => "DESC"
+);

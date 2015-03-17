@@ -72,33 +72,6 @@
 
 <script>
 
-    $("#upload_image").fileinput({
-        uploadUrl: "<?php echo site_url('admin/uploads/do_upload');?>", // you must set a valid URL here else you will get an error
-        allowedFileExtensions : ['jpg','jpeg','png','gif'],
-        maxFileSize: 1000,
-        showCaption: false,
-        dropZoneEnabled : false,
-        showRemove : false,
-        <?php if ($prev_img): ?>
-        initialPreview: [ "<?php echo $prev_img; ?>" ],
-        <?php endif;?>
-        uploadExtraData:{'upload_folder':'products','types':'gif|jpg|png|jpeg'},        
-        slugCallback: function(filename) {
-            //alert(filename);
-            return filename.replace('(', '_').replace(']', '_');
-        }
-        
-    });
-
-$(document).ready(function() {
-
-    $('#upload_image').on('fileuploaded', function(event, data, previewId, index) {
-
-        var form = data.form, files = data.files, extra = data.extra,
-        response = data.response, reader = data.reader;
-
-        $("#product_image").val(response.fileuploaded);       
-    });
-});
-
+var prv_img = "<?php echo $prev_img; ?>";
+    
 </script>

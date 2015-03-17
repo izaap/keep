@@ -10,23 +10,64 @@ class Products extends Admin_controller {
 
         parent::__construct();
 
-        $this->layout->add_javascripts(array('listing', 'rwd-table'));
+        $this->layout->add_javascripts(array('listing', 'rwd-table','fileinput.min','fileinput'));
+        $this->layout->add_stylesheets(array('fileinput.min','fileinput'));
         $this->load->model('product_model');
     }
     
     public function index()
     {
-        $this->data['css']       = get_css('products');
-        $this->data['js']        = get_js('products');
+        //$this->output->enable_profiler(TRUE);
 
+        $this->layout->add_javascripts(array('listing', 'rwd-table'));  
+
+        $this->load->library('listing');
+
+        
+        $this->simple_search_fields = array(
+                                                'product_name' => 'Product Name',                                                
+                                                'description' => 'Description',
+                                                'price' => 'Price'
+                                               
+        );
+         
+        $this->_narrow_search_conditions = array("start_date", "end_date", "customer", "order_status", "sales_channel", "type","followup","fraudulent","next_due_start_date","next_due_end_date","paid_status","overdue","ship_start_date","ship_end_date","orders_at_risk");
+        
+        $str = '<a href="'.site_url('admin/products/edit/{id}').'" class="table-link">
+                    <span class="fa-stack">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>';
+ 
+        $this->listing->initialize(array('listing_action' => $str));
+
+        $listing = $this->listing->get_listings('product_model', 'listing');
+
+        if($this->input->is_ajax_request())
+            $this->_ajax_output(array('listing' => $listing), TRUE);
+        
+        $this->data['bulk_actions'] = array('' => 'select', 'print' => 'Print');
+        $this->data['simple_search_fields'] = $this->simple_search_fields;
+        $this->data['search_conditions'] = $this->session->userdata($this->namespace.'_search_conditions');
+        $this->data['per_page'] = $this->listing->_get_per_page();
+        $this->data['per_page_options'] = array_combine($this->listing->_get_per_page_options(), $this->listing->_get_per_page_options());
+        
+        $this->data['search_bar'] = $this->load->view('admin/listing/search_bar', $this->data, TRUE);        
+        
+        $this->data['listing'] = $listing;
+        
+        $this->data['grid'] = $this->load->view('admin/listing/view', $this->data, TRUE);
+        
+        $this->data['user_data'] = $this->session->userdata('admin_user_data');
+        
         $this->layout->view("admin/product/list");
        
     }
 
     function add($id=0){
 
-        $this->data['css']       = get_css('product_add');
-        $this->data['js']        = get_js('product_add');
+        $this->layout->add_javascripts(array('product'));
 
         $this->form_validation->set_rules($this->_validation_rules());
 
@@ -68,7 +109,7 @@ class Products extends Admin_controller {
                 redirect('admin/products');
         }
 
-        $this->layout->view("admin/product/add", $this->data);
+        $this->layout->view("admin/product/add");
 
     }
 

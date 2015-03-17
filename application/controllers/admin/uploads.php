@@ -1,8 +1,8 @@
 <?php if(!defined("BASEPATH")) exit("No direct script access allowed");
 
-safe_include("controllers/app_controller.php");
+safe_include("controllers/admin/admin_controller.php");
 
-class Uploads extends App_Controller {
+class Uploads extends Admin_controller {
     
     public $data = array();
 

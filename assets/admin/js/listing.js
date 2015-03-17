@@ -78,7 +78,7 @@
 		
 		$.fn.init_search_bar = function(options) {
 			
-			var target_url = base_url+'/'+current_controller+'/'+current_method;
+			var target_url = base_url+current_controller+'/'+current_method;
 			if(options.bae_url)
 				target_url = options.bae_url;
 			if(options.namespace)
@@ -97,7 +97,7 @@
 			$.fn.get_advance_search_form();
 			
 			$("select[name='per_page_options']").bind('change', function(){
-				$.post(base_url+'/'+current_controller+'/set_records_per_page/'+namespace,{per_page:$(this).val()},function(){
+				$.post(base_url+current_controller+'/set_records_per_page/'+namespace,{per_page:$(this).val()},function(){
 					$.fn.display_grid(target_url, 'data_table');
 				}, 'json');
 			});
@@ -111,7 +111,7 @@
 				var div = $("#slide_panel_right");
 				console.log(div.css("right"));
 				if (div.css("right") === "-195px") {
-					$.post(base_url+'/'+current_controller+'/get_fields_sidebar/'+namespace,{},function(data){
+					$.post(base_url+current_controller+'/get_fields_sidebar/'+namespace,{},function(data){
 						$("#grid_columns").html(data.fields_sidebar);
 						$("#slide_panel_right").animate({
 							right: "0px"
@@ -215,13 +215,13 @@
 		$.fn.submit_advance_search_form = function(){
 			listing_form_data = {};
 			listing_form_data = $("#advance_search_form").serialize();
-			$.fn.display_grid(base_url+'/'+current_controller+'/'+current_method, 'data_table');
+			$.fn.display_grid(base_url+current_controller+'/'+current_method, 'data_table');
 		};
 			
 		$.fn.clear_advance_search = function(){
 			listing_form_data = {};
 			listing_form_data.clear_advance_search = 'yes';
-			$.fn.display_grid(base_url+'/'+current_controller+'/'+current_method, 'data_table');
+			$.fn.display_grid(base_url+current_controller+'/'+current_method, 'data_table');
 		};
 
 		$.fn.custom_search = function(field, txt, obj){
@@ -242,7 +242,7 @@
 				listing_form_data[obj.key] = obj.val;
 			}
 			
-			$.fn.display_grid(base_url+'/'+current_controller+'/'+current_method, 'data_table');
+			$.fn.display_grid(base_url+current_controller+'/'+current_method, 'data_table');
 		};
 		
 		//initiate progress bar.It will show progress bar based on the ajax-states.

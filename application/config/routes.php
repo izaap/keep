@@ -44,6 +44,7 @@ $route['404_override'] = '';
 
 $route['admin'] = 'admin/login';
 $route['admin/user/edit/(:num)'] = 'admin/user/add/$1';
+$route['admin/products/edit/(:num)'] = 'admin/products/add/$1';
 
 $route['admin/role/edit/(:num)'] = 'admin/role/add/$1';
 
