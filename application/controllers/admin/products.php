@@ -1,14 +1,16 @@
 <?php if(!defined("BASEPATH")) exit("No direct script access allowed");
 
-safe_include("controllers/app_controller.php");
+safe_include("controllers/admin/admin_controller.php");
 
-class Products extends App_Controller {
+class Products extends Admin_controller {
     
     public $data = array();
 
     function __construct() {
+
         parent::__construct();
 
+        $this->layout->add_javascripts(array('listing', 'rwd-table'));
         $this->load->model('product_model');
     }
     
@@ -17,7 +19,7 @@ class Products extends App_Controller {
         $this->data['css']       = get_css('products');
         $this->data['js']        = get_js('products');
 
-        $this->layout->view("admin/product/list", $this->data);
+        $this->layout->view("admin/product/list");
        
     }
 

@@ -1,7 +1,5 @@
 <?php
 
-//safe_include("libraries/models/App_model.php");
-
 class Dashboard_Model extends App_Model {
 
     protected $_table = 'jwb_products';
@@ -38,6 +36,37 @@ class Dashboard_Model extends App_Model {
         $result = $this->db->query($query)->result_array();
         
         return $result;
+    }
+
+    function get_user_report($where){
+
+    	if(!is_array($where) || empty($where))
+    		return FALSE;
+
+    	$query ="SELECT * FROM
+				(SELECT count(id) as count,'today' as type FROM jwb_users WHERE created_date >='{$where['today']['start']}' AND  created_date <='{$where['today']['end']}') AS today
+
+				UNION 
+
+				SELECT * FROM
+				(SELECT count(id) as count,'lastweek' as type FROM jwb_users WHERE created_date >='{$where['lastweek']['start']}' AND  created_date <='{$where['lastweek']['end']}') AS lastweek
+
+				UNION
+
+				SELECT * FROM
+				(SELECT count(id) as count,'lastmonth' as type FROM jwb_users WHERE created_date >='{$where['lastmonth']['start']}' AND  created_date <='{$where['lastmonth']['end']}') AS lastmonth
+
+				UNION
+
+				SELECT * FROM
+				(SELECT count(id) as count,'lastyear' as type FROM jwb_users WHERE created_date >='{$where['lastyear']['start']}' AND  created_date <='{$where['lastyear']['end']}') AS lastyear
+
+				";
+
+		$result = $this->db->query($query)->result_array();
+        
+        return $result;		
+
     }
 }
 ?>

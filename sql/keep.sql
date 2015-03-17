@@ -235,6 +235,35 @@ CREATE TABLE IF NOT EXISTS `jwb_views` (
 -- Indexes for dumped tables
 --
 
+CREATE TABLE IF NOT EXISTS `jwb_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(300) NOT NULL,
+  `description` longtext NOT NULL,
+  `product_image` varchar(300) NOT NULL,
+  `upcoming_product` enum('0','1') NOT NULL DEFAULT '0',
+  `buylink` varchar(250) NOT NULL,
+  `price` double NOT NULL,
+  `favorites` int(11) NOT NULL,
+  `likes` int(11) NOT NULL,
+  `followed` int(11) NOT NULL,
+  `buycount` int(11) NOT NULL,
+  `created_id` int(11) NOT NULL,
+  `updated_id` int(11) NOT NULL,
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `jwb_products`
+--
+
+INSERT INTO `jwb_products` (`id`, `product_name`, `description`, `product_image`, `upcoming_product`, `buylink`, `price`, `favorites`, `likes`, `followed`, `buycount`, `created_id`, `updated_id`, `created_time`, `updated_time`) VALUES
+(1, 'Test Product', 'new product', 'kajal-4.jpg', '1', 'http://keep.com/product/23', 23, 5, 4, 6, 7, 8, 8, '2015-03-16 09:19:24', '2015-03-14 08:10:54'),
+(2, 'Neckles jewl', 'new neckles jewl', 'vivek-1.jpg', '', 'http://keep.com/product/24', 4560.8, 2, 3, 4, 5, 8, 0, '2015-03-16 09:19:39', '0000-00-00 00:00:00'),
+(3, 'Chain jewl', 'chain is new product', 'image-1.jpg', '1', 'http://keep.com/product/25', 456, 4, 6, 7, 8, 8, 0, '2015-03-16 09:19:49', '0000-00-00 00:00:00');
+
+
 --
 -- Indexes for table `jwb_action_logs`
 --

@@ -1,6 +1,5 @@
 <?php
 
-safe_include("libraries/models/App_model.php");
 
 class Product_Model extends App_Model {
 
