@@ -44,12 +44,12 @@ class Login extends Admin_Controller
     public function logout()
 	{
 	   
-		$this->login_model->logout();
+		$this->session->sess_destroy();
 	
 		$this->session->sess_create();
 		$this->service_message->set_flash_message('logout_success');
 	
-		redirect('login');
+		redirect('admin/login');
 	}
     
 }

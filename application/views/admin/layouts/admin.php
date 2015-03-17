@@ -24,7 +24,7 @@
 
 	<?php if( !is_logged_in() ): ?>
 	<body >
-		<?php $this->load->view('admin/_partials/header', $this->data); ?>
+		<?php //$this->load->view('admin/_partials/header', $this->data); ?>
 			
 		<?php echo $content; ?>
 

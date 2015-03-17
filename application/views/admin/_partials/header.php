@@ -251,7 +251,7 @@ View all messages
 <li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
 <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
 <li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
-<li><a href="<?php echo site_url('login/logout'); ?>"><i class="fa fa-power-off"></i>Logout</a></li>
+<li><a href="<?php echo site_url('admin/login/logout'); ?>"><i class="fa fa-power-off"></i>Logout</a></li>
 </ul>
 </li>
 <li class="dropdown language hidden-xs">
