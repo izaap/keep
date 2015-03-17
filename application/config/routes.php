@@ -45,5 +45,7 @@ $route['404_override'] = '';
 $route['admin'] = 'admin/login';
 $route['admin/user/edit/(:num)'] = 'admin/user/add/$1';
 
+$route['admin/role/edit/(:num)'] = 'admin/role/add/$1';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

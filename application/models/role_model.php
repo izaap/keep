@@ -1,13 +1,43 @@
 <?php
-class Role_Model extends CI_Model {
+safe_include("models/app_model.php");
+class Role_Model extends App_model {
     
-    private $table_name = 'jwb_roles';
     
-    function __construct() {
-        
+    function __construct() 
+    {
         parent::__construct();
+        $this->_table = 'jwb_roles';
     }
-    
+   
+
+   function listing()
+    {
+        $this->_fields = " *";
+        
+        //from
+        $this->db->from($this->_table);
+        
+        //joins
+        
+        
+        //where
+        foreach ($this->criteria as $key => $value) 
+        {
+            if( !is_array($value) && strcmp($value, '') === 0 )
+                continue;
+
+            switch ($key)
+            {
+                case 'name':
+                    $this->db->like($key, $value);
+                break;
+            }
+        }
+        
+        
+        return parent::listing();
+    }
+
    function get_roles()
    {
       $this->db->select('*');

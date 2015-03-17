@@ -22,14 +22,27 @@
  * 
  */
  
-
+$config['admin_role_index'] = array(
+	"view"		=> 	'admin/listing/listing',
+	"init_scripts" => 'admin/listing/init_scripts',
+	"advance_search_view" => 'admin/user/filter',
+	"base_url"	=> 	'/admin/role/index/',
+	"per_page"	=>	"2",
+	"fields"	=> array(
+							'name'=>array('name'=>'Role', 'data_type' => 'string', 'sortable' => TRUE, 'default_view'=>1),
+							'created_date'=>array('name'=>'Created', 'data_type' => 'datetime', 'sortable' => TRUE, 'default_view'=>1),
+							
+						),
+	"default_order"	=> "id",
+	"default_direction" => "ASC"
+);
 
 
 $config['admin_user_index'] = array(
 	"view"		=> 	'admin/listing/listing',
 	"init_scripts" => 'admin/listing/init_scripts',
 	"advance_search_view" => 'admin/user/filter',
-	"base_url"	=> 	'/admin/user/test/',
+	"base_url"	=> 	'/admin/user/index/',
 	"per_page"	=>	"20",
 	"fields"	=> array(
 							'profile_name'=>array('name'=>'User', 'data_type' => 'string', 'sortable' => TRUE, 'default_view'=>1),

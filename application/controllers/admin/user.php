@@ -61,8 +61,6 @@ class User extends Admin_controller {
     {
         
         
-        
-        
         $form = $this->input->post();
         $form = $this->security->xss_clean($form);
 
