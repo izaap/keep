@@ -18,10 +18,10 @@
     <div class="main-box-body clearfix">
         <form role="form" name="user" id="user" method="POST">
               
-            <div class="form-group">
+            <div class="form-group <?php echo form_error('name')?'has-error':'';?>">
                 <label for="Name">Role</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="Enter Role" value="<?php echo set_value('name', $form_data['name']);?>" />
-                <?php echo form_error('name');?>
+                <?php echo form_error('name', '<span class="help-block">', '</span>');?>
             </div>
            <div class="col-md-1">
                 <input type="submit" class="form-control btn btn-primary" style="font-weight: bold; font-size:17px;" name="submit" id="submit" value="SAVE" />
