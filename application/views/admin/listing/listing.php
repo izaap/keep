@@ -12,7 +12,18 @@
 
 		<thead >
 			<tr>
-				<th data-priority="1"></th>
+				<th data-priority="1">
+					<div class="btn-group">
+					<button title="" type="button" class="btn btn-primary dropdown-toggle has-tooltip" data-toggle="dropdown" data-original-title="Select" aria-expanded="false">
+					<i class="fa fa-square-o"></i> <span class="caret"></span>
+					</button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Select All</a></li>
+							<li><a href="#">Select Only this view</a></li>
+							<li><a href="#">UnSelect All</a></li>
+						</ul>
+				</div>
+				</th>
 				<?php  $cols = 0; foreach ($fields as $field => $values):$cols++;?>
 				<?php if($values['default_view'] == '0') continue; ?>
 				<th data-priority="1">

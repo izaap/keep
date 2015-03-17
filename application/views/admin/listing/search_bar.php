@@ -34,9 +34,9 @@
     </form>
     <div class="col-lg-2">
     <div class="col-xs-12 input-group">
-      <select name="table-example_length" aria-controls="table-example" class="form-control custom-input input-sm">
+      &nbsp;&nbsp;<!--<select name="table-example_length" aria-controls="table-example" class="form-control custom-input input-sm">
         <option value="">Advanced Search</option>
-      </select>
+      </select>-->
     </div>
     </div>
     
