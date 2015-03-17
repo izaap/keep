@@ -14,6 +14,7 @@ class App_Controller extends CI_Controller
     {
         parent::__construct(); 
     
+    //print_r($this->session->userdata('user_data'));die;
         $this->role = get_user_role();
         
         $this->init();
@@ -69,11 +70,11 @@ class App_Controller extends CI_Controller
     
     public function _ajax_output($data, $json_format = FALSE)
     {
-    	if(is_array($data) && $json_format)
-        	echo json_encode($data);
-    	else 
-    		echo $data;
-    	
+        if(is_array($data) && $json_format)
+            echo json_encode($data);
+        else 
+            echo $data;
+        
         exit();
     }
     

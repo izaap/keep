@@ -6,14 +6,14 @@ function is_logged_in()
     
     $user_data = get_user_data();
     
-    if(!empty($user_data) && isset($user_data['id']) && !empty($user_data['id'])){
-        return true;
-    }
-    else
-    {
-        return false;    
-    } 
+    if( is_array($user_data) && $user_data )
+        return TRUE;
+
+    return FALSE;
+
 }
+
+
 function get_current_user_id()
 {
     $CI = & get_instance();
@@ -28,13 +28,14 @@ function get_user_data()
 {
     $CI = get_instance();
     
-    if($CI->session->userdata('admin_user_data')){
         
-        return $CI->session->userdata('admin_user_data');
+    if($CI->session->userdata('user_data'))
+    {
+        return $CI->session->userdata('user_data');
     }
     else
     {
-        return false;
+        return FALSE;
     }
 }
 
@@ -42,51 +43,48 @@ function get_user_role( $user_id = 0 )
 {
     $CI= & get_instance();
     
-    if(!$user_id) {
+    if(!$user_id) 
+    {
         $user_data = get_user_data();
-        $user_id   = isset($user_data['id'])?$user_data['id']:0;
+        return $user_data['role'];
     }   
     
-    if(!$user_id) {
-        return false;
-    }
-    
-    $CI->db->select("role");
-    $result = $CI->db->get_where("jwb_users", array("id" => $user_id));
-    if(!$result->num_rows()) {
-        return false;
-    }
-    
-    return (int)$result->row()->role;
+    $CI->load->model('user_model');
+    $row = $CI->user_model->get_where(array('id' => $user_id))->row_array;
+
+    if( !$row )
+        return FALSE;
+
+    return $row['role'];
 }
 
 function displayData($data = null, $type = 'string', $row = array(), $wrap_tag_open = '', $wrap_tag_close = '')
 {
      $CI = & get_instance();
      
-	if(is_null($data) || is_array($data) || (strcmp($data, '') === 0 && !count($row)) )
-		return $data;
-	
-	switch ($type)
-	{
-		case 'string':
-			break;
+    if(is_null($data) || is_array($data) || (strcmp($data, '') === 0 && !count($row)) )
+        return $data;
+    
+    switch ($type)
+    {
+        case 'string':
+            break;
         case 'humanize':
         $CI->load->helper("inflector");
             $data = humanize($data);
-			break;
-		case 'date':
+            break;
+        case 'date':
                 str2USDate($data);
-			break;
-		case 'datetime':
-			$data = str2USDate($data);
-			break;
-		case 'money':
-			$data = '$'.number_format((float)$data, 2);
-			break;    
-	}
-	
-	return $wrap_tag_open.$data.$wrap_tag_close;
+            break;
+        case 'datetime':
+            $data = str2USDate($data);
+            break;
+        case 'money':
+            $data = '$'.number_format((float)$data, 2);
+            break;    
+    }
+    
+    return $wrap_tag_open.$data.$wrap_tag_close;
 }
 
 function str2USDate($str)
@@ -424,7 +422,7 @@ function get_js($page)
             $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","scripts.js","jquery.tokeninput.js","jquery.min.js");
             break;
         case 'admin_dashboard':
-            $CI->load_js = array("jquery.js","bootstrap.js","jquery.scrollTo.min.js","jquery.slimscroll.min.js","jsapi.js");
+            $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","jquery.scrollTo.min.js","jquery.slimscroll.min.js","moment.min.js","jquery-jvectormap-1.2.2.min.js","jquery-jvectormap-world-merc-en.js","gdp-data.js","flot/jquery.flot.min.js","flot/jquery.flot.resize.min.js","flot/jquery.flot.time.min.js","flot/jquery.flot.threshold.js","flot/jquery.flot.axislabels.js","jquery.sparkline.min.js","skycons.js","raphael-min.js","morris.js","scripts.js","pace.min.js","jquery.tokeninput.js","jquery.min.js");
             break;
         case 'admin_user':
             $CI->load_js = array("demo-rtl.js","demo-skin-changer.js","jquery.js","bootstrap.js","jquery.nanoscroller.min.js","demo.js","modernizr.custom.js","classie.js","modalEffects.js","scripts.js","pace.min.js","jquery.tokeninput.js","jquery.min.js");

@@ -1,6 +1,6 @@
 <?php if(!defined("BASEPATH")) exit("No direct script access allowed");
-safe_include("controllers/app_controller.php");
-class Dashboard extends App_Controller {
+safe_include("controllers/admin/admin_controller.php");
+class Dashboard extends Admin_Controller {
     
     function __construct()
     {

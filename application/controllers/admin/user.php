@@ -9,6 +9,46 @@ class User extends Admin_controller {
         
     }
 
+
+    function test()
+    {
+        $this->load->library('listing');
+        
+        $this->simple_search_fields = array(
+                                                'sales_order.id' => 'Order Number',
+                                                'customer.name' => 'Customer name',
+                                                'product.name' => 'Product',
+                                                'vendor.name' => 'Vendor Name',
+                                                'sales_order.api_id' => 'Amazon/SEARS-Order-ID',
+                                                'sales_rep_name' => 'Sales rep name'
+        );
+         
+        $this->_narrow_search_conditions = array("start_date", "end_date", "customer", "order_status", "sales_channel", "type","followup","fraudulent","next_due_start_date","next_due_end_date","paid_status","overdue","ship_start_date","ship_end_date","orders_at_risk");
+        
+        $listing = $this->listing->get_listings('user_model', 'listing');
+
+        if($this->input->is_ajax_request())
+            $this->_ajax_output(array('listing' => $listing), TRUE);
+        
+        $this->data['bulk_actions'] = array('' => 'select', 'print' => 'Print');
+        $this->data['simple_search_fields'] = $this->simple_search_fields;
+        $this->data['search_conditions'] = $this->session->userdata($this->namespace.'_search_conditions');
+        $this->data['per_page'] = $this->listing->_get_per_page();
+        $this->data['per_page_options'] = array_combine($this->listing->_get_per_page_options(), $this->listing->_get_per_page_options());
+        
+        $this->data['search_bar'] = $this->load->view('admin/listing/search_bar', $this->data, TRUE);        
+        
+        $this->data['listing'] = $listing;
+        
+        $this->data['grid'] = $this->load->view('admin/listing/view', $this->data, TRUE);
+        
+        $this->data['user_data'] = $this->session->userdata('admin_user_data');
+        $this->data['css']       = get_css('admin_user');
+        $this->data['js']        = get_js('admin_user');
+        $this->layout->view("admin/user/test",$this->data);
+        
+    }
+    
 	public function index()
 	{
 	   $this->data['user_data'] = $this->session->userdata('user_data');
