@@ -64,6 +64,9 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+if ( ($file=safe_include("config/database.local.php", false)) ) {
+    require $file;
+}
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

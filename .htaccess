@@ -12,5 +12,3 @@ RewriteRule ^(.*)$ index.php/$1 [L]
     ErrorDocument 404 /index.php
 </IfModule>
 
-
-RedirectMatch /upload/test?(.*)$ /upload/test/$1
