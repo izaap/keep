@@ -48,5 +48,7 @@ $route['admin/products/edit/(:num)'] = 'admin/products/add/$1';
 
 $route['admin/role/edit/(:num)'] = 'admin/role/add/$1';
 
+$route['admin/message/edit/(:num)'] = 'admin/message/add/$1';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

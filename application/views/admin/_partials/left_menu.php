@@ -63,17 +63,17 @@
     </li>
     
     <li>
-		<a href="<?php echo site_url("admin/message/add_message"); ?>" >
+		<a href="<?php echo site_url("admin/message"); ?>" >
 			<i class="fa fa-envelope"></i><span>Messages</span>
 		</a>
 		<ul class="submenu"> 
 			<li> 
-				<a href="<?php echo site_url("admin/message/add_message"); ?>" >
+				<a href="<?php echo site_url("admin/message/add"); ?>" >
 					<i class=""></i><span>Add Mesaage</span>
 				</a>
 			</li>
 			<li>
-				<a href="<?php echo site_url("admin/message/message_management"); ?>" >
+				<a href="<?php echo site_url("admin/message"); ?>" >
 					<i class=""></i><span>Message Management</span>
 				</a>
 			</li>

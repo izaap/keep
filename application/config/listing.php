@@ -72,3 +72,20 @@ $config['admin_products_index'] = array(
 	"default_order"	=> "id",
 	"default_direction" => "DESC"
 );
+
+$config['admin_message_index'] = array(
+	"view"		=> 	'admin/listing/listing',
+	"init_scripts" => 'admin/listing/init_scripts',
+	"advance_search_view" => 'admin/message/filter',
+	"base_url"	=> 	'admin/message/index/',
+	"per_page"	=>	"20",
+	"fields"	=> array(
+							'name'=>array('name'=>'Title', 'data_type' => 'string', 'sortable' => TRUE, 'default_view'=>1),
+							'message'=>array('name'=>'Message', 'data_type' => 'string', 'sortable' => TRUE, 'default_view'=>1),
+							'type'=>array('name'=>'Type', 'data_type' => 'string', 'sortable' => TRUE, 'default_view'=>1),
+							'created_time'=>array('name'=>'Created Date', 'data_type' => 'datetime', 'sortable' => TRUE, 'default_view'=>1),
+							
+						),
+	"default_order"	=> "id",
+	"default_direction" => "DESC"
+);
