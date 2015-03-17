@@ -1,6 +1,6 @@
 
 <header class="main-box-header clearfix">
-<h2>Table with JS pagination, search, ordering, export to pdf and lots more.</h2>
+
 <div class="clearfix manual-fields" style="margin:15px 0">
   
   <!-- -->

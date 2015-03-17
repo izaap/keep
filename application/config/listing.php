@@ -25,12 +25,12 @@
 
 
 
-$config['admin_user_test'] = array(
+$config['admin_user_index'] = array(
 	"view"		=> 	'admin/listing/listing',
 	"init_scripts" => 'admin/listing/init_scripts',
 	"advance_search_view" => 'admin/user/filter',
 	"base_url"	=> 	'/admin/user/test/',
-	"per_page"	=>	"2",
+	"per_page"	=>	"20",
 	"fields"	=> array(
 							'profile_name'=>array('name'=>'User', 'data_type' => 'string', 'sortable' => TRUE, 'default_view'=>1),
 							'created_time'=>array('name'=>'Created', 'data_type' => 'datetime', 'sortable' => TRUE, 'default_view'=>1),

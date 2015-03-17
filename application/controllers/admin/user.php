@@ -6,15 +6,14 @@ class User extends Admin_controller {
     function __construct() 
     {
         parent::__construct();
-        $this->layout->add_javascripts(array('listing', 'rwd-table'));
-
-        
         
     }
 
 
-    function test()
+    function index()
     {
+        $this->layout->add_javascripts(array('listing', 'rwd-table'));  
+
         $this->load->library('listing');
 
         
@@ -29,6 +28,15 @@ class User extends Admin_controller {
          
         $this->_narrow_search_conditions = array("start_date", "end_date", "customer", "order_status", "sales_channel", "type","followup","fraudulent","next_due_start_date","next_due_end_date","paid_status","overdue","ship_start_date","ship_end_date","orders_at_risk");
         
+        $str = '<a href="admin/user/view/{id}" class="table-link">
+                    <span class="fa-stack">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>';
+ 
+        $this->listing->initialize(array('listing_action' => $str));
+
         $listing = $this->listing->get_listings('user_model', 'listing');
 
         if($this->input->is_ajax_request())
@@ -47,18 +55,12 @@ class User extends Admin_controller {
         $this->data['grid'] = $this->load->view('admin/listing/view', $this->data, TRUE);
         
         $this->data['user_data'] = $this->session->userdata('admin_user_data');
-        $this->data['css']       = get_css('admin_user');
-        $this->data['js']        = get_js('admin_user');
+        
         $this->layout->view("admin/user/test");
         
     }
     
-	public function index()
-	{
-	   $this->data['user_data'] = $this->session->userdata('user_data');
-            $this->layout->view("admin/user/list");
-
-	}
+	
     public function add($edit_id = "")
     {
         
