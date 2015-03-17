@@ -61,7 +61,7 @@ class User extends Admin_controller {
     }
     
 	
-    public function add($edit_id = "")
+    public function add($edit_id = 0)
     {
         
         $edit_id = (isset($_POST['edit_id']) && !empty($_POST['edit_id']))?$_POST['edit_id']:"";
@@ -108,29 +108,30 @@ class User extends Admin_controller {
              redirect("admin/user");
         }
         
-        if($edit_id) {
-            $edit_data = $this->user_model->get_users($edit_id);
-            if(!isset($edit_data[0])) {
+        if($edit_id) 
+        {
+            $edit_data = $this->user_model->get_where(array('id' => $edit_id))->row_array();
+            if(!$edit_data) 
+            {
                 $this->service_message->set_flash_message("record_not_found_error");
                 redirect("admin/user");  
             }
-            $this->data['form_data'] = (array) $edit_data[0];
+            $this->data['form_data'] = $edit_data;
         }
-        else if($_POST) {
+        else if($_POST) 
+        {
             $this->data['form_data'] = $_POST;
-            $this->data['form_data']['id'] = $edit_id != ''?$edit_id:'';
+            $this->data['form_data']['id'] = $edit_id ?$edit_id:0;
         }
         else
         {
             $this->data['form_data']=array("id"=>'','first_name'=>'',"last_name"=>'',"email"=>'',"phone" => '',"profile_name" => '', "role" => '','user_name' => '', 'password' => '', 'about' => '', 'location' => '','dob' => '');
         }
                 
-            $this->data['css']       = get_css('user_add');
-            $this->data['js']        = get_js('user_add'); 
-            $this->data['user_data'] = $this->session->userdata('admin_user_data');   
-            //Get roles
-            $this->data['roles']     = $this->role_model->get_roles();    
-            $this->layout->view("admin/user/add", $this->data);
+        $this->data['user_data'] = $this->session->userdata('user_data');   
+        //Get roles
+        $this->data['roles']     = array();//$this->role_model->get_roles();    
+        $this->layout->view("admin/user/add");
     }
     
    public function _validation_rules()
