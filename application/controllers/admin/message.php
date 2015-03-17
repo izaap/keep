@@ -133,7 +133,6 @@ class Message extends Admin_controller {
             
 			redirect("admin/message");
         }
-		//print_r($this->data["sel_users"]);
 		$this->layout->view("admin/message/add");
 		
 	}

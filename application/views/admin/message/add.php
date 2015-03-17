@@ -61,9 +61,10 @@ var msg_type ="";
 <?php if($form_data['type']): ?>
     var msg_type   = "<?php echo $form_data['type']; ?>";
 <?php endif;?>
+
 var prepoulate ="";
 <?php if($sel_users): ?>
-    var prepoulate   = "<?php echo sel_users; ?>";
+    var prepoulate   = <?php echo $sel_users; ?>;
 <?php endif;?>
 //alert(prepoulate);
   /*          
