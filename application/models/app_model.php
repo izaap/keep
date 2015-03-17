@@ -128,7 +128,11 @@ abstract class App_model extends CI_Model
 		return substr($class, 0, strlen($class) - 6);
 	}
 
-	 
+	public function get_last_id()
+    {
+        return $this->db->insert_id();
+    }
+ 
 
 	protected function _before_save($data) {
 	}

@@ -1,11 +1,12 @@
 <?php
 safe_include("models/app_model.php");
 class User_Model extends App_model {
-    private $table_name = 'jwb_users';
+    
     
     function __construct()
     {
         parent::__construct();
+        $this->_table = 'jwb_users';
     }
 
     function listing()
@@ -13,34 +14,34 @@ class User_Model extends App_model {
         $this->_fields = " *,IF(is_blocked='1','Inactive','Active') as status";
         
         //from
-        $this->db->from($this->table_name);
+        $this->db->from($this->_table);
         
         //joins
         
         
         //where
-        
+        foreach ($this->criteria as $key => $value) 
+        {
+            if( !is_array($value) && strcmp($value, '') === 0 )
+                continue;
+
+            switch ($key)
+            {
+                case 'user_name':
+                    $this->db->like($key, $value);
+                break;
+            }
+        }
         
         
         return parent::listing();
     }
     
-    public function add($data)
-    {
-        return $this->db->insert($this->table_name, $data);
-    }
-    public function update($id, $data)
-    {
-        return $this->db->update($this->table_name,$data, array("id" => $id));
-    }
-    public function delete($id)
-    {
-        return $this->db->delete($this->table_name, array("id" => $id));
-    }
+    
     public function get_by_email($email)
     {
         $this->db->select();
-        $this->db->from($this->table_name);
+        $this->db->from($this->_table);
         $this->db->where('email', $email);
         $result = $this->db->get();
         return $result->row_array();
@@ -48,7 +49,7 @@ class User_Model extends App_model {
     public function get_by_loginid($login_id)
     {
         $this->db->select();
-        $this->db->from($this->table_name);
+        $this->db->from($this->_table);
         $this->db->where('user_name', $login_id);
         $result = $this->db->get();
         return $result->row_array();
@@ -56,7 +57,7 @@ class User_Model extends App_model {
     public function get_users($id = 0)
     {
         $this->db->select();
-        $this->db->from($this->table_name);
+        $this->db->from($this->_table);
         if($id != 0) {
             $this->db->where('id', $id);
         }

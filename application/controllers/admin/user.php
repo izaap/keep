@@ -19,17 +19,12 @@ class User extends Admin_controller {
 
         
         $this->simple_search_fields = array(
-                                                'sales_order.id' => 'Order Number',
-                                                'customer.name' => 'Customer name',
-                                                'product.name' => 'Product',
-                                                'vendor.name' => 'Vendor Name',
-                                                'sales_order.api_id' => 'Amazon/SEARS-Order-ID',
-                                                'sales_rep_name' => 'Sales rep name'
+                                                'user_name' => 'User'
         );
          
         $this->_narrow_search_conditions = array("start_date", "end_date", "customer", "order_status", "sales_channel", "type","followup","fraudulent","next_due_start_date","next_due_end_date","paid_status","overdue","ship_start_date","ship_end_date","orders_at_risk");
         
-        $str = '<a href="admin/user/view/{id}" class="table-link">
+        $str = '<a href="'.site_url('admin/user/edit/{id}').'" class="table-link">
                     <span class="fa-stack">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
@@ -65,44 +60,46 @@ class User extends Admin_controller {
     public function add($edit_id = 0)
     {
         
-        $edit_id = (isset($_POST['edit_id']) && !empty($_POST['edit_id']))?$_POST['edit_id']:"";
         
-        $this->form_validation->set_rules($this->_validation_rules());
         
+        
+        $form = $this->input->post();
+        $form = $this->security->xss_clean($form);
+
+        if(isset($form['edit_id']))
+            $edit_id = $form['edit_id'];
+
+
+        $this->form_validation->set_rules($this->_validation_rules($edit_id));
+
         if($this->form_validation->run()) {
             
-            $this->ins_data['first_name']         =   $this->input->post('first_name');
-            $this->ins_data['last_name']          =   $this->input->post('last_name');
-            $this->ins_data['about']              =   $this->input->post('about');
-            $this->ins_data['profile_name']       =   $this->input->post('profile_name');
-            $this->ins_data['user_name']          =   $this->input->post('user_name');
-            $this->ins_data['location']           =   $this->input->post('location');
-            $this->ins_data['email']              =   $this->input->post('email');
-            $this->ins_data['phone']              =   $this->input->post('phone');
-            $this->ins_data['gender']             =   $this->input->post('gender');
-            $this->ins_data['updated_date']       =   date("Y-m-d H:i:s");
-            $this->ins_data['dob']                =   $this->input->post('dob');
+            $this->ins_data['first_name']         =   $form['first_name'];
+            $this->ins_data['last_name']          =   $form['last_name'];
+            $this->ins_data['about']              =   $form['about'];
+            $this->ins_data['profile_name']       =   $form['profile_name'];
+            $this->ins_data['user_name']          =   $form['user_name'];
+            $this->ins_data['location']           =   $form['location'];
+            $this->ins_data['email']              =   $form['email'];
+            $this->ins_data['phone']              =   $form['phone'];
+            $this->ins_data['gender']             =   $form['gender'];
+            $this->ins_data['updated_time']       =   date("Y-m-d H:i:s");
+            $this->ins_data['dob']                =   $form['dob'];
             $this->ins_data['updated_id']         =   get_current_user_id();
             $this->ins_data['created_id']         =   get_current_user_id();
-            $this->ins_data['role']               =   $this->input->post('role');
+            $this->ins_data['role']               =   $form['role'];
             
+            if(trim($form['password']))
+                $this->ins_data['password'] = md5($form['password']);
             
-            
-            if($this->input->post('password') != '') {
-                
-                $this->ins_data['password']           =   md5($this->input->post('password'));
-            
-            }
-            
-            if($edit_id) {
-                
-                $this->user_model->update(array('id' => $edit_id, $this->ins_data));
+            if($edit_id) 
+            {
+                $this->user_model->update(array('id' => $edit_id), $this->ins_data);
                 $this->service_message->set_flash_message("record_update_success");  
             }
             else
             {
-                
-                $this->user_model->add($this->ins_data);
+                $this->user_model->insert($this->ins_data);
                 $this->service_message->set_flash_message("record_insert_success");
             }
             
@@ -117,37 +114,54 @@ class User extends Admin_controller {
                 $this->service_message->set_flash_message("record_not_found_error");
                 redirect("admin/user");  
             }
+            //unset password
+            $edit_data['password'] = '';
             $this->data['form_data'] = $edit_data;
         }
-        else if($_POST) 
+        else if($form) 
         {
-            $this->data['form_data'] = $_POST;
+            $this->data['form_data'] = $form;
             $this->data['form_data']['id'] = $edit_id ?$edit_id:0;
         }
         else
         {
-            $this->data['form_data']=array("id"=>'','first_name'=>'',"last_name"=>'',"email"=>'',"phone" => '',"profile_name" => '', "role" => '','user_name' => '', 'password' => '', 'about' => '', 'location' => '','dob' => '');
+            $this->data['form_data']=array("id"=>'','first_name'=>'',"last_name"=>'',"email"=>'',"phone" => '',"profile_name" => '', "role" => '','user_name' => '', 'password' => '', 'about' => '', 'location' => '','dob' => '','gender' => '');
         }
                 
-        $this->data['user_data'] = $this->session->userdata('user_data');   
         //Get roles
-        $this->data['roles']     = array();//$this->role_model->get_roles();    
+        $this->data['roles']     = get_roles();
+        
         $this->layout->view("admin/user/add");
     }
     
-   public function _validation_rules()
+   public function _validation_rules( $edit_id = 0)
    {
     
-    return $this->useradd_validation_rules = array(array('field' => 'first_name', 'label' => 'Firstname', 'rules' => 'trim|required|alpha|xss_clean|max_length[255]'),
-                                                   array('field' => 'last_name', 'label' => 'Lastname', 'rules' => 'trim|required|alpha|xss_clean|max_length[255]'),
-                                                   array('field' => 'profile_name', 'label' => 'Profilename', 'rules' => 'trim|required|alpha_numeric|xss_clean'),
-                                                   array('field' => 'user_name', 'label' => 'Username', 'rules' => 'trim|required|alpha|xss_clean|callback_unique_username_check'),
-                                                   array('field' => 'password', 'label' => 'Password', 'rules' => 'trim|required|xss_clean|min_length[8]|max_length[20]'),
-                                                   array('field' => 'location', 'label' => 'Location', 'rules' => 'trim|required|xss_clean'),
-                                                   array('field' => 'email', 'label' => 'Email', 'rules' => 'trim|required|xss_clean|valid_email|callback_unique_email_check'),
-                                                   array('field' => 'phone', 'label' => 'Phone', 'rules' => 'trim|required|xss_clean|numeric|min_length[10]'),
-                                                   array('field' => 'gender', 'label' => 'Gender', 'rules' => 'trim|required|xss_clean')
-                                                  );
+    $rules = array();
+    $rules[] = array('field' => 'first_name', 'label' => 'Firstname', 'rules' => 'trim|required|alpha|max_length[255]');
+    $rules[] = array('field' => 'last_name', 'label' => 'Lastname', 'rules' => 'trim|required|alpha|max_length[255]');
+    $rules[] = array('field' => 'about', 'label' => 'About', 'rules' => 'trim|required');
+    $rules[] = array('field' => 'profile_name', 'label' => 'Profilename', 'rules' => 'trim|required|alpha_numeric');
+    $rules[] = array('field' => 'role', 'label' => 'Role', 'rules' => 'trim|required');
+    $rules[] = array('field' => 'dob', 'label' => 'DOB', 'rules' => 'trim');
+    $rules[] = array('field' => 'location', 'label' => 'Location', 'rules' => 'trim|required');
+    $rules[] = array('field' => 'phone', 'label' => 'Phone', 'rules' => 'trim|required|numeric|min_length[10]');
+    $rules[] = array('field' => 'gender', 'label' => 'Gender', 'rules' => 'trim|required');
+
+    if($edit_id)
+    {
+        $rules[] = array('field' => 'email', 'label' => 'Email', 'rules' => 'trim|required|valid_email');
+        $rules[] = array('field' => 'user_name', 'label' => 'Username', 'rules' => 'trim|required|alpha');
+        $rules[] = array('field' => 'password', 'label' => 'Password', 'rules' => 'trim|min_length[8]|max_length[20]');
+    }
+    else
+    {
+        $rules[] = array('field' => 'email', 'label' => 'Email', 'rules' => 'trim|required|valid_email|callback_unique_email_check');
+        $rules[] = array('field' => 'user_name', 'label' => 'Username', 'rules' => 'trim|required|alpha|callback_unique_username_check');
+        $rules[] = array('field' => 'password', 'label' => 'Password', 'rules' => 'trim|required|min_length[8]|max_length[20]');
+    }
+    
+    return $rules;
    } 
    
    public function unique_email_check($email)
