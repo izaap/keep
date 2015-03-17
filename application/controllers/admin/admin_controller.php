@@ -64,9 +64,28 @@ class Admin_controller extends App_controller {
 		//now get the form
 		$form = $this->load->view($pagination['advance_search_view'], $this->data, TRUE);
 		 
-		if($this->input->is_ajax())
+		if($this->input->is_ajax_request())
 		$this->_ajax_output(array('advance_filter_form' => $form), TRUE);
 		 
 		return TRUE;
 	}
+
+	/**
+     * This function sets the number of records per page for grid.
+     *@param string namespace <p>
+     * It is the namespace of current grid-view page.
+     * </p>
+     * @return void.
+     */
+    function set_records_per_page( $namespace = '' )
+    {
+    	$per_page = ((int)$this->input->post('per_page'))?$this->input->post('per_page'):20;
+    	
+    	$this->session->set_userdata($namespace.'_per_page', $per_page);
+    	
+    	if($this->input->is_ajax_request())
+    		$this->_ajax_output(array('status' => 'success'), TRUE);
+    	 
+    	return TRUE;
+    }
 }

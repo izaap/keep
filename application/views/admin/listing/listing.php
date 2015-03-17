@@ -5,9 +5,7 @@
 	<input type="hidden" name="base_url" id="base_url" value="<?php echo $base_url;?>" />
 	<input type="hidden" name="namespace" id="namespace" value="<?php echo $namespace;?>" />
 	
-	<div class="pagination pagination-right pull-right" id="pagination">
-			<?php echo $pagination ?>
-		</div>
+		
 		
 
 	<table class="table user-list table-hover"	id="data_table">
@@ -86,5 +84,7 @@
 
 	</table>
 
-	
+	<div class="pagination pagination-right pull-right" id="pagination">
+			<?php echo $pagination ?>
+		</div>
 
