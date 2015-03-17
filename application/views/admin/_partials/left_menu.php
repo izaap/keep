@@ -12,7 +12,7 @@
     </li>
     
     <li>
-		<a href="<?php echo site_url('admin/role/add_role'); ?>">
+		<a href="<?php echo site_url('admin/role'); ?>">
 			<i class="fa fa-dashboard"></i><span>Role</span><span class="label label-primary label-circle pull-right"></span>
 		</a>
 		<ul class="submenu">

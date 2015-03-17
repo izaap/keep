@@ -36,25 +36,25 @@ class Listing
         $this->_CI->load->library('parser');
         $this->_CI->load->library('encrypt');
         
-        $this->_CI->pagination->full_tag_open = '<ul class="pull-right">';
+        $this->_CI->pagination->full_tag_open = '<ul class="pagination pull-right">';
         $this->_CI->pagination->full_tag_close = '</ul>';
         
-        $this->_CI->pagination->first_tag_open = '<li class="disabled">';
+        $this->_CI->pagination->first_tag_open = '<li class="paginate_button disabled">';
         $this->_CI->pagination->first_tag_close = '</li>';
         
-        $this->_CI->pagination->prev_tag_open = '<li class="disabled">';
+        $this->_CI->pagination->prev_tag_open = '<li class="paginate_button previous disabled">';
         $this->_CI->pagination->prev_tag_close = '</li>';
         
-        $this->_CI->pagination->cur_tag_open = '<li class="active"><span>';
+        $this->_CI->pagination->cur_tag_open = '<li class="paginate_button active"><span>';
         $this->_CI->pagination->cur_tag_close = '</span></li>';
         
-        $this->_CI->pagination->num_tag_open = '<li class="disabled">';
+        $this->_CI->pagination->num_tag_open = '<li class="paginate_button disabled">';
         $this->_CI->pagination->num_tag_close = '</li>';
         
-        $this->_CI->pagination->next_tag_open = '<li class="disabled">';
+        $this->_CI->pagination->next_tag_open = '<li class="paginate_button disabled">';
         $this->_CI->pagination->next_tag_close = '</li>';
         
-        $this->_CI->pagination->last_tag_open = '<li class="disabled">';
+        $this->_CI->pagination->last_tag_open = '<li class="paginate_button disabled">';
         $this->_CI->pagination->last_tag_close = '</li>';
         
         

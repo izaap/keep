@@ -97,5 +97,5 @@
 
 	<div class="pagination pagination-right pull-right" id="pagination">
 			<?php echo $pagination ?>
-		</div>
+	</div>
 
