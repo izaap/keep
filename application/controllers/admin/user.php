@@ -6,6 +6,9 @@ class User extends Admin_controller {
     function __construct() 
     {
         parent::__construct();
+        $this->layout->add_javascripts(array('listing', 'rwd-table'));
+
+        
         
     }
 
@@ -13,6 +16,7 @@ class User extends Admin_controller {
     function test()
     {
         $this->load->library('listing');
+
         
         $this->simple_search_fields = array(
                                                 'sales_order.id' => 'Order Number',
@@ -45,7 +49,7 @@ class User extends Admin_controller {
         $this->data['user_data'] = $this->session->userdata('admin_user_data');
         $this->data['css']       = get_css('admin_user');
         $this->data['js']        = get_js('admin_user');
-        $this->layout->view("admin/user/test",$this->data);
+        $this->layout->view("admin/user/test");
         
     }
     

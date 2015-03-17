@@ -35,6 +35,16 @@ class App_Controller extends CI_Controller
         switch ($seg1) 
         {
             case 'admin':
+
+                $this->load->config('layout');
+
+                $layout = $this->config->item('admin', 'layout');
+
+                if( !$layout )
+                    die('Layout not found.');
+
+                $this->layout->initialize($layout);
+
                 if( !is_logged_in() )
                 {
                     $seg2 = $this->uri->segment(2,'');

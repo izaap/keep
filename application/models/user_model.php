@@ -7,6 +7,24 @@ class User_Model extends App_model {
     {
         parent::__construct();
     }
+
+    function listing()
+    {
+        $this->_fields = " *,IF(is_blocked='1','Inactive','Active') as status";
+        
+        //from
+        $this->db->from($this->table_name);
+        
+        //joins
+        
+        
+        //where
+        
+        
+        
+        return parent::listing();
+    }
+    
     public function add($data)
     {
         return $this->db->insert($this->table_name, $data);

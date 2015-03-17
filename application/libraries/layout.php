@@ -33,15 +33,7 @@ class Layout {
 
     public function view($file_name, $type = 'admin')
     {
-        $this->CI->load->config('layout');
-
-        $layout = $this->CI->config->item($type, 'layout');
-
-        //echo '<pre>';print_r($layout);die;
-        if( !$layout )
-            die('Layout not found.');
-
-        $this->initialize($layout);
+    
 
         $this->CI->data['content'] = $this->CI->load->view($file_name, $this->CI->data, TRUE);
         $this->CI->load->view("admin/layouts/$type", $this->CI->data);
