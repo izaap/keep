@@ -6,8 +6,8 @@
     <div class="col-lg-12">
         <div class="row">
             <div class="col-lg-12">
-                <ol class="breadcrumb"><li><a href="#">Home</a></li><li class="active"><span>Form Elements</span></li></ol>
-               <?php /* <h1 style="font-weight: bold; font-size:16px; color:#000; margin:20px 0 20px 0"><?php echo (isset($form_data['id']) && ($form_data['id'] !=''))?'Edit':'Add';?> User</h1> */ ?>
+                <ol class="breadcrumb"><li><a href="#">Message</a></li><li class="active"><span>Add</span></li></ol>
+                <h1 style="font-weight: bold; font-size:16px; color:#000; margin:20px 0 20px 0"><?php echo (isset($form_data['id']) && ($form_data['id'] !=''))?'Edit':'Add';?> Message</h1>  
             </div>
         </div>
 <div class="row">
@@ -21,8 +21,8 @@
             <input type="hidden" name="edit_id" id="edit_id" value="<?php echo $edit_id = (isset($form_data['id']) && $form_data['id']!='')?$form_data['id']:"";?>" />
  
             <div class="form-group <?php echo form_error('name')?'has-error':'';?>">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" value="<?=set_value('name', $form_data['name']);?>" />
+                <label for="name">Title</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Enter title" value="<?=set_value('name', $form_data['name']);?>" />
                 <?php echo form_error('name', '<span class="help-block">', '</span>'); ?>
             </div>
             
@@ -31,15 +31,25 @@
                 <textarea class="form-control" name="message" id="message" rows="5"><?=set_value('message', $form_data['message']);?></textarea>
                 <?php echo form_error('message', '<span class="help-block">', '</span>'); ?>
             </div>
-                      
-            <div class="form-group <?php echo form_error('type')?'has-error':'';?>">
-                <label for="type">Type</label>
-                <input type="radio" class="form-control" name="type" id="type1" value="1" >Site
-                <input type="radio" class="form-control" name="type" id="type2" value="2" >User
+
+            <div class="form-group <?php echo form_error('type')?'has-error':'';?>" >
+                <label>Message Type</label>
+                <div class="radio">
+                    <input type="radio" name="type" id="type1" value="1" <?=set_value('type', $form_data['type']) == 'site' ? "checked" : ""?> >
+                    <label for="type1">
+                    Site
+                    </label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="type" id="type2" value="2" <?=set_value('type', $form_data['type']) == 'users' ? "checked" : ""; ?> >
+                    <label for="type2">
+                    Users
+                    </label>
+                </div>
                 <?php echo form_error('type', '<span class="help-block">', '</span>'); ?>
             </div>
             
-            <div id="autosuggest" class="form-group <?php echo form_error('type')?'has-error':'';?>">
+            <div id="autosuggest" style="<?=set_value('type', $form_data['type']) == 1 ?"display:none":"";?>" class="form-group <?php echo form_error('users')?'has-error':'';?>">
 				 <label for="type">Select User</label>
 				 <input type="text" id="search_user" class="form-control" name="users" value=""/>
                  <?php echo form_error('users', '<span class="help-block">', '</span>'); ?>

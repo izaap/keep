@@ -7,7 +7,6 @@ $(document).ready(function() {
 			
 	$("#type2").click(function () {
 		$("#autosuggest").show();
-		alert('sfe')	
 	});
 		
 	$("#type1").click(function () { 

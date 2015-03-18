@@ -17,6 +17,8 @@ $lang = array(
 ),
 
 'record_insert_success' => array('title' => 'Success', 'message' => 'Record Added Successfully', 'status' => 'success'),
-'record_insert_success' => array('title' => 'Success', 'message' => 'Record Updaed Successfully', 'status' => 'success')
+'record_update_success' => array('title' => 'Success', 'message' => 'Record Updaed Successfully', 'status' => 'success'),
+'record_delete_success' => array('title' => 'Success', 'message' => 'Record Deleted Successfully', 'status' => 'success')
+
 );
 ?>

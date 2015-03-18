@@ -9,7 +9,36 @@ class Dashboard_Model extends App_Model {
         parent::__construct();
 
     }
-    
+
+    function get_home_data(){
+
+    	$query ="SELECT * FROM
+				(SELECT count(*) as count,'users_count' as type FROM jwb_users WHERE role!=1 ) AS users_count
+
+				UNION 
+
+				SELECT * FROM
+				(SELECT count(*) as count,'products_count' as type FROM jwb_products ) AS products_count
+
+				UNION
+
+				SELECT * FROM
+				(SELECT sum(buycount) as count,'buy_count' as type FROM jwb_products ) AS buy_count
+				
+				";
+    	
+        $result = $this->db->query($query)->result_array();
+
+        $data=array();
+        
+        foreach($result as $val){
+
+        	$data[$val['type']] = $val['count'];
+        }
+        
+        return $data;
+    }
+
     function get_products_report(){
 
     	$query ="SELECT * FROM

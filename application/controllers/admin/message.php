@@ -30,12 +30,18 @@ class Message extends Admin_controller {
          
         $this->_narrow_search_conditions = array("start_date", "end_date", "customer", "order_status", "sales_channel", "type","followup","fraudulent","next_due_start_date","next_due_end_date","paid_status","overdue","ship_start_date","ship_end_date","orders_at_risk");
         
-        $str = '<a href="'.site_url('admin/message/edit/{id}').'" class="table-link">
+        $str = '<a href="'.site_url('admin/message/edit/{id}').'" data-toggle="tooltip" data-original-title="Edit" class="table-link">
                     <span class="fa-stack">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                     </span>
-                </a>';
+                </a>
+                <a class="table-link danger" href="'.site_url('admin/message/delete/{id}').'" onclick = "return confirm(\'Are you sure wants to delete this Message!\')" data-toggle="tooltip" data-original-title="Delete">
+					<span class="fa-stack">
+						<i class="fa fa-square fa-stack-2x"></i>
+						<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+					</span>
+				</a>';
  
         $this->listing->initialize(array('listing_action' => $str));
 
@@ -76,7 +82,7 @@ class Message extends Admin_controller {
         if(isset($form['edit_id']))
             $edit_id = $form['edit_id'];
 		
-		$this->data['form_data'] = array("id"=>"","name"=>"","message"=>"","type"=>"","users"=>"");
+		$this->data['form_data'] = array("id"=>"","name"=>"","message"=>"","type"=>'site',"users"=>"");
         
         $edit_data = $this->message_model->get_where(array('id'=>$edit_id))->row_array();
 
@@ -140,7 +146,7 @@ class Message extends Admin_controller {
 	
 	public function _validation_rules()
 	{
-		$rules = array(array('field' => 'name', 'label' => 'Title', 'rules' => 'trim|required|alpha|xss_clean'),
+		$rules = array(array('field' => 'name', 'label' => 'Title', 'rules' => 'trim|required|xss_clean'),
                        array('field' => 'message', 'label' => 'Message', 'rules' => 'trim|required|xss_clean'),
                        array('field' => 'type', 'label' => 'Type', 'rules' => 'trim|required|xss_clean'),
                        array('field' => 'users', 'label' => 'Users', 'rules' => 'trim|xss_clean')
@@ -148,75 +154,15 @@ class Message extends Admin_controller {
 		return  $rules;
 	}
 	
-	
-	public function message_management()
+	public function delete($id = 0)
 	{
-		//$this->load->library('pagination');
-		
-		$this->load->model('admin/message_model');
-        $this->result = $this->message_model->get_all_message();
-		
-		$this->data['css']       = get_css('user_add');
-        $this->data['js']        = get_js('user_add'); 
-		$this->layout->view("admin/message/manage_message",$this->result);
-		
-	}
-	
-	
-	public function edit_message($message_id = "")
-	{
-		$this->form_validation->set_rules($this->_validation_rules_message());
-		if($this->form_validation->run()) { 
-            
-            $this->ins_data['name']         =   $this->input->post('name');
-            $this->ins_data['message']          =   $this->input->post('message');
-            $this->ins_data['type']              =   $this->input->post('type');
-            $this->ins_data['id']              =   $this->input->post('id');
-            $this->ins_data['users']              =   $this->input->post('users');
-			
-			$this->load->model('admin/message_model');
-            $this->message_model->edit_message($this->ins_data);
-            $this->service_message->set_flash_message("record_insert_success");
-            
-			redirect("admin/message/message_management");
-        }
-		
-		$this->load->model('admin/message_model');
-        $this->result["val"] = $this->message_model->get_message_details($message_id);
-        
-          foreach ($this->result["val"] as $r){ 
-			  
-			 $ex = explode(',',$r["users"]); 
-		  }
-		  $this->ex_val = $this->message_model->get_single_message_details($ex);
-		  
-		foreach($this->ex_val as $s){
-			
-			$response[] = array( "id" => $s["id"], "name" => $s["user_name"]);
-			
-		}
-		 $this->result["exist_value"] = json_encode($response);
-		  //$val_response["prePopulate"] = $response;
-		  //$this->result["exist_value"] = json_encode($val_response);
-		  
-		  //echo "{ prePopulate: ".$this->result["exist_value"]."}";exit;
-		  
-		  
-		
-		$this->data['css']       = get_css('user_add');
-        $this->data['js']        = get_js('user_add'); 
-		$this->layout->view("admin/message/edit_message",$this->result);
-	}
-	
-	
-	public function delete_message($message_id = "")
-	{
-			$this->load->model('admin/message_model');
-			$result =  $this->message_model->delete_message($message_id);
-            $this->service_message->set_flash_message("record_insert_success");
-            if($result == 1){
-				redirect("admin/message/message_management");
-			}
+		if(empty($id))
+			return FALSE;
+
+		$this->message_model->delete(array('id'=>$id));
+        $this->service_message->set_flash_message("record_delete_success");
+
+		redirect("admin/message");
 	}
 	
 	
@@ -233,9 +179,7 @@ class Message extends Admin_controller {
 			}
 			echo json_encode($response);
 			exit;
-		
-		
-		
+			
 		
 	}
 	

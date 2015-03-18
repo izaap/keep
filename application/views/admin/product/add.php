@@ -33,7 +33,7 @@
 
                                 <div class="form-group <?php echo form_error('description')?'has-error':'';?>">
                                     <label for="description">Description <span class="vstar">*</span></label>
-                                    <textarea class="form-control" name="description" id="description" rows="10"><?=set_value('description', $form_data['description']);?></textarea>
+                                    <textarea class="form-control" name="description" id="description" rows="6"><?=set_value('description', $form_data['description']);?></textarea>
                                     <?php echo form_error('description', '<span class="help-block">', '</span>'); ?>
                                 </div>
 
@@ -45,10 +45,15 @@
                                 </div>
                                 
                                 <div class="form-group <?php echo form_error('upcoming_product')?'has-error':'';?>">
-                                    <label for="upcoming_product">Upcoming Product </label>
-                                    <input type="checkbox" class="form-control" name="upcoming_product" id="upcoming_product" value="1" <?=($form_data['upcoming_product']==1)?'checked':'';?> />
-                                    <?php echo form_error('upcoming_product', '<span class="help-block">', '</span>'); ?>
-                                </div>
+                                    <label>Upcoming Product</label>
+                                    <br/>
+                                    <div class="checkbox-nice checkbox-inline">
+                                        <input type="checkbox" class="form-control" name="upcoming_product" id="upcoming_product" value="1" <?=set_value('upcoming_product',$form_data['upcoming_product'])==1 ?'checked':'';?> />
+                                        <label for="upcoming_product">
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>    
                                 
                                 <div class="form-group <?php echo form_error('buylink')?'has-error':'';?>">
                                     <label for="buylink">Buylink: <span class="vstar">*</span></label>

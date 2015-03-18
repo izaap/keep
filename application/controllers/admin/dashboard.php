@@ -6,14 +6,15 @@ class Dashboard extends Admin_Controller {
     {
         parent::__construct();
 
-        
         $this->load->model('dashboard_model');
     }
     
     public function index()
     {
-        //$this->layout->add_javascripts(array("jsapi")); 
+        $this->layout->add_javascripts(array('jsapi','home'));
             
+        $this->data['home_data'] = $this->dashboard_model->get_home_data();
+        
         $this->data['user_data'] = $this->session->userdata('user_data');
         $this->service_message->set_flash_message('login_success','welcome admin'); 
         $this->layout->view('admin/home');

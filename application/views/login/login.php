@@ -29,11 +29,6 @@
             </div>
             <div id="remember-me-wrapper">
                 <div class="row">
-                     <div class="col-xs-6">
-                        <div class="checkbox-nice">
-                            <a href="<?php echo base_url();?>login/add" id="login-forget-link" class="col-xs-6"> Register </a>
-                        </div>
-                    </div>
                 <div class="col-xs-6"></div>
                 <a href="#" id="login-forget-link" class="col-xs-6"> Forgot password? </a>
                 </div>
@@ -61,11 +56,7 @@
     </div>
     </div>
     </div>
-    <div id="login-box-footer">
-     <div class="row">
-        <div class="col-xs-12">Do not have an account?<a href="#">Register now</a></div>
-     </div>
-    </div>
+    
     </div>
 </div>
 </div>
