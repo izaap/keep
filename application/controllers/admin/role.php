@@ -77,11 +77,14 @@ class Role extends Admin_Controller {
             {
                 $this->role_model->update(array('id' => $edit_id), $this->ins_data);
                 $this->service_message->set_flash_message("record_update_success");  
+                actionLogAdd('role', $edit_id, "Role#$edit_id ({$form['name']}) record has been updated.");
             }
             else
             {
-                $this->role_model->insert($this->ins_data);
+                $role_id = $this->role_model->insert($this->ins_data);
                 $this->service_message->set_flash_message("record_insert_success");
+
+                actionLogAdd('role', $role_id, "Role#$role_id ({$form['name']}) record has been created.");
             }
             
              redirect("admin/role");

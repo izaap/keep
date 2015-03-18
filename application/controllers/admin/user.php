@@ -94,11 +94,17 @@ class User extends Admin_controller {
             {
                 $this->user_model->update(array('id' => $edit_id), $this->ins_data);
                 $this->service_message->set_flash_message("record_update_success");  
+
+                //log
+                actionLogAdd('user', $edit_id, "User#$edit_id ({$form['user_name']}) record has been updated.");
             }
             else
             {
-                $this->user_model->insert($this->ins_data);
+                $user_id = $this->user_model->insert($this->ins_data);
                 $this->service_message->set_flash_message("record_insert_success");
+
+                //log
+                actionLogAdd('user', $user_id, "User#$user_id ({$form['user_name']}) record has been created.");
             }
             
              redirect("admin/user");

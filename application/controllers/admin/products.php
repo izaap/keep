@@ -105,11 +105,17 @@ class Products extends Admin_controller {
 
                 $this->product_model->update(array('id'=>$edit_id),$ins_data);
                 $this->service_message->set_flash_message("record_update_success");  
+
+                //log
+                actionLogAdd('product', $product_id, "Product#$edit_id ({$form['product_name']}) record has been updated.");
             }
             else
             {
-                $this->product_model->insert($ins_data);
+                $product_id = $this->product_model->insert($ins_data);
                 $this->service_message->set_flash_message("record_insert_success");
+
+                //log
+                actionLogAdd('product', $product_id, "Product#$product_id ({$form['product_name']}) record has been created.");
             }
 
                 redirect('admin/products');
