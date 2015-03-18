@@ -185,6 +185,11 @@ class User extends Admin_controller {
         return true;
      }
    }
+
+   function ttt()
+   {
+     actionLogAdd('so', 12, 'hhhhh hhh');
+   }
 }
 
 /* End of file user.php */

@@ -406,4 +406,13 @@ function site_traffic()
     
     
 }
+
+
+function actionLogAdd($type,$action,$id = NULL)
+{
+    $CI = & get_instance();
+    $CI->load->model('log_model');
+    $CI->log_model->add($type,$action,$id);
+}
+
 ?>
