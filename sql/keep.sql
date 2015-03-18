@@ -406,6 +406,23 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `jwb_views`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+
+CREATE TABLE IF NOT EXISTS `log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action` text NOT NULL,
+  `action_id` int(11) NOT NULL,
+  `line` text NOT NULL,
+  `created_id` int(11) NOT NULL,
+  `updated_id` int(11) NOT NULL,
+  `created_time` datetime NOT NULL,
+  `updated_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `fk_sales_channel_user1` (`created_id`),
+  KEY `fk_sales_channel_user2` (`updated_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT AUTO_INCREMENT=1 ;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
