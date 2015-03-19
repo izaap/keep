@@ -36,7 +36,7 @@ class Layout {
     
 
         $this->CI->data['content'] = $this->CI->load->view($file_name, $this->CI->data, TRUE);
-        $this->CI->load->view("admin/layouts/$type", $this->CI->data);
+        $this->CI->load->view($this->template, $this->CI->data);
 
         /*
     	//load header

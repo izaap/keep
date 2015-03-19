@@ -32,17 +32,17 @@ class App_Controller extends CI_Controller
     {
         $seg1 = $this->uri->segment(1,'');
 
+        $this->load->config('layout');
+        
 
         switch ($seg1) 
         {
             case 'admin':
 
-                $this->load->config('layout');
-
                 $layout = $this->config->item('admin', 'layout');
 
                 if( !$layout )
-                    die('Layout not found.');
+                            die('Layout not found.');
 
                 $this->layout->initialize($layout);
 
@@ -65,7 +65,13 @@ class App_Controller extends CI_Controller
                 break;
             
             default:
-                # code...
+                $layout = $this->config->item('frontend', 'layout');
+
+                if( !$layout )
+                            die('Layout not found.');
+                        
+                $this->layout->initialize($layout);
+
                 break;
         }
 

@@ -22,7 +22,7 @@ google.setOnLoadCallback(userChart);
 						var options = {
 						  title: index.toUpperCase(),
 						  fontSize:12,
-						  width:490,
+						  //width:490,
 						  height:200,
 						  legend: '',
 						  vAxis: {title: 'PRODUCTS'}

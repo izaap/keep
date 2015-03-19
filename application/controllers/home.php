@@ -2,12 +2,15 @@
 
 safe_include("controllers/app_controller.php");
 class Home extends App_Controller {
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
     }
+
     public function index()
     {
-        die('Home');
+        
+        $this->layout->view('frontend/home/home');
     }
 }
 ?>

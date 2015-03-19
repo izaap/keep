@@ -17,120 +17,133 @@
 </div>
 
 <div class="row">
-	<div class="col-md-3 col-sm-6 col-xs-12">
-		<div class="main-box small-graph-box emerald-bg">
-			<div class="box-button">
-				<a href="#" class="box-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
-			</div>
-			<span class="value">69,600</span>
+
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box colored purple-bg">
+			<i class="fa fa-globe"></i>
 			<span class="headline">Visits</span>
-			<div class="progress">
-				<div style="width: 84%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="84" role="progressbar" class="progress-bar">
-					<span class="sr-only">84% Complete</span>
-				</div>
-			</div>
+			<span class="value">69,600</span>
+		</div>
+	</div>
+	
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box colored blue-bg">
+			<i class="fa fa-money"></i>
+			<span class="headline">Orders</span>
+			<span class="value"><?php echo $home_data['buy_count']; ?></span>
 		</div>
 	</div>
 
-	<div class="col-md-3 col-sm-6 col-xs-12">
-		<div class="main-box small-graph-box blue-bg">
-			<div class="box-button">
-				<a href="#" class="box-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
-			</div>
-			<span class="value"><?=$home_data['buy_count']?></span>
-			<span class="headline">Buying Count</span>
-			<div class="progress">
-				<div style="width: 42%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="42" role="progressbar" class="progress-bar">
-					<span class="sr-only">42% Complete</span>
-				</div>
-			</div>
-			
-		</div>
-	</div>
-
-	<div class="col-md-3 col-sm-6 col-xs-12">
-		<div class="main-box small-graph-box red-bg">
-			<div class="box-button">
-				<a href="#" class="box-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
-			</div>
-			<span class="value"><?=$home_data['users_count']?></span>
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box colored red-bg">
+			<i class="fa fa-user"></i>
 			<span class="headline">Users</span>
-			<div class="progress">
-				<div style="width: 35%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="35" role="progressbar" class="progress-bar">
-				<span class="sr-only">35% Complete</span>
-				</div>
-			</div>
-			
+			<span class="value"><?php echo $home_data['users_count'];?></span>
 		</div>
 	</div>
 
-	<div class="col-md-3 col-sm-6 col-xs-12">
-		<div class="main-box small-graph-box purple-bg">
-			<div class="box-button">
-				<a href="#" class="box-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
-			</div>
-			<span class="value"><?=$home_data['products_count']?></span>
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box colored red-bg">
+			<i class="fa fa-building"></i>
 			<span class="headline">Products</span>
-			<div class="progress">
-				<div style="width: 33%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="33" role="progressbar" class="progress-bar">
-					<span class="sr-only">33% Complete</span>
+			<span class="value"><?php echo $home_data['products_count'];?></span>
+		</div>
+	</div>
+
+	
+</div>
+
+
+<div class="row">
+<div class="col-lg-8">
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="main-box">
+				<header class="main-box-header clearfix">
+					<h2>Products Buycount</h2>
+				</header>
+				<div class="main-box-body clearfix">
+					<div id="buycount_chart"> </div>
 				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-6">
+			<div class="main-box">
+				<header class="main-box-header clearfix">
+					<h2>Products Followed</h2>
+				</header>
+				<div class="main-box-body clearfix">
+					<div id="followed_chart"> </div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="row">
+	<div class="col-lg-6">
+			<div class="main-box">
+				<header class="main-box-header clearfix">
+					<h2>Product Likes</h2>
+				</header>
+				<div class="main-box-body clearfix">
+					<div id="likes_chart"> </div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-6">
+			<div class="main-box">
+				<header class="main-box-header clearfix">
+					<h2>Product Favorites</h2>
+				</header>
+				<div class="main-box-body clearfix">
+					<div id="favorites_chart"> </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+<div class="col-lg-4">
+	<div class="main-box">
+		<header class="main-box-header clearfix">
+			<h2>Recent Activities</h2>
+		</header>
+		<div class="main-box-body clearfix">
+			<div id="followed_chart222"> 
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
+			LLLL<br/>
 			</div>
 		</div>
 	</div>
 </div>
 
 
-<div class="row">
-<div class="col-lg-6">
-	<div class="main-box">
-		<header class="main-box-header clearfix">
-			<h2>Products Buycount</h2>
-		</header>
-		<div class="main-box-body clearfix">
-			<div id="buycount_chart"> </div>
-		</div>
-	</div>
-</div>
 
-<div class="col-lg-6">
-	<div class="main-box">
-		<header class="main-box-header clearfix">
-			<h2>Products Followed</h2>
-		</header>
-		<div class="main-box-body clearfix">
-			<div id="followed_chart"> </div>
-		</div>
-	</div>
-</div>
 </div>
 
 <div class="row">
-<div class="col-lg-6">
-	<div class="main-box">
-		<header class="main-box-header clearfix">
-			<h2>Product Likes</h2>
-		</header>
-		<div class="main-box-body clearfix">
-			<div id="likes_chart"> </div>
-		</div>
-	</div>
-</div>
-
-<div class="col-lg-6">
-	<div class="main-box">
-		<header class="main-box-header clearfix">
-			<h2>Product Favorites</h2>
-		</header>
-		<div class="main-box-body clearfix">
-			<div id="favorites_chart"> </div>
-		</div>
-	</div>
-</div>
-</div>
-
-<div class="row">
-<div class="col-lg-12">
+<div class="col-lg-12 col-xs-12">
 	<div class="main-box">
 		<header class="main-box-header clearfix">
 			<h2>User Charts</h2>
