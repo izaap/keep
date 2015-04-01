@@ -2,9 +2,9 @@
 
 safe_include("models/app_model.php");
 
-class Product_model extends App_Model {
+class Views_model extends App_Model {
 
-    protected $_table = 'jwb_products';
+    protected $_table = 'jwb_views';
     
     function __construct()
     {
@@ -31,13 +31,13 @@ class Product_model extends App_Model {
     		switch ($key)
     		{
      			case 'product_name':
-                    $this->db->like("jwb_products.product_name",$value);
+                    $this->db->like("jwb_views.product_name",$value);
                     break;
                 case 'description':
-    				 $this->db->like("jwb_products.description",$value);
+    				 $this->db->like("jwb_views.description",$value);
     				 break;
                 case 'price':
-                    $this->db->like("jwb_products.price",$value);
+                    $this->db->like("jwb_views.price",$value);
                     break;
             }        
         }

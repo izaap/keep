@@ -2,9 +2,9 @@
 
 safe_include("models/app_model.php");
 
-class Product_model extends App_Model {
+class Favourites_model extends App_Model {
 
-    protected $_table = 'jwb_products';
+    protected $_table = 'jwb_favourites';
     
     function __construct()
     {

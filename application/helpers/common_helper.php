@@ -415,4 +415,22 @@ function actionLogAdd($type,$id = NULL, $action)
     $CI->log_model->add($type,$id,$action);
 }
 
+function is_valid_product($product_id = 0)
+{
+    $CI->db->load->model('product_model');
+
+    $result = $CI->db->product_model->get_where(array('id' => $product_id));
+
+    return $result->num_rows()?TRUE:FALSE;
+}
+
+function is_valid_user($user_id = 0)
+{
+    $CI->db->load->model('user_model');
+
+    $result = $CI->db->user_model->get_where(array('id' => $user_id));
+
+    return $result->num_rows()?TRUE:FALSE;
+}
+
 ?>
