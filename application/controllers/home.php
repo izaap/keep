@@ -12,5 +12,11 @@ class Home extends App_Controller {
         
         $this->layout->view('frontend/home/home');
     }
+    
+    
+    
+	
+	
+	
 }
 ?>
