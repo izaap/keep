@@ -5,12 +5,15 @@ class Home extends App_Controller {
     function __construct()
     {
         parent::__construct();
+         $this->load->model('home_model');
     }
 
     public function index()
     {
         
-        $this->layout->view('frontend/home/home');
+        $this->product_list = $this->home_model->get_product_list(); 
+        
+        $this->layout->view('frontend/home/home',$this->product_list);
     }
     
     

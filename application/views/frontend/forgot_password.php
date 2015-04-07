@@ -10,7 +10,7 @@
     <div class="row">
     <div class="col-xs-12">
         <header id="login-header">
-            <div id="login-logo">LOGIN</div>
+            <div id="login-logo">Forgot password</div>
         </header>
         <div id="login-box-inner">
         <?php
@@ -18,29 +18,15 @@
           echo validation_errors();
          endif; 
         ?>
-            <form role="form" name="admin_login" id="admin_login" action="<?php site_url('login/user_login')?>" method="POST">
+            <form role="form" name="admin_login" id="admin_login" action="<?php site_url('login/forgot_password')?>" method="POST">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input class="form-control" type="text" name="email" placeholder="Email or Username">
+                <input class="form-control" type="text" name="email" placeholder="Email">
             </div>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="password" class="form-control" name="password" placeholder="Password">
-            </div>
-            <div id="remember-me-wrapper">
-                <div class="row">
-                <div class="col-xs-6"></div>
-                <a href="<?php echo site_url('login/forgot_password')?>" id="login-forget-link" class="col-xs-6"> Forgot password? </a>
-                </div>
-                
-                <div class="col-xs-6"></div>
-                <a href="<?php echo site_url('login/signup')?>" id="login-forget-link" class="col-xs-6"> Sign up </a>
-                </div>
-                
-            </div>
+           
             <div class="row">
                 <div class="col-xs-12">
-                    <input type="submit" name="submit" class="btn btn-success col-xs-12" value="Login">
+                    <input type="submit" name="submit" class="btn btn-success col-xs-12" value="Submit">
                 </div>
             </div>
              <!-- <div class="row">

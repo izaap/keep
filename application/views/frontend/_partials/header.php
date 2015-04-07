@@ -34,7 +34,7 @@
 													</div>
 												</div>
 											</div-->
-											
+											<?php if(!$this->session->userdata('user_id')) { ?>
 											<div class="col-xs-6 col-sm-7 col-md-6 col-xs-push-3 col-sm-push-6 divice-center">
 												<div class="row">
 													<div class="dropdown  small-width">
@@ -46,6 +46,14 @@
 												</div>
 											</div>
 										</div>
+										<?php } else { ?>
+											
+											<a href ="<?php echo site_url('login/user_settings')?>" >Settings</a>&nbsp;&nbsp;
+										
+										 <a href ="<?php echo site_url('login/logout')?>" >Log out</a>
+										
+										<?php } ?>
+										
 									</div>
 								</div>
 							</div>
@@ -56,6 +64,7 @@
 			<!-- End Header Section /-->
 			
 			<!--/ Search -->
+			<?php if(!$this->session->userdata('user_id')) { ?>
 				<div class="container custom-search">
 					<div class="col-sm-6 col-sm-push-3">
 						<div class="input-group brd">
@@ -66,4 +75,5 @@
 						</div>
 					</div>
 				</div>
+				<?php } ?>
 			<!-- Search /-->
