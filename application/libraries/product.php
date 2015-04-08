@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
-class Layout {
+class Product {
 
 	protected $CI;
 
@@ -40,20 +40,21 @@ class Layout {
 
     function like($product_id = 0, $user_id = 0)
     {
+		//echo $user_id;exit;
 
     	try
     	{
     		//Transaction starts here
 			$this->CI->db->trans_begin();
 				
-			if(!init_check($product_id = 0, $user_id = 0))		
-				throw new Exception($this->CI->error_message);
+			
 
 			$insert = array(
 	    				'product_id' => $product_id,
 	    				'user_id'	 => $user_id
 	    				);
-	    	$this->CI->likes_model->insert($insert);
+	    	$result = $this->CI->likes_model->insert($insert);
+	    	//print_r($result);exit;
 
 	    	//update count of likes of current product
 	    	$this->update_count($product_id, 'likes');
@@ -66,7 +67,8 @@ class Layout {
 			else
 			{
 				$this->CI->db->trans_commit();
-			}		
+			}	
+			return TRUE;	
     	}
     	catch(Exception $e)
 		{

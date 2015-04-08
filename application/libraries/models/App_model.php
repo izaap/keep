@@ -61,7 +61,7 @@ abstract class App_model extends Model
     }
     
     public function insert($data,$table = NULL)
-    {
+    { 
         $table = ($table)?$table:$this->_table;
         
     	$this->db->insert($table, $data);

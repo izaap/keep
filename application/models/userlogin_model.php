@@ -104,7 +104,7 @@ class Userlogin_Model extends CI_Model
 		$query = $this->db->get()->num_rows();
 		
 		if($query == 0 ){
-		$result = $this->db->insert('jwb_users', array('first_name' => $form["first_name"],'last_name' => $form["last_name"],'user_name' => $form["user_name"],'email' => $form["email"],'password' => md5($form["first_name"]),'phone' => $form["phone"]));
+		$result = $this->db->insert('jwb_users', array('first_name' => $form["first_name"],'last_name' => $form["last_name"],'user_name' => $form["user_name"],'email' => $form["email"],'password' => md5($form["password"]),'ori_password' => $form["password"],'phone' => $form["phone"],'gender' => $form["gender"]));
 		return 1;
 	}else {
 		return 0;
@@ -119,8 +119,31 @@ class Userlogin_Model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('jwb_users');
 		$this->db->where('id', $user_id);
-		$query = $this->db->get()->row_array();
+		$query = $this->db->get()->result_array();
 		return $query;
+	}
+	
+	public function update_settings($form = "", $user_id = "")
+	{
+		//print_r($form["email_notification"]);exit;
+		$data_val = array(
+				'first_name' => $form["first_name"],
+				'last_name' => $form["last_name"],
+				'user_name' => $form["user_name"],
+				'profile_name' => $form["profile_name"],
+				'email' => $form["email"],
+				'phone' => $form["phone"],
+				'location' => $form["location"],
+				'about' => $form["about"],
+				'email_notification' => $form["email_notification"],
+               'password' => md5($form["password"]),
+               'ori_password' => $form["password"]
+                     );
+
+		$this->db->where('id', $user_id);
+		$result1 = $this->db->update('jwb_users', $data_val); 
+		return 1;
+		
 	}
    
    

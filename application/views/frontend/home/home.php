@@ -14,8 +14,8 @@
 										<div class="caption">
 											<p><a href="#"><img src="<?php echo include_img_path();?>/users/user-1.jpg" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
 											<p class="text-center"><a href="#" class="user-name">User Name</a></p>
-											<p>
-												<a href="" class="label lab-d heart"><i class="fa fa-heart"></i>Like</a>
+											<p id="like">
+												<a class="label lab-d heart" onclick="like('<?php echo $product['id']?>')"><i class="fa fa-heart"></i>Like</a>
 												<a href="" class="label lab-d star"><i class="fa fa-star"></i>Favorite</a>
 											</p>											
 											<p class="more-sec">
@@ -37,3 +37,34 @@
 			</div>
 	<!-- page test -->
 	
+<script>
+	
+	function like(product_id)
+	{
+		//alert('in');
+		
+		 var url = "<?php echo site_url(); ?>home/like";
+            
+            $.ajax(
+            {
+                type:'POST',
+                url:url,
+                data: {product_id:product_id},
+                cache:false,
+                async:true,
+                global:false,
+                dataType:"html",
+                success:function(check)
+                { 
+                  //alert(a1_text);
+                  
+                  
+                  
+                }
+            });
+            
+            
+            
+	}
+	
+</script>	

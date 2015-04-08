@@ -24,14 +24,30 @@ class Login extends App_Controller {
 													array('field' => 'password', 'label' => 'Password', 'rules' => 'trim|required|xss_clean|min_length[4]|max_length[20]|alpha_dash'),
 													array('field' => 'confirm_password', 'label' => 'Confirm Password', 'rules' => 'trim|required|xss_clean|min_length[4]|max_length[20]|alpha_dash | matches[Password]')
 													);
+													
+	protected $_settings_validation_rules = array(
+													array('field' => 'first_name', 'label' => 'Firstname', 'rules' => 'trim|required|alpha|max_length[255]'),
+													array('field' => 'last_name', 'label' => 'Lastname', 'rules' => 'trim|required|alpha|max_length[255]'),
+													array('field' => 'email', 'label' => 'Email', 'rules' => 'trim|required|xss_clean'),
+													array('field' => 'user_name', 'label' => 'Username', 'rules' => 'trim|required|alpha_numeric'),
+													array('field' => 'profile_name', 'label' => 'Profile name', 'rules' => 'trim|required|alpha_numeric'),
+													array('field' => 'phone', 'label' => 'Phone', 'rules' => 'trim|required|numeric|min_length[10]'),
+													array('field' => 'password', 'label' => 'Password', 'rules' => 'trim|required|xss_clean|min_length[4]|max_length[20]|alpha_dash'),
+													array('field' => 'about', 'label' => 'About', 'rules' => 'trim|required|max_length[255]'),
+													array('field' => 'location', 'label' => 'Location', 'rules' => 'trim|required|alpha|max_length[255]')
+													
+													);
                                                   
     
     
     function __construct()
     {
         parent::__construct();
-         $this->load->library('form_validation');
+        
+        
+        $this->load->library('form_validation');
         $this->load->model('userlogin_model');
+        $this->load->library('upload_manager');
     }
 
     public function index()
@@ -155,12 +171,42 @@ class Login extends App_Controller {
 	
 	public function user_settings()
 	{
+		//$form = $this->input->post();
+			//print_r($_FILES['user_image']['name']);exit;
 		
 		$user_id = $this->session->userdata('user_id');
+		
+		 
+		
+		$this->form_validation->set_rules($this->_settings_validation_rules);
+		
+		if ($this->form_validation->run()) 
+        { 
+			$form = $this->input->post();
+			
+			//print_r($form);exit;
+			$user_detail = $this->userlogin_model->update_settings($form,$user_id);
+			if($user_detail == 1){
+				
+				$this->service_message->set_flash_message('Update successfully');
+				redirect("home/index");
+				
+			}else { 
+				
+				$this->service_message->set_flash_message('Error pls try again');
+				redirect("frontend/user_settings");
+			}
+			
+		}
+		
+		
 		$this->user_data = $this->userlogin_model->get_user_data($user_id);
+	
 		
 		$this->layout->view('frontend/user_settings',$this->user_data);
 	}
+	
+	
 	
 	
 	

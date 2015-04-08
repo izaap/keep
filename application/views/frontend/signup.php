@@ -55,6 +55,12 @@
                 <input type="text" class="form-control" name="phone" placeholder="Phone number">
             </div>
             
+            <div class="input-group">
+               <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <input type="radio" class="form-control" name="gender" value="1" />Male
+                <input type="radio" class="form-control" name="gender"  value="2" />Female
+            </div>
+            
             
             <div class="row">
                 <div class="col-xs-12">
