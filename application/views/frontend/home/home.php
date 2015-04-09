@@ -15,12 +15,15 @@
 											<p><a href="#"><img src="<?php echo include_img_path();?>/users/user-1.jpg" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
 											<p class="text-center"><a href="#" class="user-name">User Name</a></p>
 											<p id="like">
-												<a class="label lab-d heart" onclick="like('<?php echo $product['id']?>')"><i class="fa fa-heart"></i>Like</a>
+												<a class="label lab-d heart" onclick="like('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"><i class="fa fa-heart"></i>Like</a>
+												
+												<a class="label lab-d heart" onclick="unlike('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"><i class="fa fa-heart"></i>Unlike</a>
+												
 												<a href="" class="label lab-d star"><i class="fa fa-star"></i>Favorite</a>
 											</p>											
-											<p class="more-sec">
-												<a href="#" class="label label-price">$<?php echo $product['price']; ?></a>
-												<a href="#" class="label label-buy">Buy</a>
+											<p class="more-sec" id ="test_buy">
+												<a href="#"  class="label label-price">$<?php echo $product['price']; ?></a>
+												<a class="label label-buy" onclick="buy('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')">Buy</a>
 											</p>
 											<p class="short-description"><a href="#"><?php echo $product['description']; ?> </a></p>
 										</div>
@@ -39,9 +42,16 @@
 	
 <script>
 	
-	function like(product_id)
+	/* LIKE */
+	
+	function like(product_id,user_id)
 	{
-		//alert('in');
+		//alert(user_id);
+		
+		if(user_id == ''){
+			
+			alert("Pls login to like");
+		}
 		
 		 var url = "<?php echo site_url(); ?>home/like";
             
@@ -61,10 +71,88 @@
                   
                   
                 }
-            });
+            });    
             
+	}
+	
+	
+	/* UNLIKE */
+	
+	function unlike(product_id,user_id)
+	{
+		//alert('in');
+		
+		if(user_id == ''){
+			
+			alert("Pls login to Unlike");
+		}
+		
+		 var url = "<?php echo site_url(); ?>home/unlike";
             
+            $.ajax(
+            {
+                type:'POST',
+                url:url,
+                data: {product_id:product_id},
+                cache:false,
+                async:true,
+                global:false,
+                dataType:"html",
+                success:function(check)
+                { 
+                  
+                  
+                  
+                }
+            });    
+            
+	}
+	
+	/* BUY */
+	
+	
+	function buy(product_id,user_id)
+	{
+		//alert('in');
+		
+		if(user_id == ''){
+			
+			alert("Pls login to access");
+		}
+		
+		 var url = "<?php echo site_url(); ?>home/buy";
+            
+            $.ajax(
+            {
+                type:'POST',
+                url:url,
+                data: {product_id:product_id},
+                cache:false,
+                async:true,
+                global:false,
+                dataType:"html",
+                success:function(check)
+                { 
+                  if(check == 0){
+					  
+					  alert("User can't access more than one time");
+				  }else {
+					  
+					  $('#test_buy').addClass('highlight');
+				  }
+                  
+                  
+                }
+            });    
             
 	}
 	
 </script>	
+
+
+
+<style>
+  .highlight { 
+  	display:none;
+  }
+ </style>

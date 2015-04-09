@@ -27,6 +27,31 @@ class Home extends App_Controller {
 		echo $like;exit;
 		
 	}
+	
+	public function unlike()
+    {
+		$product_id  = $this->input->post('product_id');
+		$user_id = $this->session->userdata('user_id');
+		
+		$unlike = $this->product->unlike($product_id,$user_id);
+		echo $unlike;exit;
+		
+	}
+	
+	
+	public function buy()
+    {
+		$product_id  = $this->input->post('product_id');
+		$user_id = $this->session->userdata('user_id');
+		
+		$buy = $this->home_model->buy_count($product_id,$user_id);
+		
+		echo $buy;exit;
+		
+	}
+	
+	
+	
     
     
     

@@ -89,8 +89,8 @@ class Product {
     		//Transaction starts here
 			$this->CI->db->trans_begin();				
 
-			if(!init_check($product_id = 0, $user_id = 0))		
-				throw new Exception($this->CI->error_message);
+			/*if(!init_check($product_id = 0, $user_id = 0))		
+				throw new Exception($this->CI->error_message); */
 
 			$delete = array(
 	    				'product_id' => $product_id,
@@ -109,7 +109,8 @@ class Product {
 			else
 			{
 				$this->CI->db->trans_commit();
-			}		
+			}	
+			return TRUE;	
     	}
     	catch(Exception $e)
 		{
