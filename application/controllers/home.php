@@ -5,6 +5,8 @@ class Home extends App_Controller {
     function __construct()
     {
         parent::__construct();
+        
+        // $this->load->library('form_validation');
          $this->load->model('home_model');
          $this->load->library('product');
     }
@@ -47,6 +49,14 @@ class Home extends App_Controller {
 		$buy = $this->home_model->buy_count($product_id,$user_id);
 		
 		echo $buy;exit;
+		
+	}
+	
+	
+	public function fav_collection()
+	{ 
+		$collection_id  = $this->input->post('collections');
+		echo $collection_id;exit;
 		
 	}
 	

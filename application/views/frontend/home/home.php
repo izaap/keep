@@ -16,6 +16,7 @@
 											<p class="text-center"><a href="#" class="user-name">User Name</a></p>
 											<p id="like">
 												<?php 
+												if($this->session->userdata('user_id')) {
 												$this->load->model('home_model');
 												$status = $this->home_model->check_like_unlike($product['id'],$this->session->userdata('user_id'));
 												
@@ -25,9 +26,13 @@
 												<?php } else { ?>
 												
 												<a class="label lab-d heart" onclick="unlike('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"><i class="fa fa-heart"></i>Unlike</a>
+												<?php } } else { ?>
+													
+													<a class="label lab-d heart" onclick="like('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"><i class="fa fa-heart"></i>Like</a>
+													
 												<?php } ?>
 												
-												<a href="" class="label lab-d star"><i class="fa fa-star"></i>Favorite</a>
+												<a data-toggle="modal" data-target="#favorite_<?php echo $product['id'];?>" class="label lab-d star"><i class="fa fa-star"></i>Favorite</a>
 											</p>											
 											<p class="more-sec" id ="test_buy">
 												<a href="#"  class="label label-price">$<?php echo $product['price']; ?></a>
@@ -38,8 +43,60 @@
 										<img src="<?php  echo site_url('assets/uploads/products/'.$product['product_image']) ?>" class="" alt="" height="316" width="221">
 									</div>
 								</div>
-								<?php } ?>
+								
 							<!-- Single Product //-->
+							
+							
+							
+							<div class="modal fade home-fav-modal" id="favorite_<?php echo $product['id'];?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content radius-0">
+			  <div class="modal-body pad-0 cf">
+					<div class="col-xs-12 col-sm-4 text-center" style="background:red">
+						<div class="row">
+							<img src="<?php echo include_img_path();?>/products/small/product-6.jpg" alt="" />
+						</div>
+					</div>
+					
+					<div class="col-xs-12 col-sm-8 lightbox-fav">
+						<div class="row">
+							<h3>Favorite into</h3>
+						<form role="form" name="admin_login" id="admin_login" action="<?php site_url('home/fav_collection')?>" method="POST"> 
+						<?php 
+						
+						$this->load->model('home_model');
+						$collection = $this->home_model->get_user_collection($this->session->userdata('user_id'));
+						//print_r($collection);exit;
+						?>
+							<div role="toolbar" class="btn-toolbar ligtbx-btn">
+							  <div class="btn-group col-md-offset-3 mb_15"> 
+								<select name="collections" class="selectpicker btn-sm lightbx-btn">
+                                <option>Create a New Collection </option>
+                                <?php foreach($collection as $coll) { ?>
+                                <option value="<?php echo $coll['id'];?>"><?php echo $coll['name']; ?></option>
+                               <?php } ?>
+                              </select>
+							  </div><!-- /btn-group -->
+							</div>
+							<p class="col-md-3 center-block fn light-img"><a href="#"><img src="<?php echo include_img_path();?>/users/user-1.jpg" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
+                            <p class="light-bluetxt">Seller Name Joi</p>
+							<p class="col-md-3 center-block fn a-link">
+                            	<button type="button" class="btn btn-gncircle glyphicon glyphicon-ok" data-dismiss="modal" type="submit"></button>
+                            	<input type="submit" name="submit" class="btn btn-gncircle glyphicon glyphicon-ok" >
+                                <a href="#" type="button" class="btn btn-redcircle glyphicon glyphicon-remove" data-dismiss="modal"></a>
+                            </p>
+							
+						</div>
+						</form>
+					</div>
+			  </div>
+			  
+			  
+			</div>
+		  </div>
+		</div>
+	<!-- -->
+			<?php } ?>				
 							
 							
 						</div>
@@ -47,6 +104,13 @@
 				</div>
 			</div>
 	<!-- page test -->
+	
+	
+	<!-- Modal -->
+		
+	
+	
+	
 	
 <script>
 	
@@ -159,8 +223,4 @@
 
 
 
-<style>
-  .highlight { 
-  	display:none;
-  }
- </style>
+

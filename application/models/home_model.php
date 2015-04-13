@@ -71,6 +71,19 @@ class Home_Model extends CI_Model
 	}	
 	
 	
+	public function get_user_collection($user_id = "")
+	{
+		$where=array('user_id'=>$user_id);
+		$this->db->select('*');
+		$this->db->from('jwb_collections');
+		$this->db->where($where);
+		$query = $this->db->get()->result_array();
+		
+		return $query;	
+		
+	}
+	
+	
 	
 	
 	   
