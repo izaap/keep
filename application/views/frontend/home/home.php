@@ -15,9 +15,17 @@
 											<p><a href="#"><img src="<?php echo include_img_path();?>/users/user-1.jpg" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
 											<p class="text-center"><a href="#" class="user-name">User Name</a></p>
 											<p id="like">
+												<?php 
+												$this->load->model('home_model');
+												$status = $this->home_model->check_like_unlike($product['id'],$this->session->userdata('user_id'));
+												
+												?>
+												<?php if($status == 0)  { ?>
 												<a class="label lab-d heart" onclick="like('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"><i class="fa fa-heart"></i>Like</a>
+												<?php } else { ?>
 												
 												<a class="label lab-d heart" onclick="unlike('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"><i class="fa fa-heart"></i>Unlike</a>
+												<?php } ?>
 												
 												<a href="" class="label lab-d star"><i class="fa fa-star"></i>Favorite</a>
 											</p>											

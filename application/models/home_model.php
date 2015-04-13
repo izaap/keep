@@ -55,7 +55,24 @@ class Home_Model extends CI_Model
 	}
 		
 		
+	}
+	
+	
+	public function check_like_unlike($product_id = "", $user_id = "")
+	{
+		
+		$where=array('user_id'=>$user_id,'product_id'=>$product_id);
+		$this->db->select('*');
+		$this->db->from('jwb_likes');
+		$this->db->where($where);
+		$query = $this->db->get()->num_rows();
+		
+		return $query;
 	}	
+	
+	
+	
+	
 	   
  
    
