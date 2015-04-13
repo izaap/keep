@@ -16,7 +16,12 @@ $(document).ready(function ($) {
 	/*	Sticky Header
 	/*----------------------------------------------------*/
 	
-	(function() {
+	/*var stick_enable = 0;
+		if(stick_enable)
+		{
+		}*/
+ 
+	/*(function() {
 		
 		var docElem = document.documentElement,
 			didScroll = false,
@@ -71,7 +76,7 @@ $(document).ready(function ($) {
 		
 		
 		
-	})();
+	})();*/
 	
 	//	Nice-Scroll
 	$("html").niceScroll({
@@ -83,7 +88,7 @@ $(document).ready(function ($) {
 		autohidemode: true,
 		zindex: 999999999,
 		horizrailenabled: false,
-		cursorborderradius: 0,
+		cursorborderradius: 8,
 	});
 	
 	//	back-to-top
@@ -106,7 +111,7 @@ $(document).ready(function ($) {
 });
 
 	// Hidder Header
-	var headerEle = function(){
+	/*var headerEle = function(){
 		var $headerHeight = $('header').height();
 		$('.hidden-header').css({ 'height' : $headerHeight  + "px" });
 	};
@@ -117,10 +122,16 @@ $(document).ready(function ($) {
 	
 	$(window).resize(function () {
 	   headerEle();
-	});
+	});*/
 
 	
 	// 
+	
+	$('.tiptip').popover();
+	
+	$(function(){
+		$('a[title]').tooltip();
+	});
 	
 	
 

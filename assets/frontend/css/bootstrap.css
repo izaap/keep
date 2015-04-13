@@ -2998,7 +2998,6 @@ select[multiple].form-group-lg .form-control {
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #333;
   text-decoration: none;
 }
 .btn:active,
@@ -3556,11 +3555,6 @@ tbody.collapse.in {
 .btn-toolbar .btn-group,
 .btn-toolbar .input-group {
   float: left;
-}
-.btn-toolbar > .btn,
-.btn-toolbar > .btn-group,
-.btn-toolbar > .input-group {
-  margin-left: 5px;
 }
 .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0;
