@@ -1,68 +1,61 @@
 <div class="container">
-<div class="row">
-<div class="col-xs-12">
-<?php if($message = $this->service_message->render()):
+			<?php if($message = $this->service_message->render()):
        echo $message;
       endif;
  ?>
-    <div id="login-box">
-    <div id="login-box-holder">
-    <div class="row">
-    <div class="col-xs-12">
-        <header id="login-header">
-            <div id="login-logo">LOGIN</div>
-        </header>
-        <div id="login-box-inner">
-        <?php
+ 
+				<div class="row">
+										
+					<div class="col-xs-12 login-page omb_login">
+						
+						<!--/ Page Title -->
+							<div class="page-title">
+								<h3 class="title title text-center">Login or Sign up </h3> </div>
+						<!-- Page Title /-->
+                        
+                        <div class="omb_socialButtons center col-xs-12"><div class="col-xs-4 center">
+		        <a href="#" class="btn btn-lg btn-block btn-facebook">
+			        <i class="fa fa-facebook visible-xs"></i>
+			        <span class="hidden-xs">Login with Facebook</span>
+		        </a>
+	        </div></div>
+            
+            <div class="row omb_loginOr">
+			<div class="col-xs-12 col-sm-6 center">
+				<hr class="omb_hrOr">
+				<span class="omb_spanOr">or</span>
+			</div>
+		</div>
+		
+						
+						<!--/ Form -->							
+						
+        <div class="loginsec loginsec-container col-xs-12 col-sm-6 col-lg-4 center">
+          <?php
          if(validation_errors()):
           echo validation_errors();
          endif; 
         ?>
-            <form role="form" name="admin_login" id="admin_login" action="<?php site_url('login/user_login')?>" method="POST">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input class="form-control" type="text" name="email" placeholder="Email or Username">
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="password" class="form-control" name="password" placeholder="Password">
-            </div>
-            <div id="remember-me-wrapper">
-                <div class="row">
-                <div class="col-xs-6"></div>
-                <a href="<?php echo site_url('login/forgot_password')?>" id="login-forget-link" class="col-xs-6"> Forgot password? </a>
+			<form role="form" class="form-signin" name="admin_login" id="admin_login" action="<?php site_url('login/user_login')?>" method="POST">
+              <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Username or Mail ID" >
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" >
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
                 </div>
-                
-                <div class="col-xs-6"></div>
-                <a href="<?php echo site_url('login/signup')?>" id="login-forget-link" class="col-xs-6"> Sign up </a>
-                </div>
-                
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <input type="submit" name="submit" class="btn btn-success col-xs-12" value="Login">
-                </div>
-            </div>
-             <!-- <div class="row">
-                <div class="col-xs-12">
-                    <p class="social-text">Or login with</p>
-                </div>
-            </div>
-           <div class="row">
-                <div class="col-xs-12 col-sm-6">
-                    <button type="submit" class="btn btn-primary col-xs-12 btn-facebook"><i class="fa fa-facebook"></i> facebook</button>
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                        <button type="submit" class="btn btn-primary col-xs-12 btn-twitter"><i class="fa fa-twitter"></i> Twitter</button>
-                </div>
-            </div>-->
-            </form>
-        </div>
-    </div>
-    </div>
-    </div>
-    
-    </div>
-</div>
-</div>
-</div>
+                <button class="btn btn-lg btn-primary btn-block btn-signing btn-lg" type="submit">Sign in</button>
+            </form><!-- /form -->
+            <a href="<?php echo site_url('login/forgot_password')?>" class="forgot-password">
+                Forgot the password?
+            </a>
+        </div><!-- /loginsec-container -->
+        
+        <p class="text-center mb_20">Don't have a Keep account? <a href="<?php echo site_url('login/signup')?>">Sign Up now!</a></p>
+        
+   <!-- /container -->
+						<!-- Form /-->
+					</div>
+				</div>
+			</div>
+	<!-- page -->

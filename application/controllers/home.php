@@ -60,6 +60,16 @@ class Home extends App_Controller {
 		
 	}
 	
+	public function product_detail()
+	{
+		$product_id  = $this->uri->segment(3);
+		//print $product_id;exit;
+		$this->product_detail = $this->home_model->get_product_detail($product_id); 
+		
+		$this->layout->view('frontend/home/product_detail',$this->product_detail);
+		
+	}
+	
 	
 	
     

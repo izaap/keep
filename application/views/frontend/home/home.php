@@ -35,10 +35,13 @@
 												<a data-toggle="modal" data-target="#favorite_<?php echo $product['id'];?>" class="label lab-d star"><i class="fa fa-star"></i>Favorite</a>
 											</p>											
 											<p class="more-sec" id ="test_buy">
-												<a href="#"  class="label label-price">$<?php echo $product['price']; ?></a>
+												<a class="label label-price">$<?php echo $product['price']; ?></a>
 												<a class="label label-buy" onclick="buy('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')">Buy</a>
 											</p>
-											<p class="short-description"><a href="#"><?php echo $product['description']; ?> </a></p>
+											<p class="short-description"><a href="<?php echo site_url(); ?>home/product_detail/<?php echo $product['id'];?>"><?php echo $product['description']; ?> </a></p> 
+											
+											
+											
 										</div>
 										<img src="<?php  echo site_url('assets/uploads/products/'.$product['product_image']) ?>" class="" alt="" height="316" width="221">
 									</div>
@@ -57,6 +60,7 @@
 							<img src="<?php echo include_img_path();?>/products/small/product-6.jpg" alt="" />
 						</div>
 					</div>
+					
 					
 					<div class="col-xs-12 col-sm-8 lightbox-fav">
 						<div class="row">

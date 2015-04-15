@@ -84,6 +84,17 @@ class Home_Model extends CI_Model
 	}
 	
 	
+	public function get_product_detail($product_id = "")
+	{
+		$this->db->select('*');
+		$this->db->from('jwb_products');
+		$this->db->where('id', $product_id);
+		$query = $this->db->get()->result_array();
+		return $query;
+		
+	}
+	
+	
 	
 	
 	   

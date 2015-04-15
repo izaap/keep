@@ -25,7 +25,10 @@
 
 		<div class="container">
 			<div class="row">
+				
+				<?php if(!$this->uri->segment(1) == 'login' &&  !$this->uri->segment(2) == 'user_login' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'user_settings' || $this->uri->segment(2) == 'product_detail') { ?>
 				<?php echo $this->load->view('frontend/_partials/left_menu', $this->data); ?>
+				<?php } ?>
 				<?php echo $content; ?>
 			</div>
 		</div>

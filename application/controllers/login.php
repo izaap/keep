@@ -22,7 +22,8 @@ class Login extends App_Controller {
 													array('field' => 'user_name', 'label' => 'Username', 'rules' => 'trim|required|alpha_numeric'),
 													array('field' => 'phone', 'label' => 'Phone', 'rules' => 'trim|required|numeric|min_length[10]'),
 													array('field' => 'password', 'label' => 'Password', 'rules' => 'trim|required|xss_clean|min_length[4]|max_length[20]|alpha_dash'),
-													array('field' => 'confirm_password', 'label' => 'Confirm Password', 'rules' => 'trim|required|xss_clean|min_length[4]|max_length[20]|alpha_dash | matches[Password]')
+													array('field' => 'confirm_password', 'label' => 'Confirm Password', 'rules' => 'trim|required|xss_clean|min_length[4]|max_length[20]|alpha_dash | matches[Password]'),
+													array('field' => 'gender', 'label' => 'Gender', 'rules' => 'trim|required')
 													);
 													
 	protected $_settings_validation_rules = array(
@@ -58,7 +59,7 @@ class Login extends App_Controller {
     
     
     public function user_login()
-    {
+    { 
 		$this->form_validation->set_rules($this->_login_validation_rules);
        
         if($this->form_validation->run())

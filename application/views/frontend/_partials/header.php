@@ -48,9 +48,47 @@
 										</div>
 										<?php } else { ?>
 											
-											<a href ="<?php echo site_url('login/user_settings')?>" >Settings</a>&nbsp;&nbsp;
-										
-										 <a href ="<?php echo site_url('login/logout')?>" >Log out</a>
+											
+											<div class="col-xs-12 col-sm-5 top-section text-right">
+								<div class="r-ow">
+									<div class="col-xs-12 col-md-8 ">
+										<div class="row">
+																						
+											<div class="col-xs-6 col-sm-7 col-md-6 col-xs-push-3 col-sm-push-6 divice-center">
+												<div class="row">
+													<div class="dropdown ">
+                                                   <div class="btn-group pull-right small-width">
+         <button class="btn btn-default btn-green dropdown-toggle glyphicon glyphicon-triangle-bottom " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
+														<img src="<?php echo include_img_path();?>/profile.png" class="custom-icon1" alt="" width="60" height="60" />Shasha&nbsp;Grey
+													  </button>
+														  <ul role="menu" class="dropdown-menu">
+															<li><a href="<?php echo site_url('login/user_settings')?>">Settings</a></li>
+															<li><a href="<?php echo site_url('login/logout')?>">Log out</a></li>
+														  </ul>
+														</div><!--
+												<button class="btn btn-default btn-green dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
+														<img src="images/profile.png" class="custom-icon" alt="" width="60" height="60" />Login
+													  </button>-->
+                                                     
+                                           
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+                                    
+                                    <div class="col-xs-12 col-md-4">
+										<div class="row">
+                                        
+											<div class="count">
+                                            	<img src="<?php echo include_img_path();?>/count.png" alt="">
+                                                <span class="counting">75
+											</span>											
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 										
 										<?php } ?>
 										
@@ -64,7 +102,8 @@
 			<!-- End Header Section /-->
 			
 			<!--/ Search -->
-			<?php if(!$this->session->userdata('user_id')) { ?>
+			
+			<?php if(!$this->session->userdata('user_id') && !$this->uri->segment(1) == 'login' &&  !$this->uri->segment(2) == 'user_login'  || $this->uri->segment(2) == '') { ?>
 				<div class="container custom-search">
 					<div class="col-sm-6 col-sm-push-3">
 						<div class="input-group brd">

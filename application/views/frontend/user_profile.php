@@ -1,5 +1,7 @@
 <div class="col-sm-9 col-md-10 affix-content home-product-wrap">
 						
+					
+                        
 						<!--/ Page Title -->
 							<div class="page-ti-tle filter-nav text-center">
 								<ul class="pagination cf text-center">
@@ -10,10 +12,40 @@
 								<div class="clear"></div>
 							</div>
 						<!-- Page Title /-->
-						
+						<a name=""
 						<!--/ My Profile -->							
 						<div class="cf page-gap">
-														
+							<div class="col-xs-12 col-sm-6 col-md-3 user-collection">
+								<div class="newprod">
+									
+									<div class="recently-added gallery-projects-wrap  newcollection">
+										<a data-dismiss="modal" class="btn btn-red1 glyphicon glyphicon-plus" type="button" href="#"></a>
+										<h2>Create a New Collection</h2>
+                                                                              
+                                        </div>
+									
+								</div>
+                                
+                                <div class="newprod1">
+									
+									<div class="recently-added gallery-projects-wrap  newcollection">
+										<a data-dismiss="modal" class="btn btn-red glyphicon glyphicon-remove" type="button" href="#"></a>
+										<h2>Create a New Collection</h2>
+                                        
+                                          <div class="form-group">
+										<form>
+                                           <input type="Text" class="form-control frmcrtl" id="text" placeholder="Name your collection">
+                                          </div>
+                                         
+                                         <button type="submit" class="btn btn-lg btn-default btn-primary btn-gn">Create</button>
+                                        </form>
+                                        </div>
+									
+								</div>
+							</div>
+                            
+							<!-- -->
+							
 							<div class="col-xs-12 col-sm-6 col-md-3 user-collection">
 								<div class="">
 									<h3>Parisian Style</h3>
