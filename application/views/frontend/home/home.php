@@ -7,30 +7,56 @@
 					
 					<div class="col-sm-9 col-md-10 affix-content home-product-wrap">
 						<div class="ro-w">
-							<?php foreach($this->product_list as $product) { ?>
+							<?php foreach($this->product_list as $product) { 
+								
+								$this->load->model('home_model');
+								$status = $this->home_model->check_user_fav_image($product['id']);
+								//print_r($status);exit;
+								
+								
+								?>
 							<!--// Single Product -->
 								<div class="col-xs-12 col-sm-6 col-md-3 home-product">
 									<div class="ro-w">
 										<div class="caption">
-											<p><a href="#"><img src="<?php echo include_img_path();?>/users/user-1.jpg" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
-											<p class="text-center"><a href="#" class="user-name">User Name</a></p>
+											<div id ="test_<?php echo $product['id']?>">
+										<?php if(count($status)>0) { ?>
+												<?php foreach($status as $user_fav) {
+													
+													if($user_fav['user_image'] == ''){
+														$img = "no_image.png";
+													}else {
+														$img = $user_fav['user_image'];
+													} ?>
+													<p><a href="#"><img src="<?php echo include_img_path();?>/users/<?php echo $img;?>" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
+													<p class="text-center"><a href="#" class="user-name"><?php echo $user_fav["user_name"]?></a></p>
+													<?php } ?>
+											<?php } else { $img= "no_image.png"; ?>
+												
+													<p><a href="#"><img src="<?php echo include_img_path();?>/users/<?php echo $img;?>" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
+													
+													<?php } ?>
+												
+											</div>
 											<p id="like">
-												<?php 
-												if($this->session->userdata('user_id')) {
-												$this->load->model('home_model');
-												$status = $this->home_model->check_like_unlike($product['id'],$this->session->userdata('user_id'));
-												
-												?>
-												<?php if($status == 0)  { ?>
-												<a class="label lab-d heart" onclick="like('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"><i class="fa fa-heart"></i>Like</a>
-												<?php } else { ?>
-												
-												<a class="label lab-d heart" onclick="unlike('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"><i class="fa fa-heart"></i>Unlike</a>
-												<?php } } else { ?>
+												<div id ="update_like_<?php echo $product['id']?>">
+													<?php 
+													if($this->session->userdata('user_id')) {
+													$this->load->model('home_model');
+													$status = $this->home_model->check_like_unlike($product['id'],$this->session->userdata('user_id'));
 													
+													?>
+													<?php if($status == 0)  { ?>
 													<a class="label lab-d heart" onclick="like('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"><i class="fa fa-heart"></i>Like</a>
+													<?php } else { ?>
 													
-												<?php } ?>
+													<a class="label lab-d heart" onclick="unlike('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"><i class="fa fa-heart"></i>Unlike</a>
+													<?php } } else { ?>
+														
+														<a class="label lab-d heart" onclick="like('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"><i class="fa fa-heart"></i>Like</a>
+														
+													<?php } ?>
+												</div>
 												
 												<a data-toggle="modal" data-target="#favorite_<?php echo $product['id'];?>" class="label lab-d star"><i class="fa fa-star"></i>Favorite</a>
 											</p>											
@@ -86,10 +112,29 @@
 							  </div><!-- /btn-group -->
 							</div>
 							
+							<?php $this->load->model('home_model');
+								$status = $this->home_model->check_user_fav_image($product['id']);
+								?>
+						<div id ="app_<?php echo $product['id'];?>" >	
+							<?php if(count($status)>0) { ?>
+												<?php foreach($status as $user_fav1) {
+													
+													if($user_fav1['user_image'] == ''){
+														$img = "no_image.png";
+													}else {
+														$img = $user_fav1['user_image'];
+													} ?>
+													<p class="col-md-3 center-block fn light-img"><a href="#"><img src="<?php echo include_img_path();?>/users/<?php echo $img;?>" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
+													<p class="light-bluetxt"><?php echo $user_fav1['user_name'];?></p>
+													<?php } ?>
+											<?php } else { $img= "no_image.png"; ?>
+												
+													<p class="col-md-3 center-block fn light-img"><a href="#"><img src="<?php echo include_img_path();?>/users/<?php echo $img;?>" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
+													
+													<?php } ?>
+							</div>
 							
-							
-							<p class="col-md-3 center-block fn light-img"><a href="#"><img src="<?php echo include_img_path();?>/users/user-1.jpg" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
-                            <p class="light-bluetxt">Seller Name Joi</p>
+                            
 							<p class="col-md-3 center-block fn a-link">
                             	<button type="button" class="btn btn-gncircle glyphicon glyphicon-ok" data-dismiss="modal" type="submit"onclick="collection('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"></button>
                       
@@ -118,123 +163,7 @@
 	
 	<!-- Modal -->
 		
-	
-	
-	
-	
-<script>
-	
-	/* LIKE */
-	
-	function like(product_id,user_id)
-	{
-		//alert(user_id);
-		
-		if(user_id == ''){
-			
-			alert("Pls login to like");
-		}
-		
-		 var url = "<?php echo site_url(); ?>home/like";
-            
-            $.ajax(
-            {
-                type:'POST',
-                url:url,
-                data: {product_id:product_id},
-                cache:false,
-                async:true,
-                global:false,
-                dataType:"html",
-                success:function(check)
-                { 
-                  //alert(a1_text);
-                  
-                  
-                  
-                }
-            });    
-            
-	}
-	
-	
-	/* UNLIKE */
-	
-	function unlike(product_id,user_id)
-	{
-		//alert('in');
-		
-		if(user_id == ''){
-			
-			alert("Pls login to Unlike");
-		}
-		
-		 var url = "<?php echo site_url(); ?>home/unlike";
-            
-            $.ajax(
-            {
-                type:'POST',
-                url:url,
-                data: {product_id:product_id},
-                cache:false,
-                async:true,
-                global:false,
-                dataType:"html",
-                success:function(check)
-                { 
-                  
-                  
-                  
-                }
-            });    
-            
-	}
-	
-	/* BUY */
-	
-	
-	function buy(product_id,user_id)
-	{
-		//alert('in');
-		
-		if(user_id == ''){
-			
-			alert("Pls login to access");
-		}
-		
-		 var url = "<?php echo site_url(); ?>home/buy";
-            
-            $.ajax(
-            {
-                type:'POST',
-                url:url,
-                data: {product_id:product_id},
-                cache:false,
-                async:true,
-                global:false,
-                dataType:"html",
-                success:function(check)
-                { 
-                  if(check == 0){
-					  
-					  alert("User can't access more than one time");
-				  }
-                  
-                  
-                }
-            });    
-            
-	}
-	
-	
-	
-		
-	
-	
-  
-	
-	
-</script>	
+
 
 
 

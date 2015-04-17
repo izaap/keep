@@ -64,61 +64,64 @@
                         <hr>
                         
                         <div class="panel panel-default">
+					<?php $this->load->model('home_model');
+								$status = $this->home_model->list_user_comments($product['id']);
+								//print_r($status);exit;
+								?>	
+							
                         <div class="panel-heading">
                            
                             <h3 class="panel-title">
-                                <span class="glyphicon glyphicon-comment"> </span> 2 Responses
+                                <span class="glyphicon glyphicon-comment"> </span> <?php echo count($status);?> Responses
                             </h3>   
                       	</div>     
 						<div class="panel-body">
-                        
-                         <div class="">
+                        <?php foreach($status as $comment){  
+							
+							if($comment['user_image'] == ''){
+									$img = "no_image.png";
+								}else {
+									$img = $comment['user_image'];
+								} ?>
+                         <div class="" id="app_comm">
                          <div class="viewer cf">
                             <div class="col-sm-3 col-md-2 resp-img">
-                                <img class="center-block fn " alt="Image" src="images/img1.png">
+                                <img class="center-block fn " alt="Image" src="<?php echo include_img_path();?>/users/<?php echo $img;?>">
                             </div>
                             <div class="col-sm-9 col-md-10">
                             <div class="row">
-                                <h4><span class="viewername">Asif Aleem</span> <span class="view-hr viewername">1 hours ago</span></h4>
+									<?php
+									  $curenttime=$comment['comment_created_time'];
+									  $time_ago =strtotime($curenttime);
+									  
+									?>
+                                <h4><span class="viewername"><?php echo $comment['user_name'];?></span> <span class="view-hr viewername"><?php echo get_timeago($time_ago); ?></span></h4>
                                 <p>
-                                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                                   <?php echo $comment['comment']; ?> 
                                 </p>
                             </div>
                             </div>
                          </div>
                          </div>
-                         <div class="">
-                         <div class="viewer cf">
-                            <div class="col-sm-3 col-md-2 resp-img">
-                                <img class="center-block fn" alt="Image" src="images/img2.png">
-                            </div>
-                           
-                            <div class="col-sm-9 col-md-10">
-                            <div class="row">
-                                <h4><span class="viewername">Waseem</span> <span class="view-hr viewername">1 hours ago</span></h4>
-                                <p>
-                                   A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was.
-                                </p>
-                            </div>
-                            </div>
-                         </div>
-                         </div>
-                          <hr>
+                         <?php } ?>
                          
+                          <hr>
+                        <form role="form" name="admin_login" id="admin_login" action="" method="POST"> 
                               <div class="col-sm-10">
                                 <textarea rows="5" placeholder="Reply" name="message" id="message" class="form-control frm-ctrl mb_15"></textarea>
                               </div>
-                              <button class=" btn btn-lg btn-primary submited" type="submit">
+                              <button type="button" class=" btn btn-lg btn-primary submited" onclick="product_comments('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')">
                               <img src="<?php echo include_img_path();?>/submitd.png" alt="" class="img-responsive">
                              </button>  
                      
-                    
+						</form>
                         
                         </div>
                         
                         </div>
 						<!-- product /-->
-					</div>
+					</div
+					
 				</div>
 			<?php } ?>
 
@@ -163,5 +166,39 @@
             });    
             
 	}
+	
+
+
+
+<?php
+function get_timeago( $ptime )
+{
+    $etime = time() - $ptime;
+
+    if( $etime < 1 )
+    {
+        return 'less than 1 second ago';
+    }
+
+    $a = array( 12 * 30 * 24 * 60 * 60  =>  'year',
+                30 * 24 * 60 * 60       =>  'month',
+                24 * 60 * 60            =>  'day',
+                60 * 60             =>  'hour',
+                60                  =>  'minute',
+                1                   =>  'second'
+    );
+
+    foreach( $a as $secs => $str )
+    {
+        $d = $etime / $secs;
+
+        if( $d >= 1 )
+        {
+            $r = round( $d );
+            return ' ' . $r . ' ' . $str . ( $r > 1 ? 's' : '' ) . ' ago';
+        }
+    }
+}
+?>
 	
 </script>	

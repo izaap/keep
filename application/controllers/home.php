@@ -27,7 +27,10 @@ class Home extends App_Controller {
 		$user_id = $this->session->userdata('user_id');
 		
 		$like = $this->product->like($product_id,$user_id);
-		echo $like;exit;
+		
+		$a = '<a class="label lab-d heart" onclick="unlike('.$product_id.','.$this->session->userdata('user_id').')"><i class="fa fa-heart"></i>Unlike</a>';
+		
+		echo $a;exit;
 		
 	}
 	
@@ -37,7 +40,10 @@ class Home extends App_Controller {
 		$user_id = $this->session->userdata('user_id');
 		
 		$unlike = $this->product->unlike($product_id,$user_id);
-		echo $unlike;exit;
+		$a = '<a class="label lab-d heart" onclick="like('.$product_id.','.$this->session->userdata('user_id').')"><i class="fa fa-heart"></i>like</a>';
+		
+		echo $a;exit;
+		
 		
 	}
 	
@@ -73,7 +79,20 @@ class Home extends App_Controller {
 		$user_id  = $this->input->post('user_id');
 		//echo $collection_id;exit;
 		$collection = $this->product->add_to_favourites($product_id,$collection_id,$user_id );
-		echo $collection;exit;
+		//echo $collection;exit;
+		
+		if($collection == 1){ 
+			
+			$a = '<p class="col-md-3 center-block fn light-img"><a href="#"><img src="'.include_img_path().'/users/'.$this->session->userdata('user_image').'" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
+                            <p class="light-bluetxt">'.$this->session->userdata('user_name').'</p>';
+                            echo $a;exit;
+                            
+                            
+			
+		}else {  
+			
+			echo $collection;exit;	
+		}
 		
 	}
 	
@@ -87,9 +106,50 @@ class Home extends App_Controller {
 		$user_id  = $this->input->post('user_id');
 		//echo $collection_name;exit;
 		$collection = $this->product->create_collection($user_id,$collection_name);
-		echo $collection;exit;
+		if($collection == 1){
+			
+			$a = '<p class="col-md-3 center-block fn light-img"><a href="#"><img src="'.include_img_path().'/users/'.$this->session->userdata('user_image').'" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
+                            <p class="light-bluetxt">'.$this->session->userdata('user_name').'</p>';
+                            echo $a;exit;
+			
+		}else {
+			
+			echo $collection;exit;	
+		}
+		
 		
 	}
+	
+	
+	
+	public function product_comments()
+	{
+		$product_id  = $this->input->post('product_id');
+		$comments  = $this->input->post('comments');
+		$user_id  = $this->input->post('user_id');
+		$comment_result = $this->home_model->post_comments($product_id,$user_id,$comments);
+		if(count($comment_result)>0) {
+		$a = '<div class="viewer cf">
+                            <div class="col-sm-3 col-md-2 resp-img">
+                                <img class="center-block fn " alt="Image" src="'.include_img_path().'/users/'.$this->session->userdata('user_image').'">
+                            </div>
+                            <div class="col-sm-9 col-md-10">
+                            <div class="row">
+                                <h4><span class="viewername">'.$this->session->userdata('user_name').'</span> <span class="view-hr viewername">Few mins ago</span></h4>
+                                <p>
+                                   '.$comments.'
+                                </p>
+                            </div>
+                            </div>
+                         </div>';
+                         
+			echo $a;exit;
+		
+		}
+	}
+	
+	
+	
 	
 	
 	

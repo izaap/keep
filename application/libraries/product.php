@@ -231,7 +231,8 @@ class Product {
 
 			$insert = array(
 	    				'product_id' => $product_id,
-	    				'collection_id'	 => $collection_id
+	    				'collection_id'	 => $collection_id,
+	    				'user_id'	 => $user_id
 	    				);
 	    	$this->CI->favourites_model->insert($insert);
 

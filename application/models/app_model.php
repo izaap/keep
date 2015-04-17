@@ -66,11 +66,11 @@ abstract class App_model extends CI_Model
 
 
 	public function insert($data, $table = NULL)
-	{ //print_r($data);exit;
+	{ 
 		$table = ($table)?$table:$this->_table;
 		
 		$this->db->insert($table, $data);
-//echo $this->db->last_query();die;
+
 		if ($this->_debug){ 
 			log_message('debug', $this->db->last_query());
 		}

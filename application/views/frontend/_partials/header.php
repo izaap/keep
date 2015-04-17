@@ -59,7 +59,7 @@
 													<div class="dropdown ">
                                                    <div class="btn-group pull-right small-width">
          <button class="btn btn-default btn-green dropdown-toggle glyphicon glyphicon-triangle-bottom " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
-														<img src="<?php echo include_img_path();?>/profile.png" class="custom-icon1" alt="" width="60" height="60" />Shasha&nbsp;Grey
+														<img src="<?php echo include_img_path();?>/users/<?php echo $this->session->userdata('user_image');?>" class="custom-icon1" alt="" width="60" height="60" /><?php echo $this->session->userdata('user_name');?>
 													  </button>
 														  <ul role="menu" class="dropdown-menu">
 															<li><a href="<?php echo site_url('login/user_settings')?>">Settings</a></li>

@@ -95,10 +95,41 @@ class Home_Model extends CI_Model
 	}
 	
 	
+	public function check_user_fav_image($product_id = "")
+	{
+		$this->db->select('jwb_favourites.*,jwb_users.*');
+		$this->db->from('jwb_favourites');
+		$this->db->join('jwb_users', 'jwb_favourites.user_id = jwb_users.id', 'left'); 
+		$this->db->where('product_id', $product_id);
+		$this->db->order_by("jwb_favourites.id", "DESC");
+		$this->db->limit(1, 0);
+		$query = $this->db->get()->result_array();
+		return $query;
+		
+	} 
 	
+	
+	public function post_comments($product_id = "",$user_id = "",$comments = "")
+	{	//echo $user_id;exit;
+		if(!$user_id ==""){
+			$result_insert = $this->db->insert('jwb_comments', array('product_id' => $product_id,'user_id' => $user_id,'comment' => $comments));
+			return $result_insert;
+		
+		}
+	}
 	
 	   
- 
+	public function list_user_comments($product_id = "")
+	{	
+		$this->db->select('jwb_comments.*,jwb_users.*');
+		$this->db->from('jwb_comments');
+		$this->db->join('jwb_users', 'jwb_comments.user_id = jwb_users.id', 'left'); 
+		$this->db->where('product_id', $product_id);
+		$this->db->order_by("jwb_comments.id", "DESC");
+		$query = $this->db->get()->result_array();
+		return $query;
+		
+	}
    
    
     
