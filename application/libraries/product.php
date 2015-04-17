@@ -9,7 +9,7 @@ class Product {
     {
         $this->CI =& get_instance();
 
-        $this->CI->load->model(array('likes_model', 'favourites_model'));
+        $this->CI->load->model(array('likes_model', 'favourites_model','collection_model'));
     }
 
     function init_check($product_id = 0, $user_id = 0)
@@ -124,7 +124,7 @@ class Product {
     }
 
     function update_count($product_id = 0, $type = null)
-    {
+    { 
     	switch ($type) 
     	{
     		case 'likes':
@@ -154,8 +154,8 @@ class Product {
 
     		case 'favourites':
     			$update_sql = "UPDATE `jwb_products` p 
-	    						SET views=(
-	    									SELECT * 
+	    						SET favorites=(
+	    									SELECT count(f.id)
 	    										FROM `jwb_favourites` f 
 	    										JOIN `jwb_collections` c 
 	    											ON(f.collection_id=c.id) 
@@ -163,6 +163,7 @@ class Product {
 	    										GROUP BY c.user_id
 	    									) 
 	    						WHERE p.id=?";
+	    						//print $update_sql; echo "--"; echo $product_id;exit;
 
 	    		$this->CI->db->query($update_sql, array($product_id));
     			break;
@@ -218,20 +219,19 @@ class Product {
     	
     }
 
-    function add_to_favourites($product_id = 0, $collection_id = 0)
-    {
+    function add_to_favourites($product_id = 0, $collection_id = 0,$user_id = 0)
+    { //echo $collection_id;exit;
 
     	try
     	{
     		//Transaction starts here
 			$this->CI->db->trans_begin();				
 
-			if(!init_check($product_id = 0, $user_id = 0))		
-				throw new Exception($this->CI->error_message);
+			
 
 			$insert = array(
 	    				'product_id' => $product_id,
-	    				'collection_id'	 => $user_id
+	    				'collection_id'	 => $collection_id
 	    				);
 	    	$this->CI->favourites_model->insert($insert);
 
@@ -246,7 +246,8 @@ class Product {
 			else
 			{
 				$this->CI->db->trans_commit();
-			}		
+			}	
+			return TRUE;	
     	}
     	catch(Exception $e)
 		{
@@ -259,8 +260,8 @@ class Product {
     	
     }
 
-    function create_collection($user_id = 0, $collection_name = '')
-    {
+    function create_collection($user_id = 0, $collection_name = "")
+    { //print $collection_name;exit;
 
     	try
     	{
@@ -283,7 +284,8 @@ class Product {
 			else
 			{
 				$this->CI->db->trans_commit();
-			}		
+			}	
+			return TRUE;	
     	}
     	catch(Exception $e)
 		{

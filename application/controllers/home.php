@@ -6,6 +6,7 @@ class Home extends App_Controller {
     {
         parent::__construct();
         
+        $this->layout->add_javascripts(array('custom'));
         // $this->load->library('form_validation');
          $this->load->model('home_model');
          $this->load->library('product');
@@ -53,13 +54,6 @@ class Home extends App_Controller {
 	}
 	
 	
-	public function fav_collection()
-	{ 
-		$collection_id  = $this->input->post('collections');
-		echo $collection_id;exit;
-		
-	}
-	
 	public function product_detail()
 	{
 		$product_id  = $this->uri->segment(3);
@@ -69,6 +63,36 @@ class Home extends App_Controller {
 		$this->layout->view('frontend/home/product_detail',$this->product_detail);
 		
 	}
+	
+	
+	
+	public function fav_collection()
+	{ 	
+		$product_id  = $this->input->post('product_id');
+		$collection_id  = $this->input->post('collection_id');
+		$user_id  = $this->input->post('user_id');
+		//echo $collection_id;exit;
+		$collection = $this->product->add_to_favourites($product_id,$collection_id,$user_id );
+		echo $collection;exit;
+		
+	}
+	
+	
+	public function create_collection()
+	{ 	
+		//print_r($_POST);exit;
+		
+		$product_id  = $this->input->post('product_id');
+		$collection_name  = $this->input->post('collection_name');
+		$user_id  = $this->input->post('user_id');
+		//echo $collection_name;exit;
+		$collection = $this->product->create_collection($user_id,$collection_name);
+		echo $collection;exit;
+		
+	}
+	
+	
+	
 	
 	
 	

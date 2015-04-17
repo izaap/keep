@@ -27,7 +27,7 @@ $config['layout']['frontend']['img_dir']  = base_url('assets/frontend/images');
 $config['layout']['frontend']['template'] = 'frontend/layouts/frontend';
 $config['layout']['frontend']['title']    = 'The Jewelry Bureau :: Home';
 
-$config['layout']['frontend']['javascripts'] = array("modernizrr","bootstrap.min","jquery.nicescroll.min","custom","ie10-viewport-bug-workaround","classie");
+$config['layout']['frontend']['javascripts'] = array("modernizrr","bootstrap.min","jquery.nicescroll.min","custom","ie10-viewport-bug-workaround","classie",'common');
  
 $config['layout']['frontend']['stylesheets'] = array("bootstrap","font-awesome.min","custom","component");
 

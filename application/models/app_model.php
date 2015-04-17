@@ -22,7 +22,7 @@ abstract class App_model extends CI_Model
 	}
 
 	function listing()
-	{
+	{ 
 		$this->_fields = 'SQL_CALC_FOUND_ROWS '.$this->_fields;
 		$this->escape = FALSE;
 		$this->db->select($this->_fields, $this->escape);
@@ -66,12 +66,12 @@ abstract class App_model extends CI_Model
 
 
 	public function insert($data, $table = NULL)
-	{
+	{ //print_r($data);exit;
 		$table = ($table)?$table:$this->_table;
-
+		
 		$this->db->insert($table, $data);
-
-		if ($this->_debug){
+//echo $this->db->last_query();die;
+		if ($this->_debug){ 
 			log_message('debug', $this->db->last_query());
 		}
 

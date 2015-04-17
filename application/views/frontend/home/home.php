@@ -65,7 +65,7 @@
 					<div class="col-xs-12 col-sm-8 lightbox-fav">
 						<div class="row">
 							<h3>Favorite into</h3>
-						<form role="form" name="admin_login" id="admin_login" action="<?php site_url('home/fav_collection')?>" method="POST"> 
+						<form role="form" name="admin_login" id="admin_login" action="" method="POST"> 
 						<?php 
 						
 						$this->load->model('home_model');
@@ -74,20 +74,26 @@
 						?>
 							<div role="toolbar" class="btn-toolbar ligtbx-btn">
 							  <div class="btn-group col-md-offset-3 mb_15"> 
-								<select name="collections" class="selectpicker btn-sm lightbx-btn">
-                                <option>Create a New Collection </option>
+								<select name="collections" class="selectpicker btn-sm lightbx-btn" id="coll" >
+									
                                 <?php foreach($collection as $coll) { ?>
                                 <option value="<?php echo $coll['id'];?>"><?php echo $coll['name']; ?></option>
                                <?php } ?>
+                               <option value="0">Create a New Collection </option>
                               </select>
+                              <input type="text" name="collection_text" placeholder="Enter collection name" id="collect" style='display:none; ' value=""/>
+                              <p class="text-center"><a id="cancel_link" class="user-name" style='display:none;' >Cancel</a></p>
 							  </div><!-- /btn-group -->
 							</div>
+							
+							
+							
 							<p class="col-md-3 center-block fn light-img"><a href="#"><img src="<?php echo include_img_path();?>/users/user-1.jpg" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
                             <p class="light-bluetxt">Seller Name Joi</p>
 							<p class="col-md-3 center-block fn a-link">
-                            	<button type="button" class="btn btn-gncircle glyphicon glyphicon-ok" data-dismiss="modal" type="submit"></button>
-                            	<input type="submit" name="submit" class="btn btn-gncircle glyphicon glyphicon-ok" >
-                                <a href="#" type="button" class="btn btn-redcircle glyphicon glyphicon-remove" data-dismiss="modal"></a>
+                            	<button type="button" class="btn btn-gncircle glyphicon glyphicon-ok" data-dismiss="modal" type="submit"onclick="collection('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')"></button>
+                      
+                                <a type="button" id="coll_user" class="btn btn-redcircle glyphicon glyphicon-remove" data-dismiss="modal"></a>
                             </p>
 							
 						</div>
@@ -212,9 +218,6 @@
                   if(check == 0){
 					  
 					  alert("User can't access more than one time");
-				  }else {
-					  
-					  $('#test_buy').addClass('highlight');
 				  }
                   
                   
@@ -222,6 +225,14 @@
             });    
             
 	}
+	
+	
+	
+		
+	
+	
+  
+	
 	
 </script>	
 
