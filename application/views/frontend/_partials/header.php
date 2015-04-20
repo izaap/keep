@@ -20,7 +20,7 @@
 							
 							<!-- section right -->
 							
-							<div class="col-xs-12 col-sm-5 top-section text-right">
+							<div class="col-xs-12 col-sm-5 top-section text-right right-section">
 								<div class="r-ow">
 									<div class="col-xs-12 col-md-8 col-md-offset-4">
 										<div class="row">
@@ -51,19 +51,25 @@
 											
 											<div class="col-xs-12 col-sm-5 top-section text-right">
 								<div class="r-ow">
-									<div class="col-xs-12 col-md-8 ">
+									<div class="col-xs-12 col-sm-7 col-md-8">
 										<div class="row">
 																						
 											<div class="col-xs-6 col-sm-7 col-md-6 col-xs-push-3 col-sm-push-6 divice-center">
 												<div class="row">
 													<div class="dropdown ">
                                                    <div class="btn-group pull-right small-width">
-         <button class="btn btn-default btn-green dropdown-toggle glyphicon glyphicon-triangle-bottom " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
-														<img src="<?php echo include_img_path();?>/users/<?php echo $this->session->userdata('user_image');?>" class="custom-icon1" alt="" width="60" height="60" /><?php echo $this->session->userdata('user_name');?>
+        <button class="btn btn-default btn-green dropdown-toggle glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
+														<img src="<?php echo include_img_path();?>/users/<?php echo $this->session->userdata('user_image');?>" class="custom-icon1 custom-icon13" alt="" width="60" height="60" /><?php echo $this->session->userdata('user_name');?>
 													  </button>
 														  <ul role="menu" class="dropdown-menu">
 															<li><a href="<?php echo site_url('login/user_settings')?>">Settings</a></li>
 															<li><a href="<?php echo site_url('login/logout')?>">Log out</a></li>
+															<li class="btn-grn-noti">
+
+     <b>Notification</b>
+      <span class="counting1">575</span>           
+     
+             </li>
 														  </ul>
 														</div><!--
 												<button class="btn btn-default btn-green dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
@@ -77,10 +83,10 @@
 										</div>
 									</div>
                                     
-                                    <div class="col-xs-12 col-md-4">
+                                    <div class="col-xs-12 col-sm-5 col-md-4">
 										<div class="row">
                                         
-											<div class="count">
+											<div class="count btn-grn-notify">
                                             	<img src="<?php echo include_img_path();?>/count.png" alt="">
                                                 <span class="counting">75
 											</span>											

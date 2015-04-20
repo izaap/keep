@@ -18,10 +18,10 @@
 						
 						<!--/ Form -->							
 						<div class="">
-							<?php foreach($this->user_data as $user) { ?>
+							<?php foreach($this->user_data['user'] as $user) { ?>
 							<form class="form-horizontal" role="form"  name="admin_login" id="admin_login" action="" method="POST" enctype="multipart/form-data">
 							
-							  <div class="form-group">
+							  <div class="form-group frm-grpp">
 								  
 								<div class="col-sm-6 col-md-4">
 								  <input type="text" name="first_name" id="" placeholder="First Name" class="form-control" value= "<?php echo $user['first_name'];?>">
@@ -69,13 +69,23 @@
 								  </div>
 								</div>
 								<div class="col-sm-8">
-									<div class="form-group">
+									<div class="form-group frm-grpp">
 									  <textarea class="custom-txtarea form-control" placeholder="About Me" name="about"><?php echo $user['about']?></textarea>
 									</div>
 								</div>
 							  </div>
+							  
+							  <div class="col-xs-4 col-md-4">
+                            <select name="jewelry" class = "form-control input-lg">
+								<?php foreach($this->user_data['jewelry'] as $jewel) { ?>
+									 <option value="<?php echo $jewel['id']; ?>" <?php if($jewel['id']== $user['user_jewelry_type']) { ?> selected="selected" <?php } ?>><?php echo $jewel['jewelry_type'] ?></option>
+								<?php } ?>
+							</select>  
+							
+							                     
+						 </div>
 
-							  <div class="form-group">
+							  <div class="form-group frm-grpp">
 								<div class="col-sm-offset-2 col-sm-10">
 								  <div class="pull-right">
 									<button type="submit" class="btn btn-update">Update</button>

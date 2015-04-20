@@ -6,6 +6,8 @@
                             <li><a href="#"><img src="<?php echo include_img_path();?>/twitter.png" alt=""></a></li>
                             <li><a href="#"><img src="<?php echo include_img_path();?>/fb.png" alt=""></a></li>
                             
+                           
+                            
                         </ul>
 						<!--/ Page Title -->
 							<div class="page-title">
@@ -105,17 +107,18 @@
                          </div>
                          <?php } ?>
                          
-                          <hr>
+                          <hr> <div class="row">
                         <form role="form" name="admin_login" id="admin_login" action="" method="POST"> 
-                              <div class="col-sm-10">
+                             
+                              <div class="col-sm-9 col-md-10">
                                 <textarea rows="5" placeholder="Reply" name="message" id="message" class="form-control frm-ctrl mb_15"></textarea>
                               </div>
                               <button type="button" class=" btn btn-lg btn-primary submited" onclick="product_comments('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')">
                               <img src="<?php echo include_img_path();?>/submitd.png" alt="" class="img-responsive">
                              </button>  
-                     
+                    
 						</form>
-                        
+                         </div>
                         </div>
                         
                         </div>

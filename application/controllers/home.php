@@ -150,7 +150,19 @@ class Home extends App_Controller {
 	
 	
 	
-	
+	public function user_collection_create()
+	{ 	
+		//print_r($_POST);exit;
+		
+		$collection = $this->input->post('collection');
+		$user_id  = $this->input->post('user_id');
+		
+		$collection = $this->home_model->add_user_collection($user_id,$collection);
+		echo $collection;exit;	
+		
+		
+		
+	}
 	
 	
 	

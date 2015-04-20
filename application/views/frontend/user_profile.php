@@ -19,14 +19,26 @@
 								<div class="newprod">
 									
 									<div class="recently-added gallery-projects-wrap  newcollection">
-										<a data-dismiss="modal" class="btn btn-red1 glyphicon glyphicon-plus" type="button" href="#"></a>
-										<h2>Create a New Collection</h2>
-                                                                              
+										<a data-dismiss="modal" class="btn btn-red1 glyphicon glyphicon-plus" type="button" id="create_new" ></a>
+										<h2 id="new_colle">Create a New Collection</h2>
+                                           
+                                           
+                                      <div class="form-group">
+										<form>
+                                           <input type="Text" class="form-control frmcrtl" id="text" placeholder="Name your collection">
+                                         <p style="color:red;" id="error_collection"> Pls Enter Collection </p>
+                                         <button type="button" class="btn btn-lg btn-default btn-primary btn-gn" onclick="user_collection_create('<?php echo $this->session->userdata('user_id') ?>')">Create</button>
+                                         
+                                         <a id="cancel_create"> Cancel </a>
+                                        </form>
+                                           
+                                      </div>
+                                                                               
                                         </div>
 									
 								</div>
                                 
-                                <div class="newprod1">
+                              <?php /*  <div class="newprod1">
 									
 									<div class="recently-added gallery-projects-wrap  newcollection">
 										<a data-dismiss="modal" class="btn btn-red glyphicon glyphicon-remove" type="button" href="#"></a>
@@ -41,7 +53,7 @@
                                         </form>
                                         </div>
 									
-								</div>
+								</div> */ ?>
 							</div>
                             
 							<!-- -->

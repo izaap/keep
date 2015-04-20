@@ -131,7 +131,7 @@ class Userlogin_Model extends CI_Model
 	
 	public function update_settings($form = "", $user_id = "")
 	{
-		//print_r($form["email_notification"]);exit;
+		//print_r($form["jewelry"]);exit;
 		$data_val = array(
 				'first_name' => $form["first_name"],
 				'last_name' => $form["last_name"],
@@ -143,13 +143,22 @@ class Userlogin_Model extends CI_Model
 				'about' => $form["about"],
 				'email_notification' => $form["email_notification"],
                'password' => md5($form["password"]),
-               'ori_password' => $form["password"]
+               'ori_password' => $form["password"],
+               'user_jewelry_type' => $form["jewelry"]
                      );
 
 		$this->db->where('id', $user_id);
 		$result1 = $this->db->update('jwb_users', $data_val); 
 		return 1;
 		
+	}
+	
+	
+	public function get_jewelry_type()
+	{
+		$this->db->select('*');
+		$this->db->from('jwb_jewelry');
+		return $this->db->get()->result_array();
 	}
    
    

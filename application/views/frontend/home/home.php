@@ -44,6 +44,8 @@
 													if($this->session->userdata('user_id')) {
 													$this->load->model('home_model');
 													$status = $this->home_model->check_like_unlike($product['id'],$this->session->userdata('user_id'));
+													$fav_status = $this->home_model->check_fav($product['id'],$this->session->userdata('user_id'));
+													//print_r($fav_status);exit;
 													
 													?>
 													<?php if($status == 0)  { ?>
@@ -57,8 +59,22 @@
 														
 													<?php } ?>
 												</div>
+												 
+												<?php 
 												
+												if(!$this->session->userdata('user_id') == '') { 
+												
+												if($fav_status < 1) { ?>
 												<a data-toggle="modal" data-target="#favorite_<?php echo $product['id'];?>" class="label lab-d star"><i class="fa fa-star"></i>Favorite</a>
+												<?php } else {?>
+												
+												<a data-toggle="modal" class="label lab-d star  star-sel"  data-target="#favorite_<?php echo $product['id'];?>"  ><i class="fa fa-star "></i>Favorite</a>
+												
+												<?php } ?>
+												<?php } else { ?>
+													<a data-toggle="modal" data-target="#favorite_<?php echo $product['id'];?>" class="label lab-d star"><i class="fa fa-star"></i>Favorite</a>
+													<?php } ?>
+												
 											</p>											
 											<p class="more-sec" id ="test_buy">
 												<a class="label label-price">$<?php echo $product['price']; ?></a>

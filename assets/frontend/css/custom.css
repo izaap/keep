@@ -185,7 +185,7 @@
 	.btn-green, .btn-green:hover, .btn-green:focus,  .btn-green:active { background:#104646; color:#fff; border-color:transparent; padding:2px 12px 2px 22px;}
 	.btn-green:hover {color:#17cb7d;}
 	
-	.top-section {padding-top:35px;}
+	.top-section {padding-top:35px; float:right!important}
 	.custom-icon { position: absolute; left: 10px; top: -14px;}
 	
 	.custom-top-search {  border-bottom:1px solid #104646;  position:relative; padding:5px 6px;  margin-top:35px; background:url(../images/search-icon.png) no-repeat right center; color:#104646; font-size:18px; cursor:pointer; min-height:39px;  }
@@ -369,7 +369,7 @@
 .btn-primary:hover{background-color: #135F5F;border-color: #062C2C; color:#00DCDC;}
 a{color: #005E6E;}
 a:hover{color:#01b7b7;}
-		
+.frm-grpp{display:block!important;}	
 	/* Setting page*/
 
 .left-nav .caret_left { right: -88%;  top: -5px; padding:0;}
@@ -545,10 +545,10 @@ a:hover{color:#01b7b7;}
     border-radius: 5px;
     color: #fff;
     font-weight: bold;
-    left: -20px;
+    left: 8px;
     padding: 1px 3px;
     position: relative;
-    top: -20px;
+    top: -70px;
 }
 .dropdown-menu.dropdown-menu1 a {
     text-align: right;
@@ -696,7 +696,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', end
 .newcollection{ text-align:center;  padding: 55px 10px; min-height: 350px}
 .newcollection h2{ color:#c6c4c5; font-weight: 600; margin-top:0;}
 .frmcrtl {
-    color: #dcdcdc;
+    color: #646464;
     font-size: 18px;
     height: 40px;
     padding: 10px 13px;
@@ -761,6 +761,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', end
 .share { margin: 10px 0 0;}
 .share li{ margin:0 5px; display:inline-block}
 .share li a{color:#5f5f5f; }
+#update_like_1 {
+    float: left;
+    margin-left: 30px;
+}
+.custom-icon13 {
+    border: 5px solid #104646;
+    border-radius: 50px;
+    height: 70px;
+    width: 70px;
+}
 /* custom responsives */
 
 
@@ -783,7 +793,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', end
 			.divice-align-left {text-align:left; padding-left:30px; padding-top:10px;}
 			.divice-align-right {text-align:right; padding-right:30px; padding-top:10px;}
 			.custom-icon { position: inherit; max-width:30px; padding-right:5px; }
-			.btn-green, .btn-green:hover { padding-left:10px;}
+			
 			.logo { width:105px; height:105px;}
 			.top-filter a, .top-filter a:hover, .top-filter small { font-size:14px;}
 			.top-filter { margin-left:15px; margin-right:15px;}
@@ -860,4 +870,53 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', end
 
 
 	/* 000 */
+	
+	
+	
+	
+
+
+
+/*20 apr*/
+.submited {margin-left: 10px;}
+.singleview img { max-height:533px;}
+.btn-green, .btn-green:hover, .btn-green:focus, .btn-green:active{font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
+.navbar-brand b{color:#000;}
+.last-added li img{padding: 0.75%;}
+.counting1{
+	background: #d20404 none repeat scroll 0 0;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    padding: 1px 3px;
+}
+.btn-grn-noti {
+    padding: 0 10px;
+	display:none
+}
+.drp-menu{}
+.heart-sel{ background:#F26363; color:#fff}
+.heart-sel .fa-heart{color:#fff}
+.star-sel{ background:#f9c406; color:#104646}
+.star-sel .fa-star{color:#104646}
+.glyphicon-triangle-bottom::before{float:right;font-size: 12px; margin: 2px 0 2px 7px; font-family: Glyphicons Halflings;}
+
+
+@media screen and (max-width: 767px) {
+	.btn-circle{height: 30px;width: 30px;}	
+	.btn-circle1{height: 30px;width: 30px;}	
+	.btn-circle2{height: 30px;width: 30px;}
+	.stepwizard-row::before{top: 17px;}
+	.stepwizard{top: 60%;}
+	.submited {margin-left: 20px;}
+	.count{left:0; right:0;}
+	.btn-grn-noti { display:block;}
+	.count.btn-grn-notify {display: none;}			
+						
+		}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 980px) { 
+	.counting {top: -70px;left: 8px;}
+}
+
 

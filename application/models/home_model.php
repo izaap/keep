@@ -130,6 +130,60 @@ class Home_Model extends CI_Model
 		return $query;
 		
 	}
+	
+	
+	
+	function add_user_collection($user_id = "",$collection = "")
+	{ //echo $user_id;exit;
+		if(!$collection == ''){
+			$result_insert = $this->db->insert('jwb_collections', array('user_id' => $user_id,'name' => $collection));
+			return $result_insert;
+		}
+		else {
+			
+			return 0;
+		}
+		
+	}
+	
+	
+	
+	
+	function check_fav($product_id = "",$user_id = "")
+	{
+		$where=array('user_id'=>$user_id,'product_id'=>$product_id);
+		$this->db->select('*');
+		$this->db->from('jwb_favourites');
+		$this->db->where($where);
+		$query = $this->db->get()->num_rows();
+		
+		return $query;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
    
    
     

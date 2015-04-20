@@ -48,7 +48,7 @@ class Login extends App_Controller {
     {
         parent::__construct();
         
-        
+        $this->layout->add_javascripts(array('custom'));
         $this->load->library('form_validation');
         $this->load->model('userlogin_model');
         $this->load->library('upload_manager');
@@ -191,6 +191,7 @@ class Login extends App_Controller {
 			
 			//print_r($form);exit;
 			$user_detail = $this->userlogin_model->update_settings($form,$user_id);
+			//print_r($user_detail);exit;
 			if($user_detail == 1){
 				
 				$this->service_message->set_flash_message('Update successfully');
@@ -205,7 +206,9 @@ class Login extends App_Controller {
 		}
 		
 		
-		$this->user_data = $this->userlogin_model->get_user_data($user_id);
+		$this->user_data['user'] = $this->userlogin_model->get_user_data($user_id);
+		
+		$this->user_data['jewelry'] = $this->userlogin_model->get_jewelry_type();
 	
 		
 		$this->layout->view('frontend/user_settings',$this->user_data);

@@ -22,6 +22,40 @@ $(document).ready(function() {
 		   $('#cancel_link').hide();  
 		
 	});
+	
+	
+	$('.form-group').hide();  
+	$('#error_collection').hide();  
+	
+	$('#create_new').click(function(){  
+		
+		
+		$('.form-group').show();  
+		$('#new_colle').hide();  
+		
+		
+		
+		});
+		
+		
+	
+	$('#cancel_create').click(function(){  
+		
+		
+		$('.form-group').hide();  
+		$('#new_colle').show();  
+		
+		
+		
+		});
+	
+	
+	
+	
+	
+	
+	
+	
 		
 	});
 
@@ -210,5 +244,42 @@ $(document).ready(function() {
             });    
             
             
+	}
+	
+	
+	
+	
+	function user_collection_create(user_id)
+	{
+		//alert(user_id);
+		var collection = $('#text').val();
+		
+		var url = base_url+"home/user_collection_create";
+            
+            $.ajax(
+            {
+                type:'POST',
+                url:url,
+                data: {user_id:user_id,collection:collection},
+                cache:false,
+                async:true,
+                global:false,
+                dataType:"html",
+                success:function(check)
+                { //alert(check);
+					
+					if(check == 1) {
+						$('.form-group').hide();  
+						$('#new_colle').show();  
+						$('#text').val('');
+				  }else {
+					  
+					  $('#error_collection').show();  
+					  
+				  }
+                  
+                }
+            }); 
+		
 	}
 	
