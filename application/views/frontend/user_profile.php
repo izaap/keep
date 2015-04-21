@@ -6,8 +6,8 @@
 							<div class="page-ti-tle filter-nav text-center">
 								<ul class="pagination cf text-center">
 									<li><a href="#" class="active">Collection </a></li>
-									<li><a href="#">Favorite </a></li>
-									<li><a href="#">Likes </a></li>
+									<li><a href="<?php echo site_url('home/list_fav_product')?>">Favorite </a></li>
+									<li><a href="<?php echo site_url('home/list_like_product')?>">Likes </a></li>
 								</ul>
 								<div class="clear"></div>
 							</div>

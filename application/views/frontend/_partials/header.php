@@ -12,7 +12,7 @@
 							<!-- section mid -->
 							<div class="col-xs-12 col-sm-2">
 								<div class="row text-center logo">
-									<a class="" href="index.html">
+									<a class="" href="<?php echo site_url();?>">
 										<img alt="" src="<?php echo include_img_path();?>/logo-small.png" class="logo" width="100" height="114" alt="logo [100x114]">
 									</a>
 								</div>
@@ -62,6 +62,7 @@
 														<img src="<?php echo include_img_path();?>/users/<?php echo $this->session->userdata('user_image');?>" class="custom-icon1 custom-icon13" alt="" width="60" height="60" /><?php echo $this->session->userdata('user_name');?>
 													  </button>
 														  <ul role="menu" class="dropdown-menu">
+															  <li><a href="<?php echo site_url('login/user_profile') ?>">My Profile</a></li>
 															<li><a href="<?php echo site_url('login/user_settings')?>">Settings</a></li>
 															<li><a href="<?php echo site_url('login/logout')?>">Log out</a></li>
 															<li class="btn-grn-noti">

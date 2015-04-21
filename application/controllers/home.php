@@ -165,6 +165,31 @@ class Home extends App_Controller {
 	}
 	
 	
+	function list_like_product()
+	{
+		$user_id = $this->session->userdata('user_id');
+		//print $user_id;exit;
+		
+		$this->product_list = $this->home_model->get_product_list_like($user_id); 
+		
+		$this->layout->view('frontend/list_like_product',$this->product_list);
+		
+	}
+	
+	
+	
+	function list_fav_product()
+	{
+		$user_id = $this->session->userdata('user_id');
+		//print $user_id;exit;
+		
+		$this->product_list = $this->home_model->get_product_list_fav($user_id); 
+		
+		$this->layout->view('frontend/list_fav_product',$this->product_list);
+		
+	}
+	
+	
 	
 	
 	

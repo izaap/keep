@@ -163,7 +163,37 @@ class Home_Model extends CI_Model
 	
 	
 	
+	public function get_product_list_like($user_id = "")
+	{
+		
+		$this->db->select('jwb_likes.*,jwb_products.*');
+		$this->db->from('jwb_likes');
+		$this->db->join('jwb_products', 'jwb_products.id = jwb_likes.product_id', 'left'); 
+		$this->db->where('jwb_likes.user_id', $user_id);
+		$this->db->order_by("jwb_products.id", "ASC");
+		$query = $this->db->get()->result_array();
+		return $query;
+		
+		
+		
+	}
 	
+	
+	public function get_product_list_fav($user_id = "")
+	{
+		
+		$this->db->select('jwb_favourites.*,jwb_products.*');
+		$this->db->from('jwb_favourites');
+		$this->db->join('jwb_products', 'jwb_products.id = jwb_favourites.product_id', 'left'); 
+		$this->db->where('jwb_favourites.user_id', $user_id);
+		$this->db->group_by('jwb_favourites.product_id'); 
+		$this->db->order_by("jwb_products.id", "ASC");
+		$query = $this->db->get()->result_array();
+		return $query;
+		
+		
+		
+	}
 	
 	
 	

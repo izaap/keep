@@ -51,7 +51,7 @@ class Login extends App_Controller {
         $this->layout->add_javascripts(array('custom'));
         $this->load->library('form_validation');
         $this->load->model('userlogin_model');
-        $this->load->library('upload_manager');
+        //$this->load->library('upload_manager');
     }
 
     public function index()
@@ -213,6 +213,9 @@ class Login extends App_Controller {
 		
 		$this->layout->view('frontend/user_settings',$this->user_data);
 	}
+	
+	
+	
 	
 	
 	

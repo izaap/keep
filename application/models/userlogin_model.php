@@ -160,6 +160,9 @@ class Userlogin_Model extends CI_Model
 		$this->db->from('jwb_jewelry');
 		return $this->db->get()->result_array();
 	}
+	
+	
+	
    
    
     

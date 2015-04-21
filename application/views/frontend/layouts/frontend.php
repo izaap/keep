@@ -3,10 +3,10 @@
 	<head>
 	    
 		<?php include_title(); ?>
-        <? include_metas(); ?>
-        <? include_links(); ?>
-        <? include_stylesheets(); ?>
-        <? include_raws() ?>
+        <?php include_metas(); ?>
+        <?php include_links(); ?>
+        <?php include_stylesheets(); ?>
+        <?php include_raws() ?>
         
         <script>
 			//declare global JS variables here
@@ -26,7 +26,7 @@
 		<div class="container">
 			<div class="row">
 				
-				<?php if(!$this->uri->segment(1) == 'login' &&  !$this->uri->segment(2) == 'user_login' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'user_settings' || $this->uri->segment(2) == 'product_detail') { ?>
+				<?php if(!$this->uri->segment(1) == 'login' &&  !$this->uri->segment(2) == 'user_login' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'user_settings' || $this->uri->segment(2) == 'product_detail' || $this->uri->segment(2) == 'list_like_product' || $this->uri->segment(2) == 'list_fav_product' ) { ?>
 				<?php echo $this->load->view('frontend/_partials/left_menu', $this->data); ?>
 				<?php } ?>
 				<?php echo $content; ?>
@@ -51,7 +51,7 @@
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-		<? include_javascripts(); ?>
+		<?php include_javascripts(); ?>
 		
 		<?php 
 		
