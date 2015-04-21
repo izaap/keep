@@ -195,7 +195,7 @@ class Login extends App_Controller {
 			if($user_detail == 1){
 				
 				$this->service_message->set_flash_message('Update successfully');
-				redirect("home/index");
+				redirect();
 				
 			}else { 
 				
