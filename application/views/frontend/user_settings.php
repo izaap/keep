@@ -49,11 +49,17 @@
 								<div class="col-sm-6 col-md-4">
 								  <input type="password" name="password" id="" placeholder="Change Password" class="form-control" value= "<?php echo $user['ori_password'];?>">
 								</div>
-								<div class="col-sm-6 col-md-4">
-									<label>
-										 <small class="italic"><i >Receive notification emails:</i></small>  <input name="email_notification" type="checkbox" value="1" <?=set_value('email_notification',$user['email_notification'])==1 ?'checked':'';?>
-									</label>									  
-								</div>
+								
+								 <div class="col-xs-4 col-md-4">
+                            <select name="jewelry" class = "form-control input-lg">
+								<?php foreach($this->user_data['jewelry'] as $jewel) { ?>
+									 <option value="<?php echo $jewel['id']; ?>" <?php if($jewel['id']== $user['user_jewelry_type']) { ?> selected="selected" <?php } ?>><?php echo $jewel['jewelry_type'] ?></option>
+								<?php } ?>
+							</select>  
+							
+							                     
+						 </div>
+								
 							  </div>
 							  
 							  <div class="cf">
@@ -74,16 +80,12 @@
 									</div>
 								</div>
 							  </div>
-							  
-							  <div class="col-xs-4 col-md-4">
-                            <select name="jewelry" class = "form-control input-lg">
-								<?php foreach($this->user_data['jewelry'] as $jewel) { ?>
-									 <option value="<?php echo $jewel['id']; ?>" <?php if($jewel['id']== $user['user_jewelry_type']) { ?> selected="selected" <?php } ?>><?php echo $jewel['jewelry_type'] ?></option>
-								<?php } ?>
-							</select>  
-							
-							                     
-						 </div>
+							  <div class="col-sm-6 col-md-4 center">
+									<label>
+										 <small class="italic"><i >Receive notification emails:</i></small>  <input name="email_notification" type="checkbox" value="1" <?=set_value('email_notification',$user['email_notification'])==1 ?'checked':'';?>
+									</label>									  
+								</div>
+							 
 
 							  <div class="form-group frm-grpp">
 								<div class="col-sm-offset-2 col-sm-10">

@@ -50,7 +50,7 @@
 												
 											</div>
 											<p id="like">
-												<div id ="update_like_<?php echo $product['id']?>">
+												<div id ="update_like_<?php echo $product['id']?>" class="update">
 													<?php 
 													if($this->session->userdata('user_id')) {
 													$this->load->model('home_model');

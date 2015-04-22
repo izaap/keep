@@ -38,10 +38,8 @@
 											<div class="col-xs-6 col-sm-7 col-md-6 col-xs-push-3 col-sm-push-6 divice-center">
 												<div class="row">
 													<div class="dropdown  small-width">
-													  <button class="btn btn-default btn-green dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-														<img src="<?php echo include_img_path();?>/login-icon.png" class="custom-icon" alt="" width="60" height="60" />Login
-													  </button>
-													  <a href ="<?php echo site_url('login/user_login')?>" >Login</a>
+													  
+													  <a class="btn btn-default btn-green dropdown-toggle" href ="<?php echo site_url('login/user_login')?>" ><img src="<?php echo include_img_path();?>/login-icon.png" class="custom-icon" alt="" width="60" height="60" />Login</a>
 													</div>
 												</div>
 											</div>
