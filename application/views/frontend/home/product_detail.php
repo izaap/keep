@@ -12,14 +12,14 @@
 						<!--/ Page Title -->
 							<div class="page-title">
 								<h3 class="title"><?php echo $product['product_name'];?> <div class="btn-group pull-right">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <?php /*  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
           </button>
           <ul class="dropdown-menu dropdown-menu1" role="menu">
             <li><a href="#">Move to different Collection</a></li>
             <li><a href="#">Remove Follow</a></li>
             <li><a href="#">Save</a></li>
-          </ul>
+          </ul> */ ?>
         </div></h3> 
 
 
@@ -64,6 +64,43 @@
                             <?php /*<p class="mT_15">I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now.</p> */ ?>
                             </div>
                         <hr>
+                        <?php $this->load->model('home_model');
+								$status_fav = $this->home_model->check_user_fav_follow($product['id']);
+								//print_r($status_fav);exit;
+								?>
+								
+                      <?php
+						
+                      if(count($status_fav)>0){
+                      
+                       foreach($status_fav as $fav) {  ?>   
+						   <div class="cf mT_15 space_view" >
+								<div class="row">
+									<div class="col-sm-3 col-md-2 follwer">
+										<img class="center-block fn " alt="Image" src="<?php echo include_img_path();?>/users/<?php echo $fav['user_image'];?>"> 
+									</div>
+										<div class="col-sm-3 col-md-10 follwerhead">
+										 <h3><?php echo $fav['user_name']; ?></h3>
+										 
+										 <?php $this->load->model('home_model');
+											   $status_follow = $this->home_model->check_user_follow_exist($fav['id']); 
+											  // print_r(count($status_follow));exit;
+											    ?>
+										 <?php if(count($status_follow)>0){ ?>
+										 <div id ="append_but">
+											<button class="btn btn-primary"  type="button" onclick="unfollow(<?php echo $fav['id']?>,<?php echo $this->session->userdata('user_id') ?>);">Unfollow</button>  
+											</div>
+										<?php } else {?>
+											
+											 <div id ="append_but">
+											<button class="btn btn-primary"  type="button" onclick="follow(<?php echo $fav['id']?>,<?php echo $this->session->userdata('user_id') ?>);">Follow</button>  
+											</div>
+											<?php } ?>
+										</div>
+								</div>
+						   </div>
+                        
+                       <?php } } ?> 
                         
                         <div class="panel panel-default">
 					<?php $this->load->model('home_model');

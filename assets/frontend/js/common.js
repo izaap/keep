@@ -283,3 +283,58 @@ $(document).ready(function() {
 		
 	}
 	
+	
+	
+	
+	function follow(following_id,user_id)
+	{
+		//alert(user_id);
+		
+		var url = base_url+"home/follow";
+            
+            $.ajax(
+            {
+                type:'POST',
+                url:url,
+                data: {following_id:following_id,user_id:user_id},
+                cache:false,
+                async:true,
+                global:false,
+                dataType:"html",
+                success:function(check)
+                { //alert(check);
+					
+					$("#append_but").html(check);  
+                  
+                }
+            }); 
+		
+	}
+	
+	
+	
+	function unfollow(following_id,user_id)
+	{
+		//alert(user_id);
+		
+		var url = base_url+"home/unfollow";
+            
+            $.ajax(
+            {
+                type:'POST',
+                url:url,
+                data: {following_id:following_id,user_id:user_id},
+                cache:false,
+                async:true,
+                global:false,
+                dataType:"html",
+                success:function(check)
+                { //alert(check);
+					
+					$("#append_but").html(check);  
+                  
+                }
+            }); 
+		
+	}
+	

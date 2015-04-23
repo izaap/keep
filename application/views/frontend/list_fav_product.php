@@ -10,9 +10,11 @@
 						
 						<div class="page-ti-tle filter-nav text-center">
 								<ul class="pagination cf text-center">
-									<li><a href="<?php echo site_url('login/user_profile') ?>" class="active">Collection </a></li>
-									<li><a href="<?php echo site_url('home/list_fav_product')?>">Favorite </a></li>
-									<li><a href="<?php echo site_url('home/list_like_product')?>">Likes </a></li>
+									<?php foreach($this->data['user_data'] as $data) { ?>
+									<li><a href="<?php echo site_url('login/user_profile/'.$data['id'].'') ?>" class="active">Collection </a></li>
+									<li><a href="<?php echo site_url('home/list_fav_product/'.$data['id'].'')?>">Favorite </a></li>
+									<li><a href="<?php echo site_url('home/list_like_product/'.$data['id'].'')?>">Likes </a></li>
+									<?php } ?>
 								</ul>
 								<div class="clear"></div>
 							</div>
@@ -39,7 +41,8 @@
 													}else {
 														$img = $user_fav['user_image'];
 													} ?>
-													<p><a href="#"><img src="<?php echo include_img_path();?>/users/<?php echo $img;?>" class="img-circle img-border" alt="" width="60" height="60" /></a></p>
+													<p><a href="<?php echo site_url('login/user_profile/'.$data['id'].'') ?>">
+												<img height="60" width="60" alt="" class="img-circle img-border" src="<?php echo include_img_path();?>/users/<?php echo $img?>"></a></p>
 													<p class="text-center"><a href="#" class="user-name"><?php echo $user_fav["user_name"]?></a></p>
 													<?php } ?>
 											<?php } else { $img= "no_image.png"; ?>

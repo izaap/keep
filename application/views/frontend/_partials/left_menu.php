@@ -15,7 +15,7 @@
 									</div>
 																		
 									<div class="navbar-collapse collapse sidebar-navbar-collapse">
-									<?php if($this->session->userdata('user_id')) { 
+									<?php foreach($this->data['user_data'] as $data) { 
 										
 										
 										
@@ -24,19 +24,19 @@
 											 <div class="user_details totpad">
 												<div class="profile-pic">
 													<a href="#" data-toggle="tooltip" data-placement="bottom" title="">
-														<img src="<?php echo include_img_path();?>/users/user-5-big.jpg" class="img-responsive" alt="" />
-														<div class="profile-nic ellipsis"><?php echo $this->session->userdata('user_name') ?></div>
+														<img src="<?php echo include_img_path();?>/users/<?php echo $data['user_image']; ?>" class="img-responsive" alt="" />
+														<div class="profile-nic ellipsis"><?php echo $data['user_name']; ?></div>
 												</a>
 												</div>
 												<!-- Follower & Following  -->
 												<div class="follow cf">
 													<div class="col-xs-6">
-														<span>22</span>
-														<p>Follower</p>
+														<span><a href="<?php echo site_url(); ?>home/followers_user_list/<?php echo $data['id'];?>" ><?php echo $data['following_count'] ?></a></span>
+														<p>Following</p>
 													</div>
 													<div class="col-xs-6">
-														<span>48</span>
-														<p>Follower</p>
+														<span><a href="<?php echo site_url(); ?>home/following_user_list/<?php echo$data['id'];?>" ><?php echo $data['followed_count'] ?></a></span>
+														<p>Followers</p>
 													</div>
 													<a href="#" class="btn btn-follow"> <i class="fa fa-plus"></i>Folow </a>
 												</div>
@@ -45,10 +45,10 @@
 												<div class="cf about-profiler">
 													<ul>
 														<li> <i class="fa fa-send"></i><a href="mailto:??"><?php echo $this->session->userdata('email') ?></a></li>
-														<li> <i class="fa fa-mobile-phone"></i> <?php echo $this->session->userdata('phone') ?></li>
-														<li> <i class="fa fa-map-marker"></i> <?php echo $this->session->userdata('location') ?></li>
+														<li> <i class="fa fa-mobile-phone"></i> <?php echo $data['phone']; ?></li>
+														<li> <i class="fa fa-map-marker"></i> <?php echo $data['location']; ?></li>
 														<li> <i class="fa fa-link"></i> <a href="#">http://tjb.com/shagrey</a></li>
-														<li> <b>ABOUT ME: </b> <?php echo $this->session->userdata('about') ?>
+														<li> <b>ABOUT ME: </b> <?php echo $data['about']; ?>
 														</li>
 													</ul>
 												</div>

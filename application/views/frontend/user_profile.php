@@ -5,9 +5,11 @@
 						<!--/ Page Title -->
 							<div class="page-ti-tle filter-nav text-center">
 								<ul class="pagination cf text-center">
-									<li><a href="#" class="active">Collection </a></li>
-									<li><a href="<?php echo site_url('home/list_fav_product')?>">Favorite </a></li>
-									<li><a href="<?php echo site_url('home/list_like_product')?>">Likes </a></li>
+									<?php foreach($this->data['user_data'] as $data) { ?>
+									<li><a href="<?php echo site_url('login/user_profile/'.$data['id'].'') ?>" class="active">Collection </a></li>
+									<li><a href="<?php echo site_url('home/list_fav_product/'.$data['id'].'')?>">Favorite </a></li>
+									<li><a href="<?php echo site_url('home/list_like_product/'.$data['id'].'')?>">Likes </a></li>
+									<?php } ?>
 								</ul>
 								<div class="clear"></div>
 							</div>

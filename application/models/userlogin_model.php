@@ -48,7 +48,9 @@ class Userlogin_Model extends CI_Model
                             'phone'        => $user['phone'],
                             'location'        => $user['location'],
                             'about'        => $user['about'],
-                            'user_image'        => $user['user_image']
+                            'user_image'        => $user['user_image'],
+                            'following_count'        => $user['following_count'],
+                            'followed_count'        => $user['followed_count']
                             
                     ));
                     

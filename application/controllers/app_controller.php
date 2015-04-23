@@ -25,6 +25,20 @@ class App_Controller extends CI_Controller
         
         $this->load->model("user_model");
         $this->load->model("role_model");
+        $this->load->model("home_model");
+        
+        $user_id  = $this->uri->segment(3);
+		
+		if($this->uri->segment(3) == ''){
+
+			$profile_user_id = $this->session->userdata('user_id');
+
+			}else {
+
+			$profile_user_id = $user_id; 
+			}
+
+		$this->data['user_data'] = $this->home_model->get_user_details($profile_user_id);
         
     }
     

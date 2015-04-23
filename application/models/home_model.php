@@ -197,23 +197,176 @@ class Home_Model extends CI_Model
 	
 	
 	
+	public function check_user_fav_follow($product_id = "")
+	{
+		$user_id = $this->session->userdata('user_id');
+		
+		$this->db->select('jwb_favourites.*,jwb_users.*');
+		$this->db->from('jwb_favourites');
+		$this->db->join('jwb_users', 'jwb_favourites.user_id = jwb_users.id', 'left'); 
+		$this->db->where('product_id', $product_id);
+		$this->db->where_not_in("jwb_favourites.user_id",$user_id);
+		$this->db->order_by("jwb_favourites.id", "DESC");
+		$this->db->limit(1, 0);
+		$query = $this->db->get()->result_array();
+		return $query;
+		
+	}
+	
+	
+	
+	
+	public function add_follow($following_id = "",$user_id = "") 
+	{ 
+		
+		$result_insert = $this->db->insert('jwb_user_follow', array('follow_user_id' => $user_id,'following_user_id' => $following_id));
+		
+		$this->db->select('*');
+		$this->db->from('jwb_users');
+		$this->db->where('id', $user_id);
+		$query = $this->db->get()->row_array();
+		
+		$count = $query['following_count']+ 1;
+	
+		$data_val = array(
+		
+				'following_count' => $count
+				
+                     );
+
+		$this->db->where('id', $user_id);
+		$result = $this->db->update('jwb_users', $data_val); 
+		
+		
+		$this->db->select('*');
+		$this->db->from('jwb_users');
+		$this->db->where('id', $following_id);
+		$query = $this->db->get()->row_array();
+		
+		$count = $query['followed_count']+ 1;
+	
+		$data_val = array(
+		
+				'followed_count' => $count
+				
+                     );
+
+		$this->db->where('id', $following_id);
+		$result1 = $this->db->update('jwb_users', $data_val); 
+		
+		
+		
+		return $result_insert;
+		
+	}
+	
+	
+	public function delete_follow($following_id = "",$user_id = "")
+	{
+		$where=array('follow_user_id' => $user_id,'following_user_id' => $following_id);
+		$this->db->where($where);
+		$this->db->delete('jwb_user_follow'); 
+		
+		$this->db->select('*');
+		$this->db->from('jwb_users');
+		$this->db->where('id', $user_id);
+		$query = $this->db->get()->row_array();
+		
+		$count = $query['following_count']- 1;
+	
+		$data_val = array(
+		
+				'following_count' => $count
+				
+                     );
+
+		$this->db->where('id', $user_id);
+		$result = $this->db->update('jwb_users', $data_val);
+		
+		
+		$this->db->select('*');
+		$this->db->from('jwb_users');
+		$this->db->where('id', $following_id);
+		$query = $this->db->get()->row_array();
+		
+		$count = $query['followed_count']- 1;
+	
+		$data_val = array(
+		
+				'followed_count' => $count
+				
+                     );
+
+		$this->db->where('id', $following_id);
+		$result1 = $this->db->update('jwb_users', $data_val); 
+		
+		return 1;
+		
+	}
+	
+	
+	
+	public function check_user_follow_exist($id = "")
+	{		
+		$user_id = $this->session->userdata('user_id');
+			
+		$where=array('follow_user_id' => $user_id,'following_user_id' => $id);
+		$this->db->select('*');
+		$this->db->from('jwb_user_follow');
+		$this->db->where($where);
+		$query = $this->db->get()->result_array();
+		return $query;
+		
+	}
 	
 	
 	
 	
 	
 	
+	public function get_user_details($user_id = "")
+	{
+		$this->db->select('*');
+		$this->db->from('jwb_users');
+		$this->db->where('id', $user_id);
+		$query = $this->db->get()->result_array();
+		
+		return $query;
+	}
 	
 	
 	
+	public function get_followers_user_list($user_id = "")
+	{
+		
+		$this->db->select('jwb_user_follow.*,jwb_users.*');
+		$this->db->from('jwb_user_follow');
+		$this->db->join('jwb_users', 'jwb_user_follow.follow_user_id = jwb_users.id', 'left'); 
+		$this->db->where('follow_user_id',$user_id);
+		$query = $this->db->get()->result_array();
+		//print_r($query);exit;
+		return $query;
+		
+	}
 	
 	
 	
-	
-	
-	
-	
-	
+	public function get_following_user_list($user_id = "")
+	{ //echo $user_id;exit;
+		
+		
+		
+		$this->db->select('jwb_user_follow.*,jwb_users.*');
+		$this->db->from('jwb_user_follow');
+		$this->db->join('jwb_users', 'jwb_user_follow.following_user_id = jwb_users.id', 'left'); 
+		$this->db->where('following_user_id',$user_id);
+		$query = $this->db->get()->result_array();
+		return $query;
+		
+		
+		
+		
+	}
    
    
     

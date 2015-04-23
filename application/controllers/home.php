@@ -167,7 +167,15 @@ class Home extends App_Controller {
 	
 	function list_like_product()
 	{
-		$user_id = $this->session->userdata('user_id');
+		if(!$this->uri->segment(3) == ""){
+		$user_id  = $this->uri->segment(3);
+		
+		}else { 
+			
+			$user_id = $this->session->userdata('user_id');
+		}
+		
+		//$user_id = $this->session->userdata('user_id');
 		//print $user_id;exit;
 		
 		$this->product_list = $this->home_model->get_product_list_like($user_id); 
@@ -180,7 +188,14 @@ class Home extends App_Controller {
 	
 	function list_fav_product()
 	{
-		$user_id = $this->session->userdata('user_id');
+		if(!$this->uri->segment(3) == ""){
+		$user_id  = $this->uri->segment(3);
+		
+		}else { 
+			
+			$user_id = $this->session->userdata('user_id');
+		}
+		//$user_id = $this->session->userdata('user_id');
 		//print $user_id;exit;
 		
 		$this->product_list = $this->home_model->get_product_list_fav($user_id); 
@@ -190,9 +205,69 @@ class Home extends App_Controller {
 	}
 	
 	
+	function follow()
+    {	
+		
+		
+		$following_id  = $this->input->post('following_id');
+		$user_id  = $this->input->post('user_id');
+		
+		$follow = $this->home_model->add_follow($following_id,$user_id); 
+		
+		//print_r($follow);exit;
+		
+		 $a ='<button class="btn btn-primary" id ="append_but" type="button" onclick="unfollow('.$following_id.','.$this->session->userdata('user_id').');">Unfollow</button>'; 
+                         
+		echo $a;exit;
+		
+		
+	}
 	
 	
 	
+	
+	function unfollow()
+    {	
+		$following_id  = $this->input->post('following_id');
+		$user_id  = $this->input->post('user_id');
+		
+		$follow = $this->home_model->delete_follow($following_id,$user_id); 
+		
+		//print_r($follow);exit;
+		
+		 $a ='<button class="btn btn-primary"  type="button" onclick="follow('.$following_id.','.$this->session->userdata('user_id').');">Follow</button>'; 
+                         
+		echo $a;exit;
+		
+		
+	}
+	
+	
+	
+	function followers_user_list()
+	{
+		
+		$user_id  = $this->uri->segment(3);
+		
+	//print_r($this->data['user_data']);exit;
+		
+		$this->followers_list = $this->home_model->get_followers_user_list($user_id); 
+		
+		$this->layout->view('frontend/followers_user_list',$this->followers_list);
+		
+	}
+	
+	
+	
+	function following_user_list()
+	{
+		
+		$user_id  = $this->uri->segment(3);
+		$this->following_list = $this->home_model->get_following_user_list($user_id); 
+		//print_r($this->following_list);exit;
+		$this->layout->view('frontend/following_user_list',$this->following_list);
+		
+	}
     
     
     

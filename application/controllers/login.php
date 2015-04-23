@@ -181,8 +181,6 @@ class Login extends App_Controller {
 		
 		$user_id = $this->session->userdata('user_id');
 		
-		 
-		
 		$this->form_validation->set_rules($this->_settings_validation_rules);
 		
 		if ($this->form_validation->run()) 
