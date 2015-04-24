@@ -165,6 +165,82 @@ class Userlogin_Model extends CI_Model
 	
 	
 	
+	public function get_user_collection_list($user_id = "") 
+	{
+		
+		$this->db->select('*');
+		$this->db->from('jwb_collections');
+		$this->db->where('user_id', $user_id);
+		$this->db->group_by('name'); 
+		$query = $this->db->get()->result_array();
+		//print_r(count($query));exit;
+		return $query;	
+		
+	}
+	
+	
+	public function get_product_list_collection($collection_id = "",$user_id= "")
+	{
+		$where=array('user_id'=>$user_id,'collection_id'=>$collection_id);
+		$this->db->select('*');
+		$this->db->from('jwb_favourites');
+		$this->db->where($where);
+		$query = $this->db->get()->result_array();
+		//print_r(count($query));exit;
+		//print_r($query);exit;	
+		$query1 = Array();
+		foreach ($query as $s) {
+			
+		$where=array('id'=>$s['product_id']);
+		$this->db->select('*');
+		$this->db->from('jwb_products');
+		$this->db->where($where);
+		$query1[] = $this->db->get()->result_array();
+			
+		}
+		
+		return $query1;
+	}
+	
+	
+	public function get_product($pro_id = "")
+	{
+		//echo $pro_id;exit;
+		
+		$this->db->select('*');
+		$this->db->from('jwb_products');
+		$this->db->where('id', $pro_id);
+		$query = $this->db->get()->result_array();
+		
+		return $query;
+	}
+	
+	
+	public function product_list_collection($collection_id = "",$user_id = "") 
+	{
+		
+		$where=array('jwb_favourites.user_id'=>$user_id,'jwb_favourites.collection_id'=>$collection_id);
+		$this->db->select('*');
+		$this->db->from('jwb_favourites');
+		$this->db->join('jwb_products', 'jwb_favourites.product_id = jwb_products.id', 'left'); 
+		$this->db->where($where);
+		$query = $this->db->get()->result_array();
+		//print_r($query);exit;
+		return $query;
+		
+	}
+	
+	
+	public function search_product($text = "")
+	{
+		$this->db->select('*');
+		$this->db->from('jwb_products');
+		$this->db->like('description', $text);
+		$query = $this->db->get()->result_array();
+		//print_r($query);exit;
+		return $query;
+		
+	}
    
    
     

@@ -34,7 +34,7 @@
           echo validation_errors();
          endif; 
         ?>
-			<form role="form" name="admin_login" id="admin_login" action="<?php site_url('login/signup')?>" method="POST" enctype="multipart/form-data">
+			<form role="form" name="admin_login" id="admin_login" action="<?php echo site_url('login/signup')?>" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
                             <input type="text" name="first_name" value="" class="form-control input-lg" placeholder="First Name"  />    

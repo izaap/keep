@@ -8,19 +8,12 @@
 					
 					<div class="col-sm-9 col-md-10 affix-content home-product-wrap">
 						
-						<div class="page-ti-tle filter-nav text-center">
-								<ul class="pagination cf text-center">
-									<?php foreach($this->data['user_data'] as $data) { ?>
-									<li><a href="<?php echo site_url('login/user_profile/'.$data['id'].'') ?>" class="active">Collection </a></li>
-									<li><a href="<?php echo site_url('home/list_fav_product/'.$data['id'].'')?>">Favorite </a></li>
-									<li><a href="<?php echo site_url('home/list_like_product/'.$data['id'].'')?>">Likes </a></li>
-									<?php } ?>
-								</ul>
-								<div class="clear"></div>
-							</div>
+						
 						
 						<div class="ro-w">
-							<?php foreach($this->product_list as $product) { 
+							<?php if(count($this->product_list)>0 ){
+								
+								 foreach($this->product_list as $product) { 
 								
 								$this->load->model('home_model');
 								$status = $this->home_model->check_user_fav_image($product['id']);
@@ -181,7 +174,9 @@
 		  </div>
 		</div>
 	<!-- -->
-			<?php } ?>				
+			<?php } } else {  ?>
+				<?php echo "No result found.." ?>
+				<?php  }?>				
 							
 							
 						</div>

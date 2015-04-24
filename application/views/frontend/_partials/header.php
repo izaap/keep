@@ -108,16 +108,20 @@
 			
 			<!--/ Search -->
 			
-			<?php if(!$this->session->userdata('user_id') && !$this->uri->segment(1) == 'login' &&  !$this->uri->segment(2) == 'user_login'  || $this->uri->segment(2) == '') { ?>
+			<?php if(!$this->session->userdata('user_id') &&  !$this->uri->segment(2) == 'user_login'  || $this->uri->segment(2) == '' || $this->uri->segment(2) == 'search_result') { ?>
+				<form role="form" action="<?php echo site_url('login/search_result')?>" method="POST">
 				<div class="container custom-search">
 					<div class="col-sm-6 col-sm-push-3">
 						<div class="input-group brd">
-						  <input type="text" id="" class="form-control" name="" placeholder="Search..." value="">
+						  <input type="text" id="search_id" class="form-control" name="search" placeholder="Search..." value="">
+						  
 						  <span class="input-group-btn">
-							<button class="button btn btn-default"><i class="fa fa-search"></i></button>
+							<button type="submit" class="button btn btn-default"><i class="fa fa-search"></i></button>
 						  </span>
+						  
 						</div>
 					</div>
 				</div>
+				</form>
 				<?php } ?>
 			<!-- Search /-->

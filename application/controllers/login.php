@@ -158,7 +158,17 @@ class Login extends App_Controller {
 	public function user_profile()
 	{
 		
-		$this->layout->view('frontend/user_profile');
+		if(!$this->uri->segment(3) == ""){
+		$user_id  = $this->uri->segment(3);
+		
+		}else { 
+			
+			$user_id = $this->session->userdata('user_id');
+		}
+		
+		$this->collection_list = $this->userlogin_model->get_user_collection_list($user_id); 
+		
+		$this->layout->view('frontend/user_profile',$this->collection_list);
 	
 	}
 	
@@ -214,11 +224,42 @@ class Login extends App_Controller {
 	
 	
 	
+	public function list_collection_product() 
+	{
+		
+		//$user_id  = $this->uri->segment(3);
+		$collection_id  = $this->uri->segment(4);
+		
+		if(!$this->uri->segment(3) == ""){
+		$user_id  = $this->uri->segment(3);
+		
+		}else { 
+			
+			$user_id = $this->session->userdata('user_id');
+		}
+		//echo $user_id;exit;
+		$this->product_list = $this->userlogin_model->product_list_collection($collection_id,$user_id); 
+		
+		$this->layout->view('frontend/product_list_collection',$this->product_list);
+	}
+	
+	
+	public function search_result()
+	{
+		
+		$search_text = $this->input->post('search');
+		//echo $search_text;exit;
+		
+		$this->product_list = $this->userlogin_model->search_product($search_text); 
+		
+		$this->layout->view('frontend/search_result',$this->product_list);
+		
+		
+	}
 	
 	
 	
-	
-	
+
 	
 	
 	

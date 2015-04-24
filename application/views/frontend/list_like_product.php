@@ -41,7 +41,7 @@
 													}else {
 														$img = $user_fav['user_image'];
 													} ?>
-													<p><a href="<?php echo site_url('login/user_profile/'.$data['id'].'') ?>">
+													<p><a href="<?php echo site_url('login/user_profile/'.$user_fav['id'].'') ?>">
 												<img height="60" width="60" alt="" class="img-circle img-border" src="<?php echo include_img_path();?>/users/<?php echo $img?>"></a></p>
 													<p class="text-center"><a href="#" class="user-name"><?php echo $user_fav["user_name"]?></a></p>
 													<?php } ?>

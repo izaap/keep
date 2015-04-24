@@ -31,7 +31,7 @@
 											
 											<?php  if(!$user['user_image'] == "") { $img = $user['user_image'];} else { $img="no_image.png";}?>
 											<p>
-												<a href="<?php echo site_url('login/user_profile/'.$data['id'].'') ?>">
+												<a href="<?php echo site_url('login/user_profile/'.$user['id'].'') ?>">
 												<img height="60" width="60" alt="" class="img-circle img-border" src="<?php echo include_img_path();?>/users/<?php echo $img?>"></a></p>
 											<p class="text-center"><a class="user-name" href="#"><?php echo $user['user_name']?></a></p>
 											<p class="follws">

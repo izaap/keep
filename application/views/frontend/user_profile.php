@@ -9,7 +9,7 @@
 									<li><a href="<?php echo site_url('login/user_profile/'.$data['id'].'') ?>" class="active">Collection </a></li>
 									<li><a href="<?php echo site_url('home/list_fav_product/'.$data['id'].'')?>">Favorite </a></li>
 									<li><a href="<?php echo site_url('home/list_like_product/'.$data['id'].'')?>">Likes </a></li>
-									<?php } ?>
+									
 								</ul>
 								<div class="clear"></div>
 							</div>
@@ -17,7 +17,9 @@
 						<a name=""
 						<!--/ My Profile -->							
 						<div class="cf page-gap">
+							<?php if($this->session->userdata('user_id') == $data['id']) { ?>
 							<div class="col-xs-12 col-sm-6 col-md-3 user-collection">
+								
 								<div class="newprod">
 									
 									<div class="recently-added gallery-projects-wrap  newcollection">
@@ -39,7 +41,7 @@
                                         </div>
 									
 								</div>
-                                
+                                <?php }   ?>
                               <?php /*  <div class="newprod1">
 									
 									<div class="recently-added gallery-projects-wrap  newcollection">
@@ -57,108 +59,76 @@
 									
 								</div> */ ?>
 							</div>
-                            
+                            <?php } ?>
 							<!-- -->
+						
+						
+						<?php foreach($this->collection_list as $list_collection) {   
 							
+							$this->load->model('login_model');
+						$collection = $this->userlogin_model->get_product_list_collection($list_collection['id'],$list_collection['user_id']);
+						//print_r($collection);
+							
+							
+							?>		
 							<div class="col-xs-12 col-sm-6 col-md-3 user-collection">
 								<div class="">
-									<h3>Parisian Style</h3>
-									<p>125 Collections</p>
+									<h3><?php echo $list_collection['name']; ?></h3>
+									
+									<?php 
+						
+										$this->load->model('login_model');
+										$collection = $this->userlogin_model->get_product_list_collection($list_collection['id'],$list_collection['user_id']);
+										//print_r($collection);
+									?>
+									
+									<p><?php echo count($collection) ?> Collections</p>
+									
+									
+									
 									<div class="recently-added gallery-projects-wrap">
-										<a href="#">
-											<img src="<?php echo include_img_path();?>/products/small/product-4.jpg" class="" alt="" width="201" height="181" />
-										</a>
+										
+										<?php if(count($collection)>0 ){ 
+										 foreach($collection as $result) {?>
+											<a>
+												<img src="<?php  echo site_url('assets/uploads/products/'.$result[0]['product_image']) ?>" class="" alt="" width="201" height="181" />
+											</a>
+										<?php break;} }else {  ?>
+											<a>
+												<img src="<?php  echo site_url('assets/uploads/products/no_image.png') ?>" class="" alt="" width="201" height="181" />
+											</a>
+											<?php } ?>
 										<div class="gallery-cover-overlay">
 											<div class="gallery-cover-overlay-text">
-												<a href="#">View Collection&nbsp;<span class="rarr fa fa-long-arrow-right">&nbsp;</span></a>
+											<?php if(count($collection)>0 ){ ?>	
+												<a href="<?php echo site_url('login/list_collection_product/'.$list_collection['user_id'].'/'.$list_collection['id'].'') ?>">View Collection&nbsp;<span class="rarr fa fa-long-arrow-right">&nbsp;</span></a>
+												<?php } else { ?>
+													
+													<a>View Collection&nbsp;<span class="rarr fa fa-long-arrow-right">&nbsp;</span></a>
+													
+													<?php } ?>
+													
 											</div>
 										</div>
 									</div>
 									<div class="last-added text-center">
 										<ul class="cf">
-											<li><img src="<?php echo include_img_path();?>/products/small/product-10.jpg" class="" alt="" width="" height="" /></li>
-											<li><img src="<?php echo include_img_path();?>/products/small/product-5.jpg" class="" alt="" width="" height="" /></li>
-											<li><img src="<?php echo include_img_path();?>/products/small/product-7.jpg" class="" alt="" width="" height="" /></li>
+											<?php foreach($collection as $result) {?>
+											<li><img src="<?php  echo site_url('assets/uploads/products/'.$result[0]['product_image']) ?>" class="" alt="" width="" height="" /></li>
+											<?php } ?>
 										</ul>
 									</div>
+									
+									
 								</div>
 							</div>
 							<!-- -->
 							
-							<div class="col-xs-12 col-sm-6 col-md-3 user-collection">
-								<div class="">
-									<h3>Parisian Style</h3>
-									<p>125 Collections</p>
-									<div class="recently-added gallery-projects-wrap">
-										<a href="#">
-											<img src="<?php echo include_img_path();?>/products/small/product-6.jpg" class="" alt="" width="201" height="181" />
-										</a>
-										<div class="gallery-cover-overlay">
-											<div class="gallery-cover-overlay-text">
-												<a href="#">View Collection&nbsp;<span class="rarr fa fa-long-arrow-right">&nbsp;</span></a>
-											</div>
-										</div>
-									</div>
-									<div class="last-added text-center">
-										<ul class="cf">
-											<li><img src="<?php echo include_img_path();?>/products/small/product-1.jpg" class="" alt="" width="" height="" /></li>
-											<li><img src="<?php echo include_img_path();?>/products/small/product-2.jpg" class="" alt="" width="" height="" /></li>
-											<li><img src="<?php echo include_img_path();?>/products/small/product-3.jpg" class="" alt="" width="" height="" /></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- -->
+						<?php  } ?>	
 							
-							<div class="col-xs-12 col-sm-6 col-md-3 user-collection">
-								<div class="">
-									<h3>Parisian Style</h3>
-									<p>125 Collections</p>
-									<div class="recently-added gallery-projects-wrap">
-										<a href="#">
-											<img src="<?php echo include_img_path();?>/products/small/product-5.jpg" class="" alt="" width="201" height="181" />
-										</a>
-										<div class="gallery-cover-overlay">
-											<div class="gallery-cover-overlay-text">
-												<a href="#">View Collection&nbsp;<span class="rarr fa fa-long-arrow-right">&nbsp;</span></a>
-											</div>
-										</div>
-									</div>
-									<div class="last-added text-center">
-										<ul class="cf">
-											<li><img src="<?php echo include_img_path();?>/products/small/product-2.jpg" class="" alt="" width="" height="" /></li>
-											<li><img src="<?php echo include_img_path();?>/products/small/product-6.jpg" class="" alt="" width="" height="" /></li>
-											<li><img src="<?php echo include_img_path();?>/products/small/product-3.jpg" class="" alt="" width="" height="" /></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- -->
 							
-							<div class="col-xs-12 col-sm-6 col-md-3 user-collection">
-								<div class="">
-									<h3>Parisian Style</h3>
-									<p>125 Collections</p>
-									<div class="recently-added gallery-projects-wrap">
-										<a href="#">
-											<img src="<?php echo include_img_path();?>/products/small/product-9.jpg" class="" alt="" width="201" height="181" />
-										</a>
-										<div class="gallery-cover-overlay">
-											<div class="gallery-cover-overlay-text">
-												<a href="#">View Collection&nbsp;<span class="rarr fa fa-long-arrow-right">&nbsp;</span></a>
-											</div>
-										</div>
-									</div>
-									<div class="last-added text-center">
-										<ul class="cf">
-											<li><img src="<?php echo include_img_path();?>/products/small/product-1.jpg" class="" alt="" width="" height="" /></li>
-											<li><img src="<?php echo include_img_path();?>/products/small/product-8.jpg" class="" alt="" width="" height="" /></li>
-											<li><img src="<?php echo include_img_path();?>/products/small/product-6.jpg" class="" alt="" width="" height="" /></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- -->
+							
+							
 						
 						</div>
 						<!-- My Profile /-->
