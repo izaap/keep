@@ -107,7 +107,7 @@ class Products extends Admin_controller {
                 $this->service_message->set_flash_message("record_update_success");  
 
                 //log
-                actionLogAdd('product', $product_id, "Product#$edit_id ({$form['product_name']}) record has been updated.");
+                actionLogAdd('product', $edit_id, "Product#$edit_id ({$form['product_name']}) record has been updated.");
             }
             else
             {
