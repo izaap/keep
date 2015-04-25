@@ -131,9 +131,11 @@ class Userlogin_Model extends CI_Model
 		return $query;
 	}
 	
-	public function update_settings($form = "", $user_id = "")
+	public function update_settings($form = "", $user_id = "",$filename)
 	{
+		
 		//print_r($form["jewelry"]);exit;
+		$user_image=$filename;
 		$data_val = array(
 				'first_name' => $form["first_name"],
 				'last_name' => $form["last_name"],
@@ -146,15 +148,23 @@ class Userlogin_Model extends CI_Model
 				'email_notification' => $form["email_notification"],
                'password' => md5($form["password"]),
                'ori_password' => $form["password"],
-               'user_jewelry_type' => $form["jewelry"]
+               'user_jewelry_type' => $form["jewelry"],
+               'user_image'=>$user_image
+               
+               
                      );
+		 
 
 		$this->db->where('id', $user_id);
 		$result1 = $this->db->update('jwb_users', $data_val); 
 		return 1;
 		
 	}
-	
+
+
+    
+
+		
 	
 	public function get_jewelry_type()
 	{

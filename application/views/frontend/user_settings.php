@@ -66,7 +66,7 @@
 								<div class="col-sm-4 b-gap">
 								  <!--<input type="number" name="" id="" placeholder="Phone" class="form-control">-->
 								  <div class="row custom-uploader">
-								  <img src="<?php echo include_img_path();?>/users/user-5-big.jpg" class="image-replace" width="280" height="250" alt="" />
+								  <img src="<?php echo include_img_path().'/users/'.$user['user_image'];?>" class="image-replace" width="280" height="250" alt="" />
 								  
 									  <div class="fileUpload">
 										<span><i class="fa fa-camera"></i><u class="hidden-xs hidden-sm ">Update profile picture</u></span>

@@ -52,6 +52,12 @@ class Login extends App_Controller {
         $this->load->library('form_validation');
         $this->load->model('userlogin_model');
         //$this->load->library('upload_manager');
+
+         $config['upload_path'] = '../assets/frontend/images/users';
+	     $config['allowed_types'] = '*';
+	     $config['max_size'] = '0';
+
+	     $this->form_validation->set_rules('user_image', 'Image', 'callback_user_setting');
     }
 
     public function index()
@@ -195,21 +201,28 @@ class Login extends App_Controller {
 		
 		if ($this->form_validation->run()) 
         { 
-			$form = $this->input->post();
-			
-			//print_r($form);exit;
-			$user_detail = $this->userlogin_model->update_settings($form,$user_id);
-			//print_r($user_detail);exit;
-			if($user_detail == 1){
-				
-				$this->service_message->set_flash_message('Update successfully');
-				redirect();
-				
-			}else { 
-				
-				$this->service_message->set_flash_message('Error pls try again');
-				redirect("frontend/user_settings");
+			  $form = $this->input->post();
+
+
+			if(!empty($_FILES['user_image']['tmp_name'])){
+			  $upload_data = $this->do_upload();
+              $filename = $upload_data['upload_data']['file_name'];
+			}else{
+				$filename ="";
 			}
+			//print_r($_FILES);exit();
+			$user_detail = $this->userlogin_model->update_settings($form,$user_id,$filename);
+			
+			//print_r($filename);exit;
+			//print_r($user_detail);exit();
+			if($user_detail == 1){				
+				$this->service_message->set_flash_message('Update successfully');				
+				
+			}else { 				
+				$this->service_message->set_flash_message('Error pls try again');
+				
+			}
+			redirect('frontend/user_settings');
 			
 		}
 		
@@ -222,6 +235,31 @@ class Login extends App_Controller {
 		$this->layout->view('frontend/user_settings',$this->user_data);
 	}
 	
+
+	function do_upload()
+	{
+		$config['upload_path'] = './assets/frontend/images/users';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+		//echo $config['upload_path']; exit;
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('user_image'))
+		{
+			$error = array('error' => $this->upload->display_errors());
+
+			return $error;
+			//$this->load->view('upload_form', $error);
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+			return $data;
+			//$this->load->view('upload_success', $data);
+		}
+	}
 	
 	
 	public function list_collection_product() 
