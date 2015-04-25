@@ -216,7 +216,8 @@ class Login extends App_Controller {
 			//print_r($filename);exit;
 			//print_r($user_detail);exit();
 			if($user_detail == 1){				
-				$this->service_message->set_flash_message('Update successfully');				
+				$this->service_message->set_flash_message('Update successfully');		
+				redirect();		
 				
 			}else { 				
 				$this->service_message->set_flash_message('Error pls try again');

@@ -26,7 +26,7 @@
 		<div class="container">
 			<div class="row">
 				
-				<?php if(!$this->uri->segment(2) == 'user_login' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'user_settings' || $this->uri->segment(2) == 'product_detail' || $this->uri->segment(2) == 'list_like_product' || $this->uri->segment(2) == 'list_fav_product' || $this->uri->segment(2) == 'followers_user_list' || $this->uri->segment(2) == 'following_user_list' || $this->uri->segment(2) == 'list_collection_product' || $this->uri->segment(2) == 'search_result' || $this->uri->segment(2) == 'most_popular' ) { ?>
+				<?php if(!$this->uri->segment(2) == 'user_login' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'user_settings' || $this->uri->segment(2) == 'product_detail' || $this->uri->segment(2) == 'list_like_product' || $this->uri->segment(2) == 'list_fav_product' || $this->uri->segment(2) == 'followers_user_list' || $this->uri->segment(2) == 'following_user_list' || $this->uri->segment(2) == 'list_collection_product' || $this->uri->segment(2) == 'search_result' || $this->uri->segment(2) == 'most_popular' || $this->uri->segment(2) == 'upcomming_auctions' ) { ?>
 				<?php echo $this->load->view('frontend/_partials/left_menu', $this->data); ?>
 				<?php } ?>
 				<?php echo $content; ?>
