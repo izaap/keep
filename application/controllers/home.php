@@ -268,9 +268,26 @@ class Home extends App_Controller {
 		$this->layout->view('frontend/following_user_list',$this->following_list);
 		
 	}
+	
+	
+	public function most_popular()
+	{
+		$this->product_list = $this->home_model->most_popular_product(); 
+		//print_r(count($this->most_popular));exit;
+		
+		$this->layout->view('frontend/most_popular',$this->product_list);
+	}
     
     
-    
+    public function upcomming_auctions() 
+	{
+		
+		$this->product_list = $this->home_model->upcomming_auctions_product(); 
+		//print_r(count($this->most_popular));exit;
+		
+		$this->layout->view('frontend/upcomming_auctions',$this->product_list);
+		 
+	}
 	
 	
 	
