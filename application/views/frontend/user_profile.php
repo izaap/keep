@@ -113,9 +113,9 @@
 									</div>
 									<div class="last-added text-center">
 										<ul class="cf">
-											<?php foreach($collection as $result) {?>
+											<?php $i=0; foreach($collection as $result) {?>
 											<li><img src="<?php  echo site_url('assets/uploads/products/'.$result[0]['product_image']) ?>" class="" alt="" width="" height="" /></li>
-											<?php } ?>
+											<?php $i++; if($i==3){ break; } }  ?>
 										</ul>
 									</div>
 									
