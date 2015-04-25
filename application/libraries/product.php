@@ -160,10 +160,10 @@ class Product {
 	    										JOIN `jwb_collections` c 
 	    											ON(f.collection_id=c.id) 
 	    										WHERE f.product_id=p.id 
-	    										GROUP BY c.user_id
+	    										
 	    									) 
 	    						WHERE p.id=?";
-	    						//print $update_sql; echo "--"; echo $product_id;exit;
+	    						//GROUP BY c.user_id print $update_sql; echo "--"; echo $product_id;exit;
 
 	    		$this->CI->db->query($update_sql, array($product_id));
     			break;

@@ -363,10 +363,40 @@ class Home_Model extends CI_Model
 		$query = $this->db->get()->result_array();
 		return $query;
 		
-		
-		
+	}
+	
+	
+	
+	public function most_popular_product()
+	{
+		$this->db->select('*');
+		$this->db->from('jwb_products');
+		$this->db->order_by("favorites", "DESC");
+		$this->db->limit(16,0);
+		$query = $this->db->get()->result_array();
+		return $query;
 		
 	}
+	
+	
+	
+	
+	public function upcomming_auctions_product()
+	{
+		$val = "1";
+		$this->db->select('*');
+		$this->db->from('jwb_products');
+		$this->db->where('upcoming_product',$val);
+		//$this->db->order_by("favorites", "DESC");
+		//$this->db->limit(16,0);
+		$query = $this->db->get()->result_array();
+		return $query;
+		
+	}
+	
+	
+	
+	
    
    
     
