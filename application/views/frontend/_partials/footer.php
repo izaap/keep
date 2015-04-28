@@ -11,3 +11,4 @@
 <footer>
 	<p class="text-center"> Copyright &copy; – <script type="text/javascript">var year = new Date();document.write(year.getFullYear());</script>  thejewelrybureau.com</p>
 </footer>
+

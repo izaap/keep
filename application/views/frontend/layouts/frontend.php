@@ -26,7 +26,7 @@
 		<div class="container">
 			<div class="row">
 				
-				<?php if(!$this->uri->segment(2) == 'user_login' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'user_settings' || $this->uri->segment(2) == 'product_detail' || $this->uri->segment(2) == 'list_like_product' || $this->uri->segment(2) == 'list_fav_product' || $this->uri->segment(2) == 'followers_user_list' || $this->uri->segment(2) == 'following_user_list' || $this->uri->segment(2) == 'list_collection_product' || $this->uri->segment(2) == 'search_result' || $this->uri->segment(2) == 'most_popular' || $this->uri->segment(2) == 'upcomming_auctions' || $this->uri->segment(2) == 'recent_view' || $this->uri->segment(2) == 'edit_collection' ) { ?>
+				<?php if(!$this->uri->segment(2) == 'user_login' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'user_settings' || $this->uri->segment(2) == 'product_detail' || $this->uri->segment(2) == 'list_like_product' || $this->uri->segment(2) == 'list_fav_product' || $this->uri->segment(2) == 'followers_user_list' || $this->uri->segment(2) == 'following_user_list' || $this->uri->segment(2) == 'list_collection_product' || $this->uri->segment(2) == 'search_result' || $this->uri->segment(2) == 'most_popular' || $this->uri->segment(2) == 'upcomming_auctions' || $this->uri->segment(2) == 'recent_view' || $this->uri->segment(2) == 'edit_collection' || $this->uri->segment(2) == 'directory_list' ) { ?>
 				<?php echo $this->load->view('frontend/_partials/left_menu', $this->data); ?>
 				<?php } ?>
 				<?php echo $content; ?>
@@ -64,5 +64,77 @@
 					$this->load->view($file, $this->data);
 			}
 		?>
+		
+		
+		<script>
+$.fn.extend({
+    treed: function (o) {
+      
+      var openedClass = 'glyphicon-minus-sign';
+      var closedClass = 'glyphicon-plus-sign';
+      
+      if (typeof o != 'undefined'){
+        if (typeof o.openedClass != 'undefined'){
+        openedClass = o.openedClass;
+        }
+        if (typeof o.closedClass != 'undefined'){
+        closedClass = o.closedClass;
+        }
+      };
+      
+        //initialize each of the top levels
+        var tree = $(this);
+        tree.addClass("tree");
+        tree.find('li').has("ul").each(function () {
+            var branch = $(this); //li with children ul
+            branch.prepend("<i class='indicator glyphicon " + closedClass + "'></i>");
+            branch.addClass('branch');
+            branch.on('click', function (e) {
+                if (this == e.target) {
+                    var icon = $(this).children('i:first');
+                    icon.toggleClass(openedClass + " " + closedClass);
+                    $(this).children().children().toggle();
+                }
+            })
+            branch.children().children().toggle();
+        });
+        //fire event from the dynamically added icon
+      tree.find('.branch .indicator').each(function(){
+        $(this).on('click', function () {
+            $(this).closest('li').click();
+        });
+      });
+        //fire event to open branch if the li contains an anchor instead of text
+        tree.find('.branch>a').each(function () {
+            $(this).on('click', function (e) {
+                $(this).closest('li').click();
+                e.preventDefault();
+            });
+        });
+        //fire event to open branch if the li contains a button instead of text
+        tree.find('.branch>button').each(function () {
+            $(this).on('click', function (e) {
+                $(this).closest('li').click();
+                e.preventDefault();
+            });
+        });
+    }
+});
+
+//Initialization of treeviews
+
+$('#tree1').treed();
+
+$('#tree2').treed({openedClass:'glyphicon-folder-open', closedClass:'glyphicon-folder-close'});
+
+$('#tree3').treed({openedClass:'glyphicon-chevron-right', closedClass:'glyphicon-chevron-down'});
+
+</script>
+
+		
+		
+		
+		
+		
 	</body>
 </html>

@@ -349,6 +349,15 @@ class Home extends App_Controller {
 	
 	
 	
+	public function directory_list()
+	{
+		
+		$this->layout->view('frontend/directory_list');
+		
+	}
+	
+	
+	
 	
 	
 	

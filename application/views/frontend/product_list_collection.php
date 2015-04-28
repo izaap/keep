@@ -1,4 +1,7 @@
 
+ <script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript">stLight.options({publisher: "10d8f0ec-ae8a-4157-bb45-e1ad1185e6c1", doNotHash: false, doNotCopy: false, hashAddressBar: true});</script>
+
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-3 col-md-2">
@@ -19,17 +22,41 @@
 								<div class="clear"></div>
 							</div>
 							
-							<?php foreach($this->product_list['collection_detail'] as $collection_data) { ?>
-								
-							<p style="font:18px;">	<?php echo ucfirst($collection_data['name']);  ?> </p>
+					<?php foreach($this->product_list['collection_detail'] as $collection_data) { ?>
+						<div class="row col-name">
+						
+					    <div class="col-md-4">
+						
+							<p class="colection-name">	<?php echo ucfirst($collection_data['name']);  ?> </p>
+						</div>
+							
+							<div class="col-md-8 col-ed-right text-right col-e-d">
+								<div class="btn-group show-on-hover share-menu">
 							<?php if($collection_data['user_id'] == $this->session->userdata('user_id') ) { ?>
 							<a href="<?php echo site_url('home/edit_collection/'.$collection_data['user_id'].'/'.$collection_data['id'].'') ?>"> Edit </a>
 							
 							<a href="<?php echo site_url('home/delete_collection/'.$collection_data['user_id'].'/'.$collection_data['id'].'') ?> " onclick="return confirm('<?php echo "Are you sure ,want to delete this Collection ?"; ?>')"> Delete </a>
 							
 							<?php } ?>
-								
-								<?php } ?>
+							</div>
+							
+							 <div class="btn-group show-on-hover share-menu">
+          <a type="button" class="dropdown-toggle share-btn" data-toggle="dropdown">
+            share 
+          </a>
+          <ul class="dropdown-menu share-drop" role="menu">
+            <li><a href="#"><span class='st_email' displayText='Email'></span></a></li>
+             <li><a href="#"><span class='st_pinterest' displayText='Pinterest'></span></a></li>
+            <li><a href="#"><span class='st_twitter' displayText='Tweet'></span></a></li>
+            <li><a href="#"><span class='st_facebook' displayText='Facebook'></span></a></li>
+            
+          
+          </ul>
+        </div>
+							</div>
+							</div>
+						
+					<?php } ?>
 						
 						<div class="ro-w">
 							<?php foreach($this->product_list['list'] as $product) { 
