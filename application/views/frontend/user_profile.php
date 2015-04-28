@@ -91,11 +91,11 @@
 										<?php if(count($collection)>0 ){ 
 										 foreach($collection as $result) {?>
 											<a>
-												<img src="<?php  echo site_url('assets/uploads/products/'.$result[0]['product_image']) ?>" class="" alt="" width="201" height="181" />
+												<img src="<?php  echo base_url('assets/uploads/products/'.$result[0]['product_image']) ?>" class="" alt="" width="201" height="181" />
 											</a>
 										<?php break;} }else {  ?>
 											<a>
-												<img src="<?php  echo site_url('assets/uploads/products/no_image.png') ?>" class="" alt="" width="201" height="181" />
+												<img src="<?php  echo base_url('assets/uploads/products/no_image.png') ?>" class="" alt="" width="201" height="181" />
 											</a>
 											<?php } ?>
 										<div class="gallery-cover-overlay">
@@ -114,7 +114,7 @@
 									<div class="last-added text-center">
 										<ul class="cf">
 											<?php $i=0; foreach($collection as $result) {?>
-											<li><img src="<?php  echo site_url('assets/uploads/products/'.$result[0]['product_image']) ?>" class="" alt="" width="" height="" /></li>
+											<li><img src="<?php  echo base_url('assets/uploads/products/'.$result[0]['product_image']) ?>" class="" alt="" width="" height="" /></li>
 											<?php $i++; if($i==3){ break; } }  ?>
 										</ul>
 									</div>

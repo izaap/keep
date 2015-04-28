@@ -38,7 +38,7 @@
 						<!--/ product -->							
 						<div class="col-md-12 singleview">
                         	<div class="singleview">
-                            <img src="<?php  echo site_url('assets/uploads/products/'.$product['product_image']) ?>" alt="" class="img-responsive mb_15 center-block">
+                            <img src="<?php  echo base_url('assets/uploads/products/'.$product['product_image']) ?>" alt="" class="img-responsive mb_15 center-block">
                                 <div class="caption1">
 									<div class="stepwizard center-block">
                                     <div class="stepwizard-row">

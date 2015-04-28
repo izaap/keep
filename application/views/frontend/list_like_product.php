@@ -94,12 +94,12 @@
 												<a class="label label-price">$<?php echo $product['price']; ?></a>
 												<a class="label label-buy" onclick="buy('<?php echo $product['id']?>','<?php echo $this->session->userdata('user_id') ?>')">Buy</a>
 											</p>
-											<p class="short-description"><a href="<?php echo site_url(); ?>home/product_detail/<?php echo $product['id'];?>"><?php echo $product['description']; ?> </a></p> 
+											<p class="short-description"><a href="<?php echo site_url(); ?>/home/product_detail/<?php echo $product['id'];?>"><?php echo $product['description']; ?> </a></p> 
 											
 											
 											
 										</div>
-										<img src="<?php  echo site_url('assets/uploads/products/'.$product['product_image']) ?>" class="" alt="" height="316" width="221">
+										<img src="<?php  echo base_url('assets/uploads/products/'.$product['product_image']) ?>" class="" alt="" height="316" width="221">
 									</div>
 								</div>
 								

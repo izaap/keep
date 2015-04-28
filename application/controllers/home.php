@@ -14,6 +14,7 @@ class Home extends App_Controller {
 
     public function index()
     {
+    	
         
         $this->product_list = $this->home_model->get_product_list(); 
         

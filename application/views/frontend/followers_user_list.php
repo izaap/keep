@@ -36,7 +36,7 @@
 											<p class="text-center"><a class="user-name" href="#"><?php echo $user['user_name']?></a></p>
 											<p class="follws">
 											<?php if($user['following_count'] >0){ ?>
-												<span class="follow-rate"> <a href="<?php echo site_url(); ?>home/followers_user_list/<?php echo $user['id']?>" ><?php echo $user['following_count'] ?></a></span> Following
+												<span class="follow-rate"> <a href="<?php echo site_url(); ?>/home/followers_user_list/<?php echo $user['id']?>" ><?php echo $user['following_count'] ?></a></span> Following
 											<?php } else { ?>
 												
 												<span class="follow-rate"> <?php echo $user['following_count'] ?></span> Following
@@ -45,7 +45,7 @@
 											
 											
 											<?php if($user['followed_count'] >0){ ?>
-												<span class="follow-rate"><a href="<?php echo site_url(); ?>home/following_user_list/<?php echo $user['id']?>" ><?php echo $user['followed_count'] ?></a></span>  Followers
+												<span class="follow-rate"><a href="<?php echo site_url(); ?>/home/following_user_list/<?php echo $user['id']?>" ><?php echo $user['followed_count'] ?></a></span>  Followers
 												
 											<?php } else { ?>
 												

@@ -31,11 +31,11 @@
 												<!-- Follower & Following  -->
 												<div class="follow cf">
 													<div class="col-xs-6">
-														<span><a href="<?php echo site_url(); ?>home/followers_user_list/<?php echo $data['id'];?>" ><?php echo $data['following_count'] ?></a></span>
+														<span><a href="<?php echo site_url(); ?>/home/followers_user_list/<?php echo $data['id'];?>" ><?php echo $data['following_count'] ?></a></span>
 														<p>Following</p>
 													</div>
 													<div class="col-xs-6">
-														<span><a href="<?php echo site_url(); ?>home/following_user_list/<?php echo$data['id'];?>" ><?php echo $data['followed_count'] ?></a></span>
+														<span><a href="<?php echo site_url(); ?>/home/following_user_list/<?php echo$data['id'];?>" ><?php echo $data['followed_count'] ?></a></span>
 														<p>Followers</p>
 													</div>
 													<a href="#" class="btn btn-follow"> <i class="fa fa-plus"></i>Folow </a>
@@ -59,8 +59,8 @@
 										
 										<div class="left-nav">
 											<ul>
-												<li><a href="<?php echo site_url(); ?>home/most_popular" > Most Popular</a></li>
-												<li><a href="<?php echo site_url(); ?>home/upcomming_auctions" class="active">Upcomming Auctions</a></li>
+												<li><a href="<?php echo site_url(); ?>/home/most_popular" > Most Popular</a></li>
+												<li><a href="<?php echo site_url(); ?>/home/upcomming_auctions" class="active">Upcomming Auctions</a></li>
 												<?php /*<li><a href="#">Museum Collections</a></li> */ ?>
 												<li><a href="<?php echo site_url('home/directory_list')?>">Directory</a></li>
 												<li><a href="<?php echo site_url('login/signup')?>">Signup</a></li>

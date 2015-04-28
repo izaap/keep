@@ -33,9 +33,9 @@
 												<img height="60" width="60" alt="" class="img-circle img-border" src="<?php echo include_img_path();?>/users/<?php echo $img?>"></a></p>
 											<p class="text-center"><a class="user-name" href="#"><?php echo $user['user_name']?></a></p>
 											<p class="follws">
-												<span class="follow-rate"> <a href="<?php echo site_url(); ?>home/followers_user_list/<?php echo $user['id']?>" ><?php echo $user['following_count'] ?></a></span> Following
+												<span class="follow-rate"> <a href="<?php echo site_url(); ?>/home/followers_user_list/<?php echo $user['id']?>" ><?php echo $user['following_count'] ?></a></span> Following
 												
-												<span class="follow-rate"><a href="<?php echo site_url(); ?>home/following_user_list/<?php echo $user['id']?>" ><?php echo $user['followed_count'] ?></a></span>  Followers
+												<span class="follow-rate"><a href="<?php echo site_url(); ?>/home/following_user_list/<?php echo $user['id']?>" ><?php echo $user['followed_count'] ?></a></span>  Followers
 											</p>											
 											<p class="more-sec">
 												<button class="btn btn-primary">Follow</button>
