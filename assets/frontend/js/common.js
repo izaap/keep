@@ -237,7 +237,7 @@ $(document).ready(function() {
                 dataType:"html",
                 success:function(check)
                 { //alert(check);
-                  $("#app_comm").html(check);  
+                  $("#app_comm2").html(check);  
                   $('#message').val('');
                   
                 }

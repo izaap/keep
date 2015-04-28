@@ -31,8 +31,8 @@ $config['layout']['frontend']['javascripts'] = array("modernizrr","bootstrap.min
  
 $config['layout']['frontend']['stylesheets'] = array("bootstrap","font-awesome.min","custom","component");
 
-$config['layout']['frontend']['description'] = '';
-$config['layout']['frontend']['keywords']    = '';
+$config['layout']['frontend']['description'] = 'The Jewelry Bureau :: Home';
+$config['layout']['frontend']['keywords']    = 'The Jewelry Bureau :: Home';
 
 $config['layout']['frontend']['http_metas'] = array(
     'Content-Type' => 'text/html; charset=utf-8',

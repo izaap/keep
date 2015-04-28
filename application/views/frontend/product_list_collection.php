@@ -18,9 +18,21 @@
 								</ul>
 								<div class="clear"></div>
 							</div>
+							
+							<?php foreach($this->product_list['collection_detail'] as $collection_data) { ?>
+								
+							<p style="font:18px;">	<?php echo ucfirst($collection_data['name']);  ?> </p>
+							<?php if($collection_data['user_id'] == $this->session->userdata('user_id') ) { ?>
+							<a href="<?php echo site_url('home/edit_collection/'.$collection_data['user_id'].'/'.$collection_data['id'].'') ?>"> Edit </a>
+							
+							<a href="<?php echo site_url('home/delete_collection/'.$collection_data['user_id'].'/'.$collection_data['id'].'') ?> " onclick="return confirm('<?php echo "Are you sure ,want to delete this Collection ?"; ?>')"> Delete </a>
+							
+							<?php } ?>
+								
+								<?php } ?>
 						
 						<div class="ro-w">
-							<?php foreach($this->product_list as $product) { 
+							<?php foreach($this->product_list['list'] as $product) { 
 								
 								$this->load->model('home_model');
 								$status = $this->home_model->check_user_fav_image($product['id']);

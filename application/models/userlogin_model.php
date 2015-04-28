@@ -251,6 +251,17 @@ class Userlogin_Model extends CI_Model
 		return $query;
 		
 	}
+	
+	
+	public function product_list_collection_data($collection_id = "")
+	{
+		$this->db->select('*');
+		$this->db->from('jwb_collections');
+		$this->db->where('id', $collection_id);
+		$query = $this->db->get()->result_array();
+		
+		return $query;
+	}
    
    
     

@@ -63,8 +63,9 @@ class Home extends App_Controller {
 	public function product_detail()
 	{
 		$product_id  = $this->uri->segment(3);
+		$user_id = $this->session->userdata('user_id');
 		//print $product_id;exit;
-		$this->product_detail = $this->home_model->get_product_detail($product_id); 
+		$this->product_detail = $this->home_model->get_product_detail($product_id,$user_id); 
 		
 		$this->layout->view('frontend/home/product_detail',$this->product_detail);
 		
@@ -128,7 +129,8 @@ class Home extends App_Controller {
 		$comments  = $this->input->post('comments');
 		$user_id  = $this->input->post('user_id');
 		$comment_result = $this->home_model->post_comments($product_id,$user_id,$comments);
-		if(count($comment_result)>0) {
+		//print_r($comment_result);exit;
+		if($comment_result) {
 		$a = '<div class="viewer cf">
                             <div class="col-sm-3 col-md-2 resp-img">
                                 <img class="center-block fn " alt="Image" src="'.include_img_path().'/users/'.$this->session->userdata('user_image').'">
@@ -139,6 +141,9 @@ class Home extends App_Controller {
                                 <p>
                                    '.$comments.'
                                 </p>
+                                
+                                <a href="'.site_url().'home/comment_delete/'.$comment_result. '/'.$product_id.'" title="" data-placement="top" data-toggle="tooltip" class="btn btn-redcircle glyphicon glyphicon-remove" >  </a>
+                                
                             </div>
                             </div>
                          </div>';
@@ -146,6 +151,21 @@ class Home extends App_Controller {
 			echo $a;exit;
 		
 		}
+	}
+	
+	
+	
+	public function comment_delete()
+	{
+		$comment_id = $this->uri->segment(3);
+		$product_id = $this->uri->segment(4);
+		//print $comment_id;exit;
+		$comm_delete = $this->home_model->delete_comment($comment_id);
+		if($comm_delete == 1){
+			
+			redirect('home/product_detail/'.$product_id.'');
+		}
+		
 	}
 	
 	
@@ -288,6 +308,56 @@ class Home extends App_Controller {
 		$this->layout->view('frontend/upcomming_auctions',$this->product_list);
 		 
 	}
+	
+	public function edit_collection()
+	{
+		$user_id  = $this->uri->segment(3);
+		$collection_id  = $this->uri->segment(4);
+		
+		$this->collection_data = $this->home_model->get_collection_data($collection_id); 
+		if($_POST) { 
+		$post_value = $this->input->post();
+		$update = $this->home_model->update_collection_name($post_value,$collection_id);
+			if($update =  1){
+			
+				redirect('login/list_collection_product/'.$user_id.'/'.$collection_id.'');
+			} 
+		
+		}
+		$this->layout->view('frontend/edit_collection',$this->collection_data);
+		
+	}
+	
+	
+	
+	public function delete_collection()
+	{
+	
+		$user_id  = $this->uri->segment(3);
+		$collection_id  = $this->uri->segment(4);
+		
+		$delete_collection = $this->home_model->delete_collection($collection_id,$user_id); 
+		//print_r($delete_collection);exit;
+		
+		if($delete_collection){
+			
+			redirect('login/user_profile/'.$user_id.'');
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

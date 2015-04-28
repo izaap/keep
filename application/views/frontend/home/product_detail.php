@@ -1,14 +1,23 @@
-<?php foreach($this->product_detail as $product) { ?>
+
+ <script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript">stLight.options({publisher: "10d8f0ec-ae8a-4157-bb45-e1ad1185e6c1", doNotHash: false, doNotCopy: false, hashAddressBar: true});</script>
+
+
 <div class="col-sm-9 col-md-10 affix-content home-product-wrap">
 						<ul class="share">
                         	<li><a href="#"><b>Share:</b></a></li>
-                            <li><a href="#"><img src="<?php echo include_img_path();?>/email.png" alt=""></a></li>
-                            <li><a href="#"><img src="<?php echo include_img_path();?>/twitter.png" alt=""></a></li>
-                            <li><a href="#"><img src="<?php echo include_img_path();?>/fb.png" alt=""></a></li>
-                            
-                           
-                            
+								<span class='st_email' displayText='Email'></span>
+								<span class='st_twitter' displayText='Tweet'></span>
+								<span class='st_facebook' displayText='Facebook'></span>
+                         
                         </ul>
+                       
+						
+						
+         <?php foreach($this->product_detail as $product) { ?>               
+                       
+                        
+                        
 						<!--/ Page Title -->
 							<div class="page-title">
 								<h3 class="title"><?php echo $product['product_name'];?> <div class="btn-group pull-right">
@@ -122,6 +131,11 @@
 								}else {
 									$img = $comment['user_image'];
 								} ?>
+								
+							<div class="" id="app_comm2">
+								
+							</div>
+								
                          <div class="" id="app_comm">
                          <div class="viewer cf">
                             <div class="col-sm-3 col-md-2 resp-img">
@@ -138,6 +152,11 @@
                                 <p>
                                    <?php echo $comment['comment']; ?> 
                                 </p>
+                                <?php if($comment['id'] == $this->session->userdata('user_id')) { ?>
+									
+									<a href="<?php echo site_url('home/comment_delete/'.$comment['comment_id'].'/'.$product['id'].'') ?>" title="" data-placement="top" data-toggle="tooltip" class="btn btn-redcircle glyphicon glyphicon-remove pull-right" > </a>
+                                        
+                               <?php } ?>             
                             </div>
                             </div>
                          </div>
@@ -161,9 +180,9 @@
                         </div>
 						<!-- product /-->
 					</div
-					
+					<?php } ?>
 				</div>
-			<?php } ?>
+			
 
 
 <script>
@@ -240,5 +259,8 @@ function get_timeago( $ptime )
     }
 }
 ?>
+
+
+
 	
 </script>	

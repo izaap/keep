@@ -61,7 +61,8 @@
 											<ul>
 												<li><a href="<?php echo site_url(); ?>home/most_popular" > Most Popular</a></li>
 												<li><a href="<?php echo site_url(); ?>home/upcomming_auctions" class="active">Upcomming Auctions</a></li>
-												<li><a href="#">Get the App</a></li>
+												<li><a href="#">Museum Collections</a></li>
+												<li><a href="<?php echo site_url('login/signup')?>">Signup</a></li>
 												<li><a href="#">About</a></li>
 												<li><a href="#">Feed Back</a></li>
 												<li><a href="#">Privacy Policy</a></li>

@@ -26,11 +26,12 @@
 		<div class="container">
 			<div class="row">
 				
-				<?php if(!$this->uri->segment(2) == 'user_login' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'user_settings' || $this->uri->segment(2) == 'product_detail' || $this->uri->segment(2) == 'list_like_product' || $this->uri->segment(2) == 'list_fav_product' || $this->uri->segment(2) == 'followers_user_list' || $this->uri->segment(2) == 'following_user_list' || $this->uri->segment(2) == 'list_collection_product' || $this->uri->segment(2) == 'search_result' || $this->uri->segment(2) == 'most_popular' || $this->uri->segment(2) == 'upcomming_auctions' ) { ?>
+				<?php if(!$this->uri->segment(2) == 'user_login' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'user_settings' || $this->uri->segment(2) == 'product_detail' || $this->uri->segment(2) == 'list_like_product' || $this->uri->segment(2) == 'list_fav_product' || $this->uri->segment(2) == 'followers_user_list' || $this->uri->segment(2) == 'following_user_list' || $this->uri->segment(2) == 'list_collection_product' || $this->uri->segment(2) == 'search_result' || $this->uri->segment(2) == 'most_popular' || $this->uri->segment(2) == 'upcomming_auctions' || $this->uri->segment(2) == 'recent_view' || $this->uri->segment(2) == 'edit_collection' ) { ?>
 				<?php echo $this->load->view('frontend/_partials/left_menu', $this->data); ?>
 				<?php } ?>
 				<?php echo $content; ?>
 			</div>
+		</div>
 		</div>
 
 		<?php echo $this->load->view('frontend/_partials/footer'); ?>
@@ -50,6 +51,8 @@
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+		
 
 		<?php include_javascripts(); ?>
 		

@@ -186,7 +186,7 @@ class Login extends App_Controller {
 		$this->session->sess_create();
 		$this->service_message->set_flash_message('logout_success');
 	
-		redirect("home/index");
+		redirect();
 	}
 	
 	
@@ -277,7 +277,9 @@ class Login extends App_Controller {
 			$user_id = $this->session->userdata('user_id');
 		}
 		//echo $user_id;exit;
-		$this->product_list = $this->userlogin_model->product_list_collection($collection_id,$user_id); 
+		$this->product_list['list'] = $this->userlogin_model->product_list_collection($collection_id,$user_id); 
+		
+		$this->product_list['collection_detail'] = $this->userlogin_model->product_list_collection_data($collection_id); 
 		
 		$this->layout->view('frontend/product_list_collection',$this->product_list);
 	}
