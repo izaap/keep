@@ -6,9 +6,9 @@
 							<div class="page-ti-tle filter-nav text-center">
 								<ul class="pagination cf text-center">
 									<?php foreach($this->data['user_data'] as $data) { ?>
-									<li><a href="<?php echo site_url('login/user_profile/'.$data['id'].'') ?>" class="active">Collection </a></li>
-									<li><a href="<?php echo site_url('home/list_fav_product/'.$data['id'].'')?>">Favorite </a></li>
-									<li><a href="<?php echo site_url('home/list_like_product/'.$data['id'].'')?>">Likes </a></li>
+									<li><a <?php  if($this->uri->segment(2) == "user_profile"){ ?> class="active" <?php } ?>  href="<?php echo site_url('login/user_profile/'.$data['id'].'') ?>" >Collection </a></li>
+									<li><a <?php  if($this->uri->segment(2) == "list_fav_product"){ ?> class="active" <?php } ?>  href="<?php echo site_url('home/list_fav_product/'.$data['id'].'')?>">Favorite </a></li>
+									<li><a <?php  if($this->uri->segment(2) == "list_like_product"){ ?> class="active" <?php } ?> href="<?php echo site_url('home/list_like_product/'.$data['id'].'')?>">Likes </a></li>
 									
 								</ul>
 								<div class="clear"></div>
