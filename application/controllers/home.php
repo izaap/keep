@@ -143,7 +143,7 @@ class Home extends App_Controller {
                                    '.$comments.'
                                 </p>
                                 
-                                <a href="'.site_url().'home/comment_delete/'.$comment_result. '/'.$product_id.'" title="" data-placement="top" data-toggle="tooltip" class="btn btn-redcircle glyphicon glyphicon-remove" >  </a>
+                                <a href="'.site_url().'home/comment_delete/'.$comment_result. '/'.$product_id.'" title="" data-placement="top" data-toggle="tooltip" class="btn btn-redcircle glyphicon glyphicon-remove pull-right" >  </a>
                                 
                             </div>
                             </div>
