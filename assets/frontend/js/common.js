@@ -75,11 +75,11 @@ $(document).ready(function() {
 		
 		if(collection_name == ''){ 
 		
-		 var url = base_url+"home/fav_collection";
+		 var url = base_url+"index.php/home/fav_collection";
 		 
 		}else { 
 			
-			var url = base_url+"home/create_collection";
+			var url = base_url+"index.php/home/create_collection";
 		 
 		}
            
@@ -120,7 +120,7 @@ $(document).ready(function() {
 			alert("Pls login to like");
 		}
 		
-		 var url = base_url+"home/like";
+		 var url = base_url+"index.php/home/like";
             
             $.ajax(
             {
@@ -154,7 +154,7 @@ $(document).ready(function() {
 			alert("Pls login to Unlike");
 		}
 		
-		var url = base_url+"home/unlike";
+		var url = base_url+"index.php/home/unlike";
             
             $.ajax(
             {
@@ -187,7 +187,7 @@ $(document).ready(function() {
 			alert("Pls login to access");
 		}
 		
-		var url = base_url+"home/buy";
+		var url = base_url+"index.php/home/buy";
             
             $.ajax(
             {
@@ -224,7 +224,7 @@ $(document).ready(function() {
 		var comments = $('#message').val();
 		//alert(comments);
 		
-		var url = base_url+"home/product_comments";
+		var url = base_url+"index.php/home/product_comments";
             
             $.ajax(
             {
@@ -254,7 +254,7 @@ $(document).ready(function() {
 		//alert(user_id);
 		var collection = $('#text').val();
 		
-		var url = base_url+"home/user_collection_create";
+		var url = base_url+"index.php/home/user_collection_create";
             
             $.ajax(
             {
@@ -290,7 +290,7 @@ $(document).ready(function() {
 	{
 		//alert(user_id);
 		
-		var url = base_url+"home/follow";
+		var url = base_url+"index.php/home/follow";
             
             $.ajax(
             {
@@ -317,7 +317,7 @@ $(document).ready(function() {
 	{
 		//alert(user_id);
 		
-		var url = base_url+"home/unfollow";
+		var url = base_url+"index.php/home/unfollow";
             
             $.ajax(
             {
