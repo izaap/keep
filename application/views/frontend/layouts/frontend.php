@@ -26,7 +26,7 @@
 		<div class="container">
 			<div class="row">
 				
-				<?php if(!$this->uri->segment(2) == 'user_login' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'user_settings' || $this->uri->segment(2) == 'product_detail' || $this->uri->segment(2) == 'list_like_product' || $this->uri->segment(2) == 'list_fav_product' || $this->uri->segment(2) == 'followers_user_list' || $this->uri->segment(2) == 'following_user_list' || $this->uri->segment(2) == 'list_collection_product' || $this->uri->segment(2) == 'search_result' || $this->uri->segment(2) == 'most_popular' || $this->uri->segment(2) == 'upcomming_auctions' || $this->uri->segment(2) == 'recent_view' || $this->uri->segment(2) == 'edit_collection' || $this->uri->segment(2) == 'directory_list' ) { ?>
+				<?php if(!$this->uri->segment(2) == 'user_login' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'user_settings' || $this->uri->segment(2) == 'product_detail' || $this->uri->segment(2) == 'list_like_product' || $this->uri->segment(2) == 'list_fav_product' || $this->uri->segment(2) == 'followers_user_list' || $this->uri->segment(2) == 'following_user_list' || $this->uri->segment(2) == 'list_collection_product' || $this->uri->segment(2) == 'search_result' || $this->uri->segment(2) == 'most_popular' || $this->uri->segment(2) == 'upcomming_auctions' || $this->uri->segment(2) == 'recent_view' || $this->uri->segment(2) == 'edit_collection' || $this->uri->segment(2) == 'directory_list' || $this->uri->segment(2) == 'auction_calender'  ) { ?>
 				<?php echo $this->load->view('frontend/_partials/left_menu', $this->data); ?>
 				<?php } ?>
 				<?php echo $content; ?>
@@ -52,6 +52,7 @@
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+		
 		
 
 		<?php include_javascripts(); ?>
@@ -131,7 +132,66 @@ $('#tree3').treed({openedClass:'glyphicon-chevron-right', closedClass:'glyphicon
 
 </script>
 
-		
+		<script>
+	$.getScript('http://arshaw.com/js/fullcalendar-1.6.4/fullcalendar/fullcalendar.min.js',function(){
+  
+  var date = new Date();
+  var d = date.getDate();
+  var m = date.getMonth();
+  var y = date.getFullYear();
+  
+  $('#calendar').fullCalendar({
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,agendaWeek,agendaDay'
+    },
+    editable: true,
+    events: [
+      {
+        title: 'All Day Event',
+        start: new Date(y, m, 1)
+      },
+      {
+        title: 'Freemans',
+        start: new Date(2015, 05,04),
+        end: new Date(y, m, d-2)
+      },
+      {
+       
+        title: 'Saran Event',
+        start: new Date(2015, 05, 10, 16, 0),
+        end: new Date(2015, 05, 15, 14, 0),
+        allDay: false
+      },
+      {
+        id: 999,
+        title: 'Repeating Event',
+        start: new Date(y, m, d+4, 16, 0),
+        allDay: false
+      },
+      {
+        title: 'Meeting',
+        start: new Date(y, m, d, 10, 30),
+        allDay: false
+      },
+      
+      {
+        title: 'Birthday Party',
+        start: new Date(y, m, d+1, 19, 0),
+        end: new Date(y, m, d+1, 22, 30),
+        allDay: false
+      },
+      {
+        title: 'Click for Google',
+        start: new Date(y, m, 28),
+        end: new Date(y, m, 29),
+        url: 'http://google.com/'
+      }
+    ]
+  });
+})
+	</script>
 		
 		
 		

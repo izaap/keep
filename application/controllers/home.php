@@ -358,6 +358,14 @@ class Home extends App_Controller {
 	}
 	
 	
+	public function auction_calender()
+	{
+		
+		$this->layout->view('frontend/auction_calender');
+		
+	}
+	
+	
 	
 	
 	

@@ -33,28 +33,28 @@
 							<div class="col-md-8 col-ed-right text-right col-e-d">
 								<div class="btn-group show-on-hover share-menu">
 							<?php if($collection_data['user_id'] == $this->session->userdata('user_id') ) { ?>
-							<a href="<?php echo site_url('home/edit_collection/'.$collection_data['user_id'].'/'.$collection_data['id'].'') ?>"> Edit </a>
+							<a class="edit" href="<?php echo site_url('home/edit_collection/'.$collection_data['user_id'].'/'.$collection_data['id'].'') ?>"><img height="30" width="35" alt="Edit" title="Edit" class="img-circle img-border" src="<?php echo include_img_path();?>/edit.png"></a>
 							
-							<a href="<?php echo site_url('home/delete_collection/'.$collection_data['user_id'].'/'.$collection_data['id'].'') ?> " onclick="return confirm('<?php echo "Are you sure ,want to delete this Collection ?"; ?>')"> Delete </a>
+							<a class="delete" href="<?php echo site_url('home/delete_collection/'.$collection_data['user_id'].'/'.$collection_data['id'].'') ?> " onclick="return confirm('<?php echo "Are you sure ,want to delete this Collection ?"; ?>')"> <img height="30" width="35" alt="Delete" title="Delete" class="img-circle img-border" src="<?php echo include_img_path();?>/delete.png"> </a>
 							
 							<?php } ?>
 							</div>
 							
 							 <div class="btn-group show-on-hover share-menu">
-          <a type="button" class="dropdown-toggle share-btn" data-toggle="dropdown">
-            share 
-          </a>
-          <ul class="dropdown-menu share-drop" role="menu">
-            <li><a href="#"><span class='st_email' displayText='Email'></span></a></li>
-             <li><a href="#"><span class='st_pinterest' displayText='Pinterest'></span></a></li>
-            <li><a href="#"><span class='st_twitter' displayText='Tweet'></span></a></li>
-            <li><a href="#"><span class='st_facebook' displayText='Facebook'></span></a></li>
-            
-          
-          </ul>
-        </div>
+								  <a type="button" class="dropdown-toggle share-btn share-icon" data-toggle="dropdown">
+									<img height="30" width="35" alt="Share" title="Share" class="img-circle img-border" src="<?php echo include_img_path();?>/share.png"> 
+								  </a>
+								  <ul class="dropdown-menu share-drop" role="menu">
+									<li><a href="#"><span class='st_email' displayText='Email'></span></a></li>
+									 <li><a href="#"><span class='st_pinterest' displayText='Pinterest'></span></a></li>
+									<li><a href="#"><span class='st_twitter' displayText='Tweet'></span></a></li>
+									<li><a href="#"><span class='st_facebook' displayText='Facebook'></span></a></li>
+									
+								  
+								  </ul>
 							</div>
-							</div>
+						</div>
+						</div>
 						
 					<?php } ?>
 						

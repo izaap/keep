@@ -44,11 +44,13 @@
           <br>
           We'll send you an email with instructions to choose a new password.
         </span>
-        <div class="form-group input-group">
+        <div class="input-group ">
           <span class="input-group-addon">
-            @
+            
           </span>
-          <input class="form-control" placeholder="Email" name="email" type="text">
+          <input class="form-control txt-hide" placeholder="Email" name="email" type="text">
+          
+         
         </div>
         <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-olvidado">
           Continue
