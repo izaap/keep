@@ -126,7 +126,7 @@ class Home_Model extends CI_Model
 	
 	public function post_comments($product_id = "",$user_id = "",$comments = "")
 	{	//echo $user_id;exit;
-		if(!$user_id ==""){
+		if(!$user_id =="" && !$comments == ""){
 				
 				$insert = array(
 	    				'product_id' => $product_id,
@@ -496,14 +496,19 @@ class Home_Model extends CI_Model
 		$where=array('collection_id' => $collection_id);
 		$this->db->where($where);
 		$this->db->delete('jwb_favourites'); 
-		
-		
-		
-		
-		
+	
 		return count($query1);
 		
 		
+		
+	}
+	
+	
+	public function get_event_calander()
+	{
+		$this->db->from('jwb_event_calendar');
+		$query = $this->db->get()->result_array();
+		return $query;
 		
 	}
 	

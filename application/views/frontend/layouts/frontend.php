@@ -139,6 +139,7 @@ $('#tree3').treed({openedClass:'glyphicon-chevron-right', closedClass:'glyphicon
   var d = date.getDate();
   var m = date.getMonth();
   var y = date.getFullYear();
+  var ev = <?php  echo $this->data['event']?>;
   
   $('#calendar').fullCalendar({
     header: {
@@ -147,48 +148,7 @@ $('#tree3').treed({openedClass:'glyphicon-chevron-right', closedClass:'glyphicon
       right: 'month,agendaWeek,agendaDay'
     },
     editable: true,
-    events: [
-      {
-        title: 'All Day Event',
-        start: new Date(y, m, 1)
-      },
-      {
-        title: 'Freemans',
-        start: new Date(2015, 05,04),
-        end: new Date(y, m, d-2)
-      },
-      {
-       
-        title: 'Saran Event',
-        start: new Date(2015, 05, 10, 16, 0),
-        end: new Date(2015, 05, 15, 14, 0),
-        allDay: false
-      },
-      {
-        id: 999,
-        title: 'Repeating Event',
-        start: new Date(y, m, d+4, 16, 0),
-        allDay: false
-      },
-      {
-        title: 'Meeting',
-        start: new Date(y, m, d, 10, 30),
-        allDay: false
-      },
-      
-      {
-        title: 'Birthday Party',
-        start: new Date(y, m, d+1, 19, 0),
-        end: new Date(y, m, d+1, 22, 30),
-        allDay: false
-      },
-      {
-        title: 'Click for Google',
-        start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
-        url: 'http://google.com/'
-      }
-    ]
+    events: ev
   });
 })
 	</script>

@@ -30,7 +30,7 @@
                        </ul>
                    </li>
                    <!-- end tree structure-->
-                   <li><a href="#">West Hollywood</a>
+                   <li><a href="#">WEST HOLLYWOOD</a>
                        <ul>
                            <li><a href="http://plattboutiquejewelry.com/" target="_blank">Platt Boutique Jewelry</a></li>
                        </ul>

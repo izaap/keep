@@ -38,7 +38,7 @@
 														<span><a href="<?php echo site_url(); ?>/home/following_user_list/<?php echo$data['id'];?>" ><?php echo $data['followed_count'] ?></a></span>
 														<p>Followers</p>
 													</div>
-													<a href="#" class="btn btn-follow"> <i class="fa fa-plus"></i>Folow </a>
+													<a href="#" class="btn btn-follow"> <i class="fa fa-plus"></i>Follow </a>
 												</div>
 												
 												<!-- About Profiler -->

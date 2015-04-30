@@ -361,6 +361,19 @@ class Home extends App_Controller {
 	public function auction_calender()
 	{
 		
+		$this->result = $this->home_model->get_event_calander(); 
+		//print_r($this->data['event']);exit;
+		foreach($this->result as $data){
+			
+			
+			$response[] = array("title" => $data['event_name'], "start" => $data['event_start_date'], "end" => $data['event_end_date']);
+			
+		}
+		
+		
+		$this->data['event'] = json_encode($response);
+		
+		//print_r($this->data['event']);exit;	
 		$this->layout->view('frontend/auction_calender');
 		
 	}
