@@ -38,7 +38,7 @@
                                 </div>
 
                                 <div class="form-group <?php echo form_error('product_image')?'has-error':'';?>">
-                                    <label for="upload_image">Product Image <span class="vstar">*</span></label>
+                                    <label for="upload_image">Product Image <span class="vstar"></span></label>
                                     <input id="upload_image" name="upload_image" type="file" class="file" >
                                     <input type="hidden" name="product_image" id="product_image" value="<?=set_value('product_image', $form_data['product_image']);?>">
                                     <?php echo form_error('product_image', '<span class="help-block">', '</span>'); ?>

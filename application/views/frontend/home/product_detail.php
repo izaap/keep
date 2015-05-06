@@ -39,7 +39,13 @@
 						<!--/ product -->							
 						<div class="col-md-12 singleview">
                         	<div class="singleview">
-                            <img src="<?php  echo base_url('assets/uploads/products/'.$product['product_image']) ?>" alt="" class="img-responsive mb_15 center-block">
+								
+								<?php if($product['product_image'] == "") {  
+											$img= "no_image.png"; }
+											 else {  
+												 $img= $product['product_image']; 
+												 } ?>
+                            <img src="<?php  echo base_url('assets/uploads/products/'.$img) ?>" alt="" class="img-responsive mb_15 center-block">
                                 <div class="caption1">
 									<div class="stepwizard center-block">
                                     <div class="stepwizard-row">

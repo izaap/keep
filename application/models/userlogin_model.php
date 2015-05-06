@@ -100,11 +100,11 @@ class Userlogin_Model extends CI_Model
 	public function signup($form ="")
 	{
 		$email = $form['email'];
-		$year = $form['year'];
-		$month = $form['month'];
-		$day = $form['day'];
+		//$year = $form['year'];
+		//$month = $form['month'];
+		//$day = $form['day'];
 		
-		$dob = ''.$year.'-'.$month.'-'.$day.'';
+		//$dob = ''.$year.'-'.$month.'-'.$day.'';
 		
 		$this->db->select('*');
 		$this->db->from('jwb_users');
@@ -112,7 +112,7 @@ class Userlogin_Model extends CI_Model
 		$query = $this->db->get()->num_rows();
 		
 		if($query == 0 ){
-		$result = $this->db->insert('jwb_users', array('first_name' => $form["first_name"],'last_name' => $form["last_name"],'user_name' => $form["user_name"],'email' => $form["email"],'password' => md5($form["password"]),'ori_password' => $form["password"],'phone' => $form["phone"],'gender' => $form["gender"],'dob' => $dob));
+		$result = $this->db->insert('jwb_users', array('first_name' => $form["first_name"],'last_name' => $form["last_name"],'user_name' => $form["user_name"],'email' => $form["email"],'password' => md5($form["password"]),'ori_password' => $form["password"]));
 		return 1;
 	}else {
 		return 0;

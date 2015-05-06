@@ -22,24 +22,24 @@
 							
 							<div class="col-xs-12 col-sm-5 top-section text-right right-section">
 								<div class="r-ow">
+                                
 									<div class="col-xs-12 col-md-8 col-md-offset-4">
 										<div class="row">
-											<!--div class="col-xs-6 divice-align-right">
+										<?php if(!$this->session->userdata('user_id')) { ?>
+											<div class="col-xs-12 divice-align-right">
 												<div class="row">
 													<div class="dropdown small-width">
-													  <button class="btn btn-default btn-green  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-														<img src="images/signup-icon.png" class="custom-icon" alt="" width="60" height="60" /> Signup
-													  </button>
+													  <a href="<?php echo site_url('login/user_login')?>" class="btn btn-default btn-green mb_20">Login </a>
 													  
-													</div>
+													</div>    
 												</div>
-											</div-->
+											</div>
 											
-										
+										<?php } ?>
 												<div class="row">
 														<!--/ Search -->
 			
-			<?php if(!$this->session->userdata('user_id') &&  !$this->uri->segment(2) == 'user_login'  || $this->uri->segment(2) == '' || $this->uri->segment(2) == 'search_result' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'product_detail' ) { ?>
+			<?php if(!$this->session->userdata('user_id') &&  !$this->uri->segment(2) == 'user_login'  || $this->uri->segment(2) == '' || $this->uri->segment(2) == 'search_result' || $this->uri->segment(2) == 'user_profile' || $this->uri->segment(2) == 'product_detail' || $this->uri->segment(2) == 'most_popular' || $this->uri->segment(2) == 'directory_list') { ?>
 				<form role="form" action="<?php echo site_url('login/search_result')?>" method="POST">
 				
 					<div class="col-sm-12">

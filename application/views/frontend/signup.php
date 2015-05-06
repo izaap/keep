@@ -48,7 +48,7 @@
                     <input type="text" name="email" value="" class="form-control input-lg" placeholder="Your Email"  />
                     <input type="password" name="password" value="" class="form-control input-lg" placeholder="Password"  />
                     <input type="password" name="confirm_password" value="" class="form-control input-lg" placeholder="Confirm Password"  />
-                    <input type="text" name="phone" value="" class="form-control input-lg" placeholder="Your Phone Number"  />
+                    <?php /*<input type="text" name="phone" value="" class="form-control input-lg" placeholder="Your Phone Number"  />
                     
                     <label>Birth Date</label>                   
                      <div class="row">
@@ -92,8 +92,8 @@
                     <label class="radio-inline">
                         <input type="radio" name="gender" value="2" id=female />Female
                     </label>
-                    <br />
-              <span class="help-block"><label><input name="" type="checkbox" value=""> i agree the terms and conditions</label></span>
+                    <br /> */ ?>
+              <span class="help-block"><label><input name="" type="checkbox" value=""> I agree the terms and conditions</label></span>
                     <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
                         Create my account</button>
             </form>          

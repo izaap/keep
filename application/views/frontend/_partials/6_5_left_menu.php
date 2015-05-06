@@ -59,20 +59,17 @@
 										
 										<div class="left-nav">
 											<ul>
-												<li><a <?php  if($this->uri->segment(2) == "most_popular"){ ?> class="active" <?php } ?> href="<?php echo site_url(); ?>/home/most_popular" > What's New</a></li>
-												<?php /*<li><a <?php  if($this->uri->segment(2) == "upcomming_auctions"){ ?> class="active" <?php } ?>href="<?php echo site_url(); ?>/home/upcomming_auctions" >Upcomming Auctions</a></li> */ ?>
+												<li><a <?php  if($this->uri->segment(2) == "most_popular"){ ?> class="active" <?php } ?> href="<?php echo site_url(); ?>/home/most_popular" > Most Popular</a></li>
+												<li><a <?php  if($this->uri->segment(2) == "upcomming_auctions"){ ?> class="active" <?php } ?>href="<?php echo site_url(); ?>/home/upcomming_auctions" >Upcomming Auctions</a></li>
 												
 												<li><a <?php  if($this->uri->segment(2) == "auction_calender"){ ?> class="active" <?php } ?>href="<?php echo site_url(); ?>/home/auction_calender" >Auction Calender</a></li>
 												
 												<?php /*<li><a href="#">Museum Collections</a></li> */ ?>
 												<li><a <?php  if($this->uri->segment(2) == "directory_list"){ ?> class="active" <?php } ?> href="<?php echo site_url('home/directory_list')?>">Directory</a></li>
-												
-<?php if(!$this->session->userdata('user_id')) { ?>
-<li><a <?php  if($this->uri->segment(2) == "signup"){ ?> class="active" <?php } ?> href="<?php echo site_url('login/signup')?>">Signup</a></li>
-<?php } ?>
+												<li><a <?php  if($this->uri->segment(2) == "signup"){ ?> class="active" <?php } ?> href="<?php echo site_url('login/signup')?>">Signup</a></li>
 												<li><a href="#">About</a></li>
-												<li><a href="#">Contact us</a></li>
-												
+												<li><a href="#">Feed Back</a></li>
+												<li><a href="#">Privacy Policy</a></li>
 												 
 											</ul>
 										</div>

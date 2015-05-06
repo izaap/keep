@@ -12,7 +12,7 @@
                               <h3 class="title">Directory <div class="btn-group pull-right">
                  </div></h3>
   
-        <div class="col-md-12">
+        <div class="col-md-6 dir-list">
             <ul id="tree1">
                   <li><a href="#">CALIFORNIA</a>
                        <ul>
@@ -21,21 +21,23 @@
                                      <li><a href="http://shopesqueleto.com/" target="_blank">Esqueleto</a></li>
                                   </ul>
                           </li>
+                          <li>San Francisco
+                              <ul>
+                                 <li><a href="http://www.metiersf.com/" target="_blank">Metier</a></li>
+                              </ul>
+                   		  </li>
+                          <!-- end tree structure-->
+                          <li>West Hollywood
+                              <ul>
+                                  <li><a href="http://plattboutiquejewelry.com/" target="_blank">Platt Boutique Jewelry</a></li>
+                              </ul>
+                          </li>
+                           <!-- end tree structure-->
                       </ul>
                    </li>
                    <!-- end tree structure-->
-                   <li><a href="#">SAN FRANCISCO</a>
-                       <ul>
-                           <li><a href="http://www.metiersf.com/" target="_blank">Metier</a></li>
-                       </ul>
-                   </li>
-                   <!-- end tree structure-->
-                   <li><a href="#">WEST HOLLYWOOD</a>
-                       <ul>
-                           <li><a href="http://plattboutiquejewelry.com/" target="_blank">Platt Boutique Jewelry</a></li>
-                       </ul>
-                   </li>
-                   <!-- end tree structure-->
+                   
+                   
                     <li><a href="#">COLORADO</a>
                        <ul>
                           <li>Denver 
@@ -83,19 +85,19 @@
                                     <li><a href="http://bavier-brook.com/" target="_blank">Bavier Brook</a></li>
                                   </ul>
                           </li>
+                          <!-- end tree structure--> 
+                          <li>New York City
+                              <ul>
+                                  <li><a href="http://www.doyledoyle.com/" target="_blank">Doyle & Doyle</a></li>
+                                  <li><a href="http://ericaweiner.com/" target="_blank">Erica Weiner</a></li>
+                                  <li><a href="http://eriebasin.com/" target="_blank">Erie Basin</a></li>
+                                  <li><a href="http://www.grayanddavis.com/" target="_blank">Gray & Davis</a></li>
+                                  <li><a href="http://theoneilovenyc.com/" target="_blank">The One I Love NYC</a></li>
+                              </ul>
+                          </li>  
                       </ul>
                    </li>
-                   <!-- end tree structure--> 
-                   <li><a href="#">NEW YORK</a>
-                       <ul>
-                           <li><a href="http://www.doyledoyle.com/" target="_blank">Doyle & Doyle</a></li>
-                           <li><a href="http://ericaweiner.com/" target="_blank">Erica Weiner</a></li>
-                           <li><a href="http://eriebasin.com/" target="_blank">Erie Basin</a></li>
-                           <li><a href="http://www.grayanddavis.com/" target="_blank">Gray & Davis</a></li>
-                           <li><a href="http://theoneilovenyc.com/" target="_blank">The One I Love NYC</a></li>
-                       </ul>
-                   </li>  
-                   <!-- end tree structure--> 
+                    <!-- end tree structure--> 
                    <li><a href="#">OREGON</a>
                        <ul>
                           <li>Portland
@@ -107,6 +109,17 @@
                       </ul>
                    </li>
                    <!-- end tree structure--> 
+                              
+            </ul>
+            
+        </div>
+
+        
+        
+        <div class="col-md-6">
+            <ul id="tree2">
+ 
+                  
                    <li><a href="#">PENNSYLVANIA</a>
                        <ul>
                           <li>Doylestown

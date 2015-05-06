@@ -99,7 +99,13 @@
 											
 											
 										</div>
-										<img src="<?php  echo base_url('assets/uploads/products/'.$product['product_image']) ?>" class="" alt="" height="316" width="221">
+										<?php if($product['product_image'] == "") {  
+											$img= "no_image.png"; }
+											 else {  
+												 $img= $product['product_image']; 
+												 } ?>
+										
+										<img src="<?php  echo base_url('assets/uploads/products/'.$img) ?>" class="" alt="" height="316" width="221">
 									</div>
 								</div>
 								

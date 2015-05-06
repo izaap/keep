@@ -70,7 +70,15 @@ class Products extends Admin_controller {
         $this->layout->add_javascripts(array('product'));
 
         $form = $this->input->post();
+        //print_r($form);exit;
         $form = $this->security->xss_clean($form);
+        
+        if(isset($form['upcoming_product'])) { 
+			$form['upcoming_product'] = $form['upcoming_product'];	
+		}
+		else { 
+			$form['upcoming_product'] = "0";
+		}
 
         if(isset($form['edit_id']))
             $edit_id = $form['edit_id'];
@@ -130,7 +138,6 @@ class Products extends Admin_controller {
 
     $rules = array(array('field' => 'product_name', 'label' => 'Product Name', 'rules' => 'trim|required|xss_clean'),
                    array('field' => 'description', 'label' => 'Description', 'rules' => 'trim|required|xss_clean'),
-                   array('field' => 'product_image', 'label' => 'Product image', 'rules' => 'trim|required|xss_clean'),
                    array('field' => 'upcoming_product', 'label' => 'Upcoming product', 'rules' => 'trim|xss_clean'),
                    array('field' => 'buylink', 'label' => 'Buylink', 'rules' => 'trim|required|xss_clean'),
                    array('field' => 'price', 'label' => 'Price', 'rules' => 'trim|required|xss_clean|numeric|max_length[7]')
@@ -140,5 +147,7 @@ class Products extends Admin_controller {
    } 
 
 }
+
+//array('field' => 'product_image', 'label' => 'Product image', 'rules' => 'trim|required|xss_clean'),
 
 ?>
